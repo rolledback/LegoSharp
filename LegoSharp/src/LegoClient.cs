@@ -36,21 +36,29 @@ namespace LegoSharp
         public Brick getBrickByElementId(string elementId)
         {
             ILegoRequest request = requestFactory.makeBrickByElementIdRequest(elementId, tokens.accessToken);
-            List<Brick> result = unwrapJsonBrickList(runRequest<JsonBrickList>(request));
-            if (result.Count > 0)
+
+            JsonBrickList requestResult = runRequest<JsonBrickList>(request);
+            if(requestResult != null)
             {
-                return result[0];
+                List<Brick> returnList = unwrapJsonBrickList(runRequest<JsonBrickList>(request));
+                if (returnList.Count > 0)
+                {
+                    return returnList[0];
+                }
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public List<Brick> getBricksByDesignId(string designId)
         {
             ILegoRequest request = requestFactory.makeBrickByDesignIdRequest(designId, tokens.accessToken);
-            return unwrapJsonBrickList(runRequest<JsonBrickList>(request));
+
+            JsonBrickList requestResult = runRequest<JsonBrickList>(request);
+            if (requestResult != null)
+            {
+                return unwrapJsonBrickList(runRequest<JsonBrickList>(request));
+            }
+            return new List<Brick>();
         }
 
         private T runRequest<T>(ILegoRequest request)
@@ -66,13 +74,17 @@ namespace LegoSharp
             {
                 return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
             }
-            else if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                refreshAccessToken();
-            }
 
             if (retryCount > 0)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    refreshAccessToken();
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    return default(T);
+                }
                 return runRequestHelper<T>(request, retryCount - 1);
             }
 
