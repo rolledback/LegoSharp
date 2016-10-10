@@ -15,15 +15,23 @@ namespace LegoSharp
             public ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken)
             {
                 LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.uri = Constants.getBrickUri + "&element_id=" + elementId;
+                request.uri = request.uri + "&element_id=" + elementId;
 
                 return request;
             }
 
-            public ILegoRequest makeBrickByDesignIdRequest(string designId, string accessToken)
+            public ILegoRequest makeBricksByDesignIdRequest(string designId, string accessToken, int limit = 10)
             {
                 LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.uri = Constants.getBrickUri + "&design_id=" + designId;
+                request.uri = request.uri + "&design_id=" + designId + "&limit=" + limit;
+
+                return request;
+            }
+
+            public ILegoRequest makeBricksByNameRequest(string name, string accessToken, int limit = 10)
+            {
+                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
+                request.uri = request.uri + "&brick_name=" + name + "&limit=" + limit;
 
                 return request;
             }
@@ -31,6 +39,7 @@ namespace LegoSharp
             private ILegoRequest makeGetBrickRequest(string accessToken)
             {
                 LegoRequest request = new LegoRequest();
+                request.uri = Constants.elementsUri;
                 request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
                 request.type = RequestType.Get;
 

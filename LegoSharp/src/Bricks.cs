@@ -35,9 +35,13 @@ namespace LegoSharp
         [JsonProperty("elements")]
         public List<JsonBrick> elements { get; set; }
 
+        [JsonProperty("_links")]
+        public Dictionary<string, Dictionary<string, string>> links { get; set; }
+
         public JsonBrickList()
         {
             elements = new List<JsonBrick>();
+            links = new Dictionary<string, Dictionary<string, string>>();
         }
     }
 

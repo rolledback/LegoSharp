@@ -16,7 +16,9 @@ namespace LegoSharp
     {
         ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken);
 
-        ILegoRequest makeBrickByDesignIdRequest(string designId, string accessToken);
+        ILegoRequest makeBricksByDesignIdRequest(string designId, string accessToken, int limit = 10);
+
+        ILegoRequest makeBricksByNameRequest(string name, string accessToken, int limit = 10);
 
         ILegoRequest makeIntialAccessRequest();
 

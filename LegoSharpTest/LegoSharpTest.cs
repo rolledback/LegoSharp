@@ -68,5 +68,42 @@ namespace LegoSharpTest
                 Console.WriteLine("Passed");
             }
         }
+
+        [TestMethod]
+        public void getBrickByNameTest()
+        {
+            Console.WriteLine("getBrickByNamedTest");
+
+            string[] knownGoodNames = { "brick 1x2", "BRICK 1x2"};
+
+            foreach (string name in knownGoodNames)
+            {
+                Console.WriteLine("Getting: " + name);
+                List<Brick> result = testClient.getBricksByName(name);
+
+                Assert.IsTrue(result.Count > 0);
+                Console.WriteLine("Passed");
+            }
+
+            string[] knownBadNames = { "eafaf", "@@@@@@", "99999999" };
+
+            foreach (string name in knownBadNames)
+            {
+                Console.WriteLine("Getting: " + name);
+                List<Brick> result = testClient.getBricksByName(name);
+
+                Assert.IsTrue(result.Count == 0);
+                Console.WriteLine("Passed");
+            }
+        }
+
+        [TestMethod]
+        public void resultHasViewAllLinkTest()
+        {
+            JsonBrickList testList = new JsonBrickList();
+            testList.links["view_all"] = new Dictionary<string, string>();
+            testList.links["view_all"]["href"] = "/sh/rest/products/pab/elements?offset=0&limit=353&brick_name=Brick&match_criteria=all";
+            Assert.AreEqual(testClient.resultHasViewAllLink(testList), 353);
+        }
     }
 }
