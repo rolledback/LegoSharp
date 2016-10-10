@@ -14,5 +14,8 @@ Brick brick = client.getBrickByElementId("300321");
 
 // get all bricks with design id of 3003
 List<Brick> bricks = client.getBricksByDesignId("3003");
+
+// get all bricks whose name contains fence (case insensitive)
+List<Brick> bricks = client.getBricksByName("fence");
 ```
 For a more thorough example, see the InstructionChecker directory/project.
