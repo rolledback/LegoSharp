@@ -9,7 +9,13 @@ namespace LegoSharpTest
     [TestClass]
     public class LegoSharpTest
     {
-        static LegoClient testClient = new LegoClient();
+        static LegoClient testClient;
+
+        [TestInitialize]
+        public void setupTests()
+        {
+            testClient = new LegoClient();
+        }
 
         [TestMethod]
         public void getBrickByElementIdTest()
@@ -103,7 +109,7 @@ namespace LegoSharpTest
             JsonBrickList testList = new JsonBrickList();
             testList.links["view_all"] = new Dictionary<string, string>();
             testList.links["view_all"]["href"] = "/sh/rest/products/pab/elements?offset=0&limit=353&brick_name=Brick&match_criteria=all";
-            Assert.AreEqual(testClient.resultHasViewAllLink(testList), 353);
+            Assert.AreEqual(Utilities.resultHasViewAllLink(testList), 353);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace LegoSharp
     internal interface ILegoRequest
     {
         HttpResponseMessage getResponse();
+
+        void addParameters(Dictionary<string, string> newArgs);
     }
 
     internal interface ILegoRequestFactory

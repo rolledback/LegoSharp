@@ -7,10 +7,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Web;
 
 using Newtonsoft.Json;
-
 
 [assembly: InternalsVisibleTo("LegoSharpTest")]
 
@@ -57,56 +55,32 @@ namespace LegoSharp
         public List<Brick> getBricksByDesignId(string designId)
         {
             ILegoRequest request = requestFactory.makeBricksByDesignIdRequest(designId, tokens.accessToken);
-
-            JsonBrickList requestResult = runRequest<JsonBrickList>(request);
-
-            if (requestResult != null)
-            {
-                int viewAllLimit;
-                if ((viewAllLimit = resultHasViewAllLink(requestResult)) > -1)
-                {
-                    request = requestFactory.makeBricksByDesignIdRequest(designId, tokens.accessToken, viewAllLimit);
-                    requestResult = runRequest<JsonBrickList>(request);
-                }
-
-                return unwrapJsonBrickList(runRequest<JsonBrickList>(request));
-            }
-            return new List<Brick>();
+            return handleMultiBrickRequest(request);
         }
 
         public List<Brick> getBricksByName(string name)
         {
             ILegoRequest request = requestFactory.makeBricksByNameRequest(name, tokens.accessToken);
+            return handleMultiBrickRequest(request);
+        }
 
+        private List<Brick> handleMultiBrickRequest(ILegoRequest request)
+        {
             JsonBrickList requestResult = runRequest<JsonBrickList>(request);
 
             if (requestResult != null)
             {
                 int viewAllLimit;
-                if ((viewAllLimit = resultHasViewAllLink(requestResult)) > -1)
+                if ((viewAllLimit = Utilities.resultHasViewAllLink(requestResult)) > -1)
                 {
-                    request = requestFactory.makeBricksByNameRequest(name, tokens.accessToken, viewAllLimit);
+                    request.addParameters(new Dictionary<string, string>() { { "limit", viewAllLimit.ToString() } });
                     requestResult = runRequest<JsonBrickList>(request);
                 }
 
                 return unwrapJsonBrickList(runRequest<JsonBrickList>(request));
             }
 
-            return null;
-        }
-
-        internal int resultHasViewAllLink(JsonBrickList result)
-        {
-            if (result.links.ContainsKey("view_all"))
-            {
-                Uri viewAllUri = new Uri(Constants.baseAddress + result.links["view_all"]["href"]);
-                int neededLimit = int.Parse(HttpUtility.ParseQueryString(viewAllUri.Query).Get("limit"));
-                return neededLimit;
-            }
-            else
-            {
-                return -1;
-            }
+            return new List<Brick>();
         }
 
         private T runRequest<T>(ILegoRequest request)

@@ -15,7 +15,7 @@ namespace LegoSharp
             public ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken)
             {
                 LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.uri = request.uri + "&element_id=" + elementId;
+                request.parameters["element_id"] = elementId;
 
                 return request;
             }
@@ -23,7 +23,8 @@ namespace LegoSharp
             public ILegoRequest makeBricksByDesignIdRequest(string designId, string accessToken, int limit = 10)
             {
                 LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.uri = request.uri + "&design_id=" + designId + "&limit=" + limit;
+                request.parameters["design_id"] = designId;
+                request.parameters["limit"] = limit.ToString();
 
                 return request;
             }
@@ -31,7 +32,8 @@ namespace LegoSharp
             public ILegoRequest makeBricksByNameRequest(string name, string accessToken, int limit = 10)
             {
                 LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.uri = request.uri + "&brick_name=" + name + "&limit=" + limit;
+                request.parameters["brick_name"] = name;
+                request.parameters["limit"] = limit.ToString();
 
                 return request;
             }
@@ -39,7 +41,7 @@ namespace LegoSharp
             private ILegoRequest makeGetBrickRequest(string accessToken)
             {
                 LegoRequest request = new LegoRequest();
-                request.uri = Constants.elementsUri;
+                request.baseUri = Constants.elementsUri;
                 request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
                 request.type = RequestType.Get;
 
@@ -49,7 +51,7 @@ namespace LegoSharp
             public ILegoRequest makeIntialAccessRequest()
             {
                 LegoRequest request = new LegoRequest();
-                request.uri = Constants.oAuthUri;
+                request.baseUri = Constants.oAuthUri;
                 request.payload = new object();
                 request.type = RequestType.Post;
 
@@ -59,7 +61,7 @@ namespace LegoSharp
             public ILegoRequest makeRefreshAccessRequest(AuthTokens expiredTokens)
             {
                 LegoRequest request = new LegoRequest();
-                request.uri = Constants.oAuthUri;
+                request.baseUri = Constants.oAuthUri;
                 request.payload = expiredTokens;
                 request.type = RequestType.Post;
 
@@ -68,15 +70,18 @@ namespace LegoSharp
         }
 
         private HttpClient httpClient;
-        private string uri;
+        private string baseUri;
         private object payload;
         private RequestType type;
+        private Dictionary<string, string> parameters;
 
         private LegoRequest()
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(Constants.baseAddress);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            parameters = new Dictionary<string, string>();
         }
 
         public HttpResponseMessage getResponse()
@@ -85,14 +90,34 @@ namespace LegoSharp
             
             if (type == RequestType.Get)
             {
-                response = httpClient.GetAsync(uri).Result;
+                response = httpClient.GetAsync(this.buildUri()).Result;
             }
             else if (type == RequestType.Post)
             {
-                response = httpClient.PostAsJsonAsync(uri, new object()).Result;
+                response = httpClient.PostAsJsonAsync(this.buildUri(), new object()).Result;
             }
 
             return response;
+        }
+
+        public void addParameters(Dictionary<string, string> newArgs)
+        {
+            foreach(string argName in newArgs.Keys)
+            {
+                this.parameters[argName] = newArgs[argName];
+            }
+        }
+
+        private string buildUri()
+        {
+            string fullUri = this.baseUri;
+
+            foreach (string parameterName in parameters.Keys)
+            {
+                fullUri += "&" + parameterName + "=" + parameters[parameterName];
+            }
+
+            return fullUri;
         }
 
         private enum RequestType

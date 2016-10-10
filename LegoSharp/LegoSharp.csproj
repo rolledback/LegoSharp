@@ -69,6 +69,7 @@
     <Compile Include="src\ILegoRequest.cs" />
     <Compile Include="src\LegoClient.cs" />
     <Compile Include="src\LegoRequest.cs" />
+    <Compile Include="src\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
