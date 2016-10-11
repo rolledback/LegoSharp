@@ -17,5 +17,8 @@ List<Brick> bricks = client.getBricksByDesignId("3003");
 
 // get all bricks whose name contains fence (case insensitive)
 List<Brick> bricks = client.getBricksByName("fence");
+
+// get all bricks whose exact color is bright red
+List<Brick> bricks = client.getBricksByExactColor(ExactColor.BrightRed);
 ```
 For a more thorough example, see the InstructionChecker directory/project.
