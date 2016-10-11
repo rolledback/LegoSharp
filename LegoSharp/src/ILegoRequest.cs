@@ -22,8 +22,10 @@ namespace LegoSharp
 
         ILegoRequest makeBricksByNameRequest(string name, string accessToken, int limit = 10);
 
+        ILegoRequest makeBricksByExactColorRequest(int colorId, string accessToken, int limit = 10);
+
         ILegoRequest makeIntialAccessRequest();
 
-        ILegoRequest makeRefreshAccessRequest(AuthTokens expiredTokens);
+        ILegoRequest makeRefreshAccessRequest(string refreshToken);
     }
 }

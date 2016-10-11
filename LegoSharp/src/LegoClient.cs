@@ -32,7 +32,7 @@ namespace LegoSharp
 
         private void refreshAccessToken()
         {
-            ILegoRequest request = requestFactory.makeRefreshAccessRequest(tokens);
+            ILegoRequest request = requestFactory.makeRefreshAccessRequest(tokens.refreshToken);
             tokens = runRequest<AuthTokens>(request);
         }
 
@@ -61,6 +61,12 @@ namespace LegoSharp
         public List<Brick> getBricksByName(string name)
         {
             ILegoRequest request = requestFactory.makeBricksByNameRequest(name, tokens.accessToken);
+            return handleMultiBrickRequest(request);
+        }
+
+        public List<Brick> getBricksByExactColor(ExactColor color)
+        {
+            ILegoRequest request = requestFactory.makeBricksByExactColorRequest((int)color, tokens.accessToken);
             return handleMultiBrickRequest(request);
         }
 

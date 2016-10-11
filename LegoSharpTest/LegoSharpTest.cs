@@ -76,9 +76,9 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public void getBrickByNameTest()
+        public void getBricksByNameTest()
         {
-            Console.WriteLine("getBrickByNamedTest");
+            Console.WriteLine("getBricksByNameTest");
 
             string[] knownGoodNames = { "brick 1x2", "BRICK 1x2"};
 
@@ -99,6 +99,23 @@ namespace LegoSharpTest
                 List<Brick> result = testClient.getBricksByName(name);
 
                 Assert.IsTrue(result.Count == 0);
+                Console.WriteLine("Passed");
+            }
+        }
+
+        [TestMethod]
+        public void getBricksByExactColorTest()
+        {
+            Console.WriteLine("getBricksByExactColorTest");
+
+            ExactColor[] exactColorValues = (ExactColor[])Enum.GetValues(typeof(ExactColor));
+
+            foreach(ExactColor exactColor in exactColorValues)
+            {
+                Console.WriteLine("Getting: " + exactColor.ToString());
+                List<Brick> result = testClient.getBricksByExactColor(exactColor);
+
+                Assert.IsTrue(result.Count >= 0);
                 Console.WriteLine("Passed");
             }
         }

@@ -38,6 +38,15 @@ namespace LegoSharp
                 return request;
             }
 
+            public ILegoRequest makeBricksByExactColorRequest(int colorId, string accessToken, int limit = 10)
+            {
+                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
+                request.parameters["exact_color"] = colorId.ToString();
+                request.parameters["limit"] = limit.ToString();
+
+                return request;
+            }
+
             private ILegoRequest makeGetBrickRequest(string accessToken)
             {
                 LegoRequest request = new LegoRequest();
@@ -58,11 +67,11 @@ namespace LegoSharp
                 return request;
             }
 
-            public ILegoRequest makeRefreshAccessRequest(AuthTokens expiredTokens)
+            public ILegoRequest makeRefreshAccessRequest(string refreshToken)
             {
                 LegoRequest request = new LegoRequest();
                 request.baseUri = Constants.oAuthUri;
-                request.payload = expiredTokens;
+                request.payload = "{\"refreshToken\":\"" + refreshToken + "\"}";
                 request.type = RequestType.Post;
 
                 return request;
@@ -94,7 +103,7 @@ namespace LegoSharp
             }
             else if (type == RequestType.Post)
             {
-                response = httpClient.PostAsJsonAsync(this.buildUri(), new object()).Result;
+                response = httpClient.PostAsJsonAsync(this.buildUri(), payload).Result;
             }
 
             return response;
