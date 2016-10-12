@@ -74,7 +74,10 @@ namespace InstructionChecker
 
         public static void findSimilarBricks(Brick brick)
         {
-            List<Brick> similarBricks = client.getBricksByDesignId(brick.designId);
+            BrickSearch similarBrickSearch = new BrickSearch();
+            similarBrickSearch.setDesignId(brick.designId);
+
+            List<Brick> similarBricks = client.searchForBricks(similarBrickSearch);
 
             if (similarBricks.Count > 0)
             {

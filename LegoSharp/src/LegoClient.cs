@@ -24,6 +24,18 @@ namespace LegoSharp
             getInitialAccessToken();
         }
 
+        public Brick getBrickByElementId(string elementId)
+        {
+            ILegoRequest request = requestFactory.makeBrickByElementIdRequest(elementId, tokens.accessToken);
+            return handleSingleBrickRequest(request);
+        }
+
+        public List<Brick> searchForBricks(IBrickSearch brickSearch)
+        {
+            ILegoRequest request = requestFactory.makeBrickSearchRequest(brickSearch, tokens.accessToken);
+            return handleMultiBrickRequest(request);
+        }
+
         private void getInitialAccessToken()
         {
             ILegoRequest request = requestFactory.makeIntialAccessRequest();
@@ -36,12 +48,10 @@ namespace LegoSharp
             tokens = runRequest<AuthTokens>(request);
         }
 
-        public Brick getBrickByElementId(string elementId)
+        private Brick handleSingleBrickRequest(ILegoRequest request)
         {
-            ILegoRequest request = requestFactory.makeBrickByElementIdRequest(elementId, tokens.accessToken);
-
             JsonBrickList requestResult = runRequest<JsonBrickList>(request);
-            if(requestResult != null)
+            if (requestResult != null)
             {
                 List<Brick> returnList = unwrapJsonBrickList(runRequest<JsonBrickList>(request));
                 if (returnList.Count > 0)
@@ -50,24 +60,6 @@ namespace LegoSharp
                 }
             }
             return null;
-        }
-
-        public List<Brick> getBricksByDesignId(string designId)
-        {
-            ILegoRequest request = requestFactory.makeBricksByDesignIdRequest(designId, tokens.accessToken);
-            return handleMultiBrickRequest(request);
-        }
-
-        public List<Brick> getBricksByName(string name)
-        {
-            ILegoRequest request = requestFactory.makeBricksByNameRequest(name, tokens.accessToken);
-            return handleMultiBrickRequest(request);
-        }
-
-        public List<Brick> getBricksByExactColor(ExactColor color)
-        {
-            ILegoRequest request = requestFactory.makeBricksByExactColorRequest((int)color, tokens.accessToken);
-            return handleMultiBrickRequest(request);
         }
 
         private List<Brick> handleMultiBrickRequest(ILegoRequest request)

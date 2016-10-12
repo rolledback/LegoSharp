@@ -56,6 +56,7 @@ namespace LegoSharp
         TrMediumReddishViolet = 113,
         Transparent = 40,
         WarmGold = 297,
-        White = 1
+        White = 1,
+        Undefined = 0
     }
 }

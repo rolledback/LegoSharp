@@ -26,12 +26,14 @@ namespace LegoSharpTest
                                              "300321", "4211387", "300326",
                                              "300121", "4211385", "300126"};
 
-            foreach(string elementId in knownGoodElementIds) {
+            foreach(string elementId in knownGoodElementIds)
+            {
                 Console.WriteLine("Getting: " + elementId);
-                Brick result = testClient.getBrickByElementId(elementId);
 
+                Brick result = testClient.getBrickByElementId(elementId);
                 Assert.AreNotEqual(result, null);
                 Assert.AreEqual(result.elementId, elementId);
+
                 Console.WriteLine("Passed");
             }
 
@@ -40,9 +42,10 @@ namespace LegoSharpTest
             foreach (string elementId in knownBadElementIds)
             {
                 Console.WriteLine("Getting: " + elementId);
-                Brick result = testClient.getBrickByElementId(elementId);
 
+                Brick result = testClient.getBrickByElementId(elementId);
                 Assert.AreEqual(result, null);
+
                 Console.WriteLine("Passed");
             }
         }
@@ -57,9 +60,12 @@ namespace LegoSharpTest
             foreach (string designId in knownGoodDesignIds)
             {
                 Console.WriteLine("Getting: " + designId);
-                List<Brick> result = testClient.getBricksByDesignId(designId);
 
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setDesignId(designId);
+                List<Brick> result = testClient.searchForBricks(brickSearch);
                 Assert.IsTrue(result.Count > 0);
+
                 Console.WriteLine("Passed");
             }
 
@@ -68,9 +74,12 @@ namespace LegoSharpTest
             foreach (string designId in knownBadDesignIds)
             {
                 Console.WriteLine("Getting: " + designId);
-                List<Brick> result = testClient.getBricksByDesignId(designId);
 
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setDesignId(designId);
+                List<Brick> result = testClient.searchForBricks(brickSearch);
                 Assert.IsTrue(result.Count == 0);
+
                 Console.WriteLine("Passed");
             }
         }
@@ -85,9 +94,12 @@ namespace LegoSharpTest
             foreach (string name in knownGoodNames)
             {
                 Console.WriteLine("Getting: " + name);
-                List<Brick> result = testClient.getBricksByName(name);
 
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setName(name);
+                List<Brick> result = testClient.searchForBricks(brickSearch);
                 Assert.IsTrue(result.Count > 0);
+
                 Console.WriteLine("Passed");
             }
 
@@ -96,9 +108,12 @@ namespace LegoSharpTest
             foreach (string name in knownBadNames)
             {
                 Console.WriteLine("Getting: " + name);
-                List<Brick> result = testClient.getBricksByName(name);
 
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setName(name);
+                List<Brick> result = testClient.searchForBricks(brickSearch);
                 Assert.IsTrue(result.Count == 0);
+
                 Console.WriteLine("Passed");
             }
         }
@@ -113,11 +128,59 @@ namespace LegoSharpTest
             foreach(ExactColor exactColor in exactColorValues)
             {
                 Console.WriteLine("Getting: " + exactColor.ToString());
-                List<Brick> result = testClient.getBricksByExactColor(exactColor);
 
-                Assert.IsTrue(result.Count >= 0);
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setExactColor(exactColor);
+                List<Brick> result = testClient.searchForBricks(brickSearch);
+                Assert.IsTrue(result.Count > 0);
+
                 Console.WriteLine("Passed");
             }
+        }
+
+        [TestMethod]
+        public void emptySearchTest()
+        {
+            Console.WriteLine("emptySearchTest");
+
+            BrickSearch brickSearch = new BrickSearch();
+            List<Brick> result = testClient.searchForBricks(brickSearch);
+            Assert.IsTrue(result.Count > 0);
+
+            Console.WriteLine("Passed");
+        }
+
+        [TestMethod]
+        public void multiParameterSearchTest()
+        {
+            Console.WriteLine("multiParameterSearchTest");
+
+            BrickSearch brickSearchOne = new BrickSearch();
+            brickSearchOne.setExactColor(ExactColor.BrightRed);
+            brickSearchOne.setName("1x2");
+            List<Brick> resultOne = testClient.searchForBricks(brickSearchOne);
+            Assert.IsTrue(resultOne.Count > 0);
+
+            BrickSearch brickSearchTwo = new BrickSearch();
+            brickSearchTwo.setExactColor(ExactColor.Black);
+            brickSearchTwo.setDesignId("3003");
+            List<Brick> resultTwo = testClient.searchForBricks(brickSearchTwo);
+            Assert.IsTrue(resultTwo.Count > 0);
+
+            BrickSearch brickSearchThree = new BrickSearch();
+            brickSearchThree.setName("2x2");
+            brickSearchThree.setDesignId("3003");
+            List<Brick> resultThree = testClient.searchForBricks(brickSearchThree);
+            Assert.IsTrue(resultThree.Count > 0);
+
+            BrickSearch brickSearchFour = new BrickSearch();
+            brickSearchFour.setExactColor(ExactColor.Black);
+            brickSearchFour.setName("2x2");
+            brickSearchFour.setDesignId("3003");
+            List<Brick> resultFour = testClient.searchForBricks(brickSearchFour);
+            Assert.IsTrue(resultFour.Count > 0);
+
+            Console.WriteLine("Passed");
         }
 
         [TestMethod]

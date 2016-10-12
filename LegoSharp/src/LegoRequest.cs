@@ -14,42 +14,25 @@ namespace LegoSharp
         {
             public ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken)
             {
-                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
+                LegoRequest request = new LegoRequest();
                 request.parameters["element_id"] = elementId;
 
-                return request;
-            }
-
-            public ILegoRequest makeBricksByDesignIdRequest(string designId, string accessToken, int limit = 10)
-            {
-                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.parameters["design_id"] = designId;
-                request.parameters["limit"] = limit.ToString();
+                request.baseUri = Constants.elementsUri;
+                request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                request.type = RequestType.Get;
 
                 return request;
             }
 
-            public ILegoRequest makeBricksByNameRequest(string name, string accessToken, int limit = 10)
-            {
-                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.parameters["brick_name"] = name;
-                request.parameters["limit"] = limit.ToString();
-
-                return request;
-            }
-
-            public ILegoRequest makeBricksByExactColorRequest(int colorId, string accessToken, int limit = 10)
-            {
-                LegoRequest request = (LegoRequest)makeGetBrickRequest(accessToken);
-                request.parameters["exact_color"] = colorId.ToString();
-                request.parameters["limit"] = limit.ToString();
-
-                return request;
-            }
-
-            private ILegoRequest makeGetBrickRequest(string accessToken)
+            public ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, string accessToken, int limit = 10)
             {
                 LegoRequest request = new LegoRequest();
+
+                request.parameters["design_id"] = brickSearch.getDesignId();
+                request.parameters["exact_color"] = brickSearch.getExactColor() <= 0 ? "" : ((int)brickSearch.getExactColor()).ToString();
+                request.parameters["brick_name"] = brickSearch.getName();
+                request.parameters["limit"] = limit.ToString();
+
                 request.baseUri = Constants.elementsUri;
                 request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
                 request.type = RequestType.Get;
@@ -123,7 +106,10 @@ namespace LegoSharp
 
             foreach (string parameterName in parameters.Keys)
             {
-                fullUri += "&" + parameterName + "=" + parameters[parameterName];
+                if (!string.IsNullOrEmpty(parameters[parameterName]))
+                {
+                    fullUri += "&" + parameterName + "=" + parameters[parameterName];
+                }
             }
 
             return fullUri;
