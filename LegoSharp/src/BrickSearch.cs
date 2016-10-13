@@ -11,12 +11,14 @@ namespace LegoSharp
         private ExactColor exactColor;
         private string designId;
         private string name;
+        private List<Category> categories;
 
         public BrickSearch()
         {
-            exactColor = ExactColor.Undefined;
+            exactColor = 0;
             designId = "";
             name = "";
+            categories = new List<Category>();
         }
 
         public void setExactColor(ExactColor color)
@@ -34,6 +36,11 @@ namespace LegoSharp
             this.name = name;
         }
 
+        public void setCategories(List<Category> categories)
+        {
+            this.categories = categories;
+        }
+
         public ExactColor getExactColor()
         {
             return exactColor;
@@ -47,6 +54,11 @@ namespace LegoSharp
         public string getName()
         {
             return name;
+        }
+
+        public List<Category> getCategories()
+        {
+            return categories;
         }
     }
 }

@@ -139,6 +139,26 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
+        public void getBricksByCategoryTest()
+        {
+            Console.WriteLine("getBricksByCategoryTest");
+
+            Category[] categoryValues = (Category[])Enum.GetValues(typeof(Category));
+
+            foreach (Category category in categoryValues)
+            {
+                Console.WriteLine("Getting: " + category.ToString());
+
+                BrickSearch brickSearch = new BrickSearch();
+                brickSearch.setCategories(new List<Category>() { category });
+                List<Brick> result = testClient.searchForBricks(brickSearch);
+                Assert.IsTrue(result.Count > 0);
+
+                Console.WriteLine("Passed");
+            }
+        }
+
+        [TestMethod]
         public void emptySearchTest()
         {
             Console.WriteLine("emptySearchTest");

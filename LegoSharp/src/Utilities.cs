@@ -22,5 +22,24 @@ namespace LegoSharp
                 return -1;
             }
         }
+
+        internal static string categoryListToString(List<Category> categoryList)
+        {
+            string result = "";
+
+            categoryList.ForEach(item => result += ((int)item).ToString() + ",");
+
+            if (result.Length > 0)
+            {
+                return result.Remove(result.Length - 1);
+            }
+
+            return result;
+        }
+
+        internal static string exactColorToString(ExactColor color)
+        {
+            return color <= 0 ? "" : ((int)color).ToString();
+        }
     }
 }

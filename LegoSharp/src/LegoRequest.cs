@@ -29,8 +29,9 @@ namespace LegoSharp
                 LegoRequest request = new LegoRequest();
 
                 request.parameters["design_id"] = brickSearch.getDesignId();
-                request.parameters["exact_color"] = brickSearch.getExactColor() <= 0 ? "" : ((int)brickSearch.getExactColor()).ToString();
+                request.parameters["exact_color"] = Utilities.exactColorToString(brickSearch.getExactColor());
                 request.parameters["brick_name"] = brickSearch.getName();
+                request.parameters["categories"] = Utilities.categoryListToString(brickSearch.getCategories());
                 request.parameters["limit"] = limit.ToString();
 
                 request.baseUri = Constants.elementsUri;

@@ -14,10 +14,14 @@ namespace LegoSharp
 
         void setName(string name);
 
+        void setCategories(List<Category> categories);
+
         ExactColor getExactColor();
 
         string getDesignId();
 
         string getName();
+
+        List<Category> getCategories();
     }
 }
