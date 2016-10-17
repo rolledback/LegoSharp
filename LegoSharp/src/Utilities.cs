@@ -9,6 +9,52 @@ namespace LegoSharp
 {
     internal class Utilities
     {
+        internal static string convertExactColorsToId(string exactColorName)
+        {
+            if (!string.IsNullOrEmpty(exactColorName))
+            {
+                return Constants.stringToExactColorId[exactColorName.ToLower()].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        internal static string convertCategoriesToIds(string[] categories)
+        {
+            string result = "";
+
+            for (int i = 0; i < categories.Length; i++)
+            {
+                result += Constants.stringToCategoryId[categories[i].ToLower()].ToString() + ",";
+            }
+
+            if (result.Length > 0)
+            {
+                return result.Remove(result.Length - 1);
+            }
+
+            return result;
+        }
+
+        internal static string convertColorFamiliesToIds(string [] colorFamilies)
+        {
+            string result = "";
+
+            for (int i = 0; i < colorFamilies.Length; i++)
+            {
+                result += Constants.stringToColorFamilyId[colorFamilies[i].ToLower()].ToString() + ",";
+            }
+
+            if (result.Length > 0)
+            {
+                return result.Remove(result.Length - 1);
+            }
+
+            return result;
+        }
+
         internal static int resultHasViewAllLink(JsonBrickList result)
         {
             if (result.links.ContainsKey("view_all"))
@@ -21,25 +67,6 @@ namespace LegoSharp
             {
                 return -1;
             }
-        }
-
-        internal static string categoryListToString(List<Category> categoryList)
-        {
-            string result = "";
-
-            categoryList.ForEach(item => result += ((int)item).ToString() + ",");
-
-            if (result.Length > 0)
-            {
-                return result.Remove(result.Length - 1);
-            }
-
-            return result;
-        }
-
-        internal static string exactColorToString(ExactColor color)
-        {
-            return color <= 0 ? "" : ((int)color).ToString();
         }
     }
 }

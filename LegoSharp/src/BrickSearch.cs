@@ -8,22 +8,44 @@ namespace LegoSharp
 {
     public class BrickSearch: IBrickSearch
     {
-        private ExactColor exactColor;
+        private string exactColor;
         private string designId;
         private string name;
-        private List<Category> categories;
+        private string[] categories;
+        private string[] colorFamilies;
 
         public BrickSearch()
         {
-            exactColor = 0;
+            exactColor = "";
             designId = "";
             name = "";
-            categories = new List<Category>();
+            categories = new string[0];
+            colorFamilies = new string[0];
         }
 
-        public void setExactColor(ExactColor color)
+        public void setExactColor(string colorName)
         {
-            this.exactColor = color;
+            this.exactColor = colorName;
+        }
+
+        public void setCategories(string[] categoryNames)
+        {
+            this.categories = new string[categoryNames.Length];
+
+            for (int i = 0; i < categoryNames.Length; i++)
+            {
+                categories[i] = categoryNames[i];
+            }
+        }
+
+        public void setColorFamilies(string[] colorFamilyNames)
+        {
+            this.colorFamilies = new string[colorFamilyNames.Length];
+
+            for (int i = 0; i < colorFamilyNames.Length; i++)
+            {
+                colorFamilies[i] = colorFamilyNames[i];
+            }
         }
 
         public void setDesignId(string designId)
@@ -36,12 +58,7 @@ namespace LegoSharp
             this.name = name;
         }
 
-        public void setCategories(List<Category> categories)
-        {
-            this.categories = categories;
-        }
-
-        public ExactColor getExactColor()
+        public string getExactColor()
         {
             return exactColor;
         }
@@ -56,9 +73,14 @@ namespace LegoSharp
             return name;
         }
 
-        public List<Category> getCategories()
+        public string[] getCategories()
         {
             return categories;
+        }
+
+        public string[] getColorFamilies()
+        {
+            return colorFamilies;
         }
     }
 }

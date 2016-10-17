@@ -8,20 +8,24 @@ namespace LegoSharp
 {
     public interface IBrickSearch
     {
-        void setExactColor(ExactColor color);
+        void setExactColor(string colorName);
+
+        void setCategories(string[] categoryNames);
+
+        void setColorFamilies(string[] colorFamilyNames);
 
         void setDesignId(string designId);
 
         void setName(string name);
 
-        void setCategories(List<Category> categories);
-
-        ExactColor getExactColor();
+        string getExactColor();
 
         string getDesignId();
 
         string getName();
 
-        List<Category> getCategories();
+        string[] getCategories();
+
+        string[] getColorFamilies();
     }
 }

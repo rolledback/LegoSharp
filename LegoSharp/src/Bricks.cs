@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 using Newtonsoft.Json;
 
@@ -16,6 +17,9 @@ namespace LegoSharp
         public string designId { get; }
         public bool isAvailable { get; }
         public int inventoryQuantity { get; }
+        public string category { get; }
+        public string exactColor { get; }
+        public string colorFamily { get; }
 
         private Brick() { }
 
@@ -27,6 +31,9 @@ namespace LegoSharp
             designId = jsonBrick.designId;
             isAvailable = jsonBrick.availabilityStatus == "E_AVAILABLE";
             inventoryQuantity = jsonBrick.inventoryQuantity;
+            category = !string.IsNullOrWhiteSpace(jsonBrick.category) ? jsonBrick.category : "";
+            exactColor = !string.IsNullOrWhiteSpace(jsonBrick.exactColor) ? jsonBrick.exactColor : "";
+            colorFamily = !string.IsNullOrWhiteSpace(jsonBrick.colorFamily) ? jsonBrick.colorFamily : "";
         }
     }
 
@@ -69,5 +76,7 @@ namespace LegoSharp
         public string restrictedStatus { get; set; }
         [JsonProperty("inventory_quantity")]
         public int inventoryQuantity { get; set; }
+        [JsonProperty("_links")]
+        public Dictionary<string, Dictionary<string, string>> links { get; set; }
     }
 }
