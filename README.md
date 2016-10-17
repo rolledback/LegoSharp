@@ -12,9 +12,15 @@ LegoClient client = new LegoClient();
 // get brick with element id of 300321 
 Brick brick = client.getBrickByElementId("300321"); 
 
+/*
+ * For anything other than finding bricks by element Id, use a BrickSearch object
+ * to search for the bricks you want. All string related searches (names, category,
+ * exact color, and color family) are case insensitive.
+ */
+
 // get bricks with exact color black
 BrickSearch brickSearch = new BrickSearch();
-brickSearch.setExactColor(ExactColor.Black);
+brickSearch.setExactColor("Black");
 List<Brick> result = testClient.searchForBricks(brickSearch);
 
 // get bricks with name containing "2x2"
@@ -27,11 +33,17 @@ brickSearch = new BrickSearch();
 brickSearch.setDesignId("3003");
 result = testClient.searchForBricks(brickSearch);
 
-// get bricks with exact color black, name containing "2x2" (case insensitive), and design id of 3003
+// get bricks with exact color black, name containing "2x2", and design id of 3003
 brickSearch = new BrickSearch();
-brickSearch.setExactColor(ExactColor.Black);
+brickSearch.setExactColor("Black");
 brickSearch.setName("2x2");
 brickSearch.setDesignId("3003");
 result = testClient.searchForBricks(brickSearch);
+
+// get bricks in the black and red color families, in the plates category, and whose names contain "corner"
+brickSearch = new BrickSearch();
+brickSearch.setCategories(new string[] { "plates" });
+brickSearch.setColorFamilies(new string[] { "Red", "Blue" });
+brickSearch.setName("corner");
+result = testClient.searchForBricks(brickSearch);
 ```
-For a more thorough example, see the InstructionChecker directory/project.
