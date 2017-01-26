@@ -14,13 +14,12 @@ using Newtonsoft.Json;
 
 namespace LegoSharp
 {
-    public class LegoClient
+    public class PickABrickClient: LegoSharpClient
     {
-        private AuthTokens tokens;
-        private ILegoRequestFactory requestFactory;
+        private ShopAuthTokens tokens;
 
-        public LegoClient() {
-            requestFactory = new LegoRequest.LegoRequestFactory();
+        public PickABrickClient()
+        {
             getInitialAccessToken();
         }
 
@@ -39,13 +38,13 @@ namespace LegoSharp
         private void getInitialAccessToken()
         {
             ILegoRequest request = requestFactory.makeIntialAccessRequest();
-            tokens = runRequest<AuthTokens>(request);
+            tokens = runRequest<ShopAuthTokens>(request);
         }
 
         private void refreshAccessToken()
         {
             ILegoRequest request = requestFactory.makeRefreshAccessRequest(tokens.refreshToken);
-            tokens = runRequest<AuthTokens>(request);
+            tokens = runRequest<ShopAuthTokens>(request);
         }
 
         private Brick handleSingleBrickRequest(ILegoRequest request)
@@ -81,7 +80,7 @@ namespace LegoSharp
             return new List<Brick>();
         }
 
-        private T runRequest<T>(ILegoRequest request)
+        private new T runRequest<T>(ILegoRequest request)
         {
             return runRequestHelper<T>(request, 10);
         }
@@ -92,7 +91,14 @@ namespace LegoSharp
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+                try
+                {
+                    return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+                }
+                catch (Exception)
+                {
+                    return default(T);
+                }
             }
 
             if (retryCount > 0)
@@ -117,7 +123,7 @@ namespace LegoSharp
         }
     }
 
-    internal class AuthTokens
+    internal class ShopAuthTokens
     {
         [JsonProperty("access_token")]
         public string accessToken { get; set; }

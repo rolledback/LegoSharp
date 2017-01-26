@@ -8,7 +8,7 @@ namespace LegoSharp
 {
     internal class Constants
     {
-        public static readonly string baseAddress = "https://shop.lego.com/";
+        public static readonly string baseShopUri = "https://shop.lego.com/";
 
         public static readonly string oAuthUri = "oauth/accessToken?api_version=1&accept_language=en-US";
         public static readonly string elementsUri = "sh/rest/products/pab/elements?api_version=1&accept_language=en-US";
@@ -140,5 +140,13 @@ namespace LegoSharp
         };
 
         public static readonly Dictionary<int, string> colorFamilyIdToString = stringToExactColorId.ToDictionary(x => x.Value, x => x.Key);
+
+        public static readonly string baseAuthenticationUri = "https://account2.lego.com/";
+
+        public static readonly string aesPairUri = "account/aep/1/{0}";
+        public static readonly string loginUri = "account/en-us/authentication/Authenticate";
+        public static readonly string currentUserUri = "account/client/currentuser/{0}/1/";
+
+        public static readonly string defaultSessionId = "00000000-0000-0000-0000-000000000000";
     }
 }

@@ -69,7 +69,9 @@
     <Compile Include="src\Constants.cs" />
     <Compile Include="src\IBrickSearch.cs" />
     <Compile Include="src\ILegoRequest.cs" />
-    <Compile Include="src\LegoClient.cs" />
+    <Compile Include="src\LegoAccountClient.cs" />
+    <Compile Include="src\LegoSharpClient.cs" />
+    <Compile Include="src\PickABrickClient.cs" />
     <Compile Include="src\LegoRequest.cs" />
     <Compile Include="src\Utilities.cs" />
   </ItemGroup>

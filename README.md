@@ -1,16 +1,16 @@
 # LegoSharp
 
-LegoSharp is a library for interacting with Lego's web API. At this time, only searching for bricks in Lego's [Pick a Brick](https://shop.lego.com/en-US/Pick-a-Brick) has been implemented.
+LegoSharp is a library for interacting with Lego's web API. At this time, searching for bricks in Lego's [Pick a Brick](https://shop.lego.com/en-US/Pick-a-Brick) and signing into a [LegoId](https://account2.lego.com/en-US/login) account has been implemented.
 
 ## Usage
 
-Using LegoSharp is very simple:
+Using LegoSharp is very simple. For querying Pick a Prick:
 ```C#
-// create a client
-LegoClient client = new LegoClient();
+// create a pick a brick client
+PickABrickClient client = new PickABrickClient();
 
-// get brick with element id of 300321 
-Brick brick = client.getBrickByElementId("300321"); 
+// get brick with element id of 300321
+Brick brick = client.getBrickByElementId("300321");
 
 /*
  * For anything other than finding bricks by element Id, use a BrickSearch object
@@ -47,3 +47,22 @@ brickSearch.setColorFamilies(new string[] { "Red", "Blue" });
 brickSearch.setName("corner");
 result = testClient.searchForBricks(brickSearch);
 ```
+
+And to sign into a LegoId account:
+```C#
+// create an account client
+LegoAccountClient client = new LegoAccountClient();
+
+// attempt to authenticate using your username and password
+bool authenticationSuccessful = client.authenticate(username, password);
+
+if (authenticationSuccessful)
+{
+    // if the authentication worked, then get the current user
+    LegoAccount currUser = client.getCurrentUser();
+}
+```
+
+## Notes
+
+If you'd like to run any of the account tests, you'll need to create a `PrivateConstants.cs` file in the LegoSharpTest project. This file will need to declare two public strings, `testUsername` and `testPassword`.

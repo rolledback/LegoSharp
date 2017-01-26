@@ -50,7 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LegoSharpTest.cs" />
+    <Compile Include="LegoAccountTests.cs" />
+    <Compile Include="PickABrickTests.cs" />
+    <Compile Include="PrivateConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

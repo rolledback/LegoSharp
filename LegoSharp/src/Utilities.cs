@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Net;
+using System.Reflection;
+using System.Collections;
 
 namespace LegoSharp
 {
@@ -38,7 +41,7 @@ namespace LegoSharp
             return result;
         }
 
-        internal static string convertColorFamiliesToIds(string [] colorFamilies)
+        internal static string convertColorFamiliesToIds(string[] colorFamilies)
         {
             string result = "";
 
@@ -59,7 +62,7 @@ namespace LegoSharp
         {
             if (result.links.ContainsKey("view_all"))
             {
-                Uri viewAllUri = new Uri(Constants.baseAddress + result.links["view_all"]["href"]);
+                Uri viewAllUri = new Uri(Constants.baseShopUri + result.links["view_all"]["href"]);
                 int neededLimit = int.Parse(HttpUtility.ParseQueryString(viewAllUri.Query).Get("limit"));
                 return neededLimit;
             }
@@ -67,6 +70,15 @@ namespace LegoSharp
             {
                 return -1;
             }
+        }
+
+        internal static byte[] stringToByteArray(string hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
         }
     }
 }

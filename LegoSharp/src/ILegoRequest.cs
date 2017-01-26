@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -23,5 +24,13 @@ namespace LegoSharp
         ILegoRequest makeIntialAccessRequest();
 
         ILegoRequest makeRefreshAccessRequest(string refreshToken);
+
+        ILegoRequest getLoginCookieSettings(CookieContainer cookies);
+
+        ILegoRequest makeAesPairRequest(string sessionId, CookieContainer cookies);
+
+        ILegoRequest makeLoginRequest(string username, string password, CookieContainer cookies);
+
+        ILegoRequest makeGetCurrentUserRequest(string sessionId, CookieContainer cookies);
     }
 }

@@ -7,9 +7,9 @@ using LegoSharp;
 namespace LegoSharpTest
 {
     [TestClass]
-    public class LegoSharpTest
+    public class PickABrickTests
     {
-        static LegoClient testClient;
+        static PickABrickClient testClient;
         static int totalBricksWithCategory;
         static int totalBricksWithExactColor;
         static int totalBricksWithColorFamily;
@@ -18,7 +18,7 @@ namespace LegoSharpTest
         [TestInitialize]
         public void setupTest()
         {
-            testClient = new LegoClient();
+            testClient = new PickABrickClient();
         }
 
         [TestMethod]
@@ -346,8 +346,8 @@ namespace LegoSharpTest
         [TestMethod]
         public void readmeCode()
         {
-            // create a client
-            LegoClient client = new LegoClient();
+            // create a pick a brick client
+            PickABrickClient client = new PickABrickClient();
 
             // get brick with element id of 300321
             Brick brick = client.getBrickByElementId("300321");
