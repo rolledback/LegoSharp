@@ -18,7 +18,7 @@ namespace LegoSharp
     {
         private ShopAuthTokens tokens;
 
-        public PickABrickClient()
+        public PickABrickClient(LegoSession session): base(session)
         {
             getInitialAccessToken();
         }

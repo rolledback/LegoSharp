@@ -25,12 +25,12 @@ namespace LegoSharp
 
         ILegoRequest makeRefreshAccessRequest(string refreshToken);
 
-        ILegoRequest getLoginCookieSettings(CookieContainer cookies);
+        ILegoRequest getLoginCookieSettings();
 
-        ILegoRequest makeAesPairRequest(string sessionId, CookieContainer cookies);
+        ILegoRequest makeAesPairRequest();
 
-        ILegoRequest makeLoginRequest(string username, string password, CookieContainer cookies);
+        ILegoRequest makeLoginRequest(string username, string password);
 
-        ILegoRequest makeGetCurrentUserRequest(string sessionId, CookieContainer cookies);
+        ILegoRequest makeGetCurrentUserRequest();
     }
 }

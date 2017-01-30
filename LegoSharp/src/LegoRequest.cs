@@ -13,6 +13,13 @@ namespace LegoSharp
     {
         public class LegoRequestFactory : ILegoRequestFactory
         {
+            private LegoSession legoSession;
+
+            public LegoRequestFactory(LegoSession session)
+            {
+                legoSession = session;
+            }
+
             public ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken)
             {
                 LegoRequest request = new LegoRequest(Constants.baseShopUri);
@@ -63,32 +70,39 @@ namespace LegoSharp
                 return request;
             }
 
-            public ILegoRequest makeGetCurrentUserRequest(string sessionId, CookieContainer cookies)
+            public ILegoRequest makeGetCurrentUserRequest()
             {
-                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, cookies);
-                request.uri = string.Format(Constants.currentUserUri, sessionId);
+                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, legoSession.getCookies());
+                request.uri = string.Format(Constants.currentUserUri, legoSession.getSessionId());
                 request.requestType = RequestType.Get;
 
                 return request;
             }
 
-            public ILegoRequest makeAesPairRequest(string sessionId, CookieContainer cookies)
+            public ILegoRequest makeAesPairRequest()
             {
-                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, cookies);
-                request.uri = string.Format(Constants.aesPairUri, sessionId);
+                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, legoSession.getCookies());
+                if (legoSession.hasSessionGuid())
+                {
+                    request.uri = string.Format(Constants.aesPairUri, legoSession.getSessionId());
+                }
+                else
+                {
+                    request.uri = string.Format(Constants.aesPairUri, Constants.defaultSessionId);
+                }
                 request.requestType = RequestType.Get;
 
                 return request;
             }
 
-            public ILegoRequest getLoginCookieSettings(CookieContainer cookies)
+            public ILegoRequest getLoginCookieSettings()
             {
-                return makeAesPairRequest(Constants.defaultSessionId, cookies);
+                return makeAesPairRequest();
             }
 
-            public ILegoRequest makeLoginRequest(string username, string password, CookieContainer cookies)
+            public ILegoRequest makeLoginRequest(string username, string password)
             {
-                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, cookies);
+                LegoRequest request = new LegoRequest(Constants.baseAuthenticationUri, legoSession.getCookies());
                 request.uri = Constants.loginUri;
                 request.requestType = RequestType.Post;
                 request.payloadType = PayloadType.WebForm;

@@ -18,7 +18,7 @@ namespace LegoSharpTest
         [TestInitialize]
         public void setupTest()
         {
-            testClient = new PickABrickClient();
+            testClient = new PickABrickClient(new LegoSession());
         }
 
         [TestMethod]
@@ -347,7 +347,7 @@ namespace LegoSharpTest
         public void readmeCode()
         {
             // create a pick a brick client
-            PickABrickClient client = new PickABrickClient();
+            PickABrickClient client = new PickABrickClient(new LegoSession());
 
             // get brick with element id of 300321
             Brick brick = client.getBrickByElementId("300321");

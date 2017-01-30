@@ -16,58 +16,46 @@ namespace LegoSharp
 {
     public class LegoAccountClient: LegoSharpClient
     {
-        string sessionGuid;
-        CookieContainer cookies;
-
-        public LegoAccountClient()
+        public LegoAccountClient(LegoSession session): base(session)
         {
-            cookies = new CookieContainer();
         }
 
-        public bool authenticate(string username, string password)
+        public AuthenticationResult authenticate(string username, string password)
         {
-            ILegoRequest loginCookieRequest = requestFactory.getLoginCookieSettings(cookies);
-            if (runRequest(loginCookieRequest) && cookies.Capacity > 0)
+            ILegoRequest loginCookieRequest = requestFactory.getLoginCookieSettings();
+            if (runRequest(loginCookieRequest))
             {
-                setSessionId();
+                legoSession.updateSessionId();
 
-                if (sessionGuid != null)
+                if (legoSession.hasSessionGuid())
                 {
-                    ILegoRequest aesPairRequest = requestFactory.makeAesPairRequest(sessionGuid, cookies);
+                    ILegoRequest aesPairRequest = requestFactory.makeAesPairRequest();
                     AesPair aesPair = runRequest<AesPair>(aesPairRequest);
 
                     string encrpytedPassword = encrpytPassword(password, aesPair);
-                    ILegoRequest loginRequest = requestFactory.makeLoginRequest(username, encrpytedPassword, cookies);
-                    AuthenticationResult authenticationResult = runRequest<AuthenticationResult>(loginRequest);
-                    setSessionId();
+                    ILegoRequest loginRequest = requestFactory.makeLoginRequest(username, encrpytedPassword);
+                    AuthenticationResponse authenticationResponse = runRequest<AuthenticationResponse>(loginRequest);
 
-                    return authenticationResult.success;
+                    if (authenticationResponse.success)
+                    {
+                        legoSession.updateSessionId();
+                        return AuthenticationResult.Success;
+                    }
+                    else
+                    {
+                        return convertErrorNumberToResult(authenticationResponse.errorNum);
+                    }
+
                 }
                
             }
-            return false;
+            return AuthenticationResult.Failure;
         }
 
         public LegoAccount getCurrentUser()
         {
-            ILegoRequest currentUserRequest = requestFactory.makeGetCurrentUserRequest(sessionGuid, cookies);
+            ILegoRequest currentUserRequest = requestFactory.makeGetCurrentUserRequest();
             return runRequest<CurrentUserResult>(currentUserRequest).data;
-        }
-
-        private void setSessionId()
-        {
-            CookieCollection authCookies = cookies.GetCookies(new Uri("http://account.2.lego.com"));
-            foreach(Cookie cookie in authCookies)
-            {
-                if (cookie.Name.Equals("L.S") || cookie.Name.Equals("L.S.1"))
-                {
-                    if (sessionGuid == null || !sessionGuid.Equals(cookie.Value))
-                    {
-                        sessionGuid = cookie.Value;
-                        return;
-                    }
-                }
-            }
         }
 
         internal string encrpytPassword(string password, AesPair aesPair)
@@ -111,6 +99,30 @@ namespace LegoSharp
             }
 
             return encrypted;
+        }
+
+        private AuthenticationResult convertErrorNumberToResult(int errorNum)
+        {
+            switch(errorNum)
+            {
+                case 2:
+                case 3:
+                case 7:
+                case 149:
+                    return AuthenticationResult.InvalidUsernameOrPassowrd;
+                case 4:
+                    return AuthenticationResult.UnactivatedUsername;
+                case 5:
+                    return AuthenticationResult.AccountLocked;
+                case 6:
+                    return AuthenticationResult.AccountDisabled;
+                case 8:
+                    return AuthenticationResult.NeedToChooseUsername;
+                case 9:
+                    return AuthenticationResult.EmailLoginUnavailable;
+                default:
+                    return AuthenticationResult.Failure;
+            }
         }
     }
 
@@ -156,12 +168,24 @@ namespace LegoSharp
         }
     }
 
-    internal class AuthenticationResult
+    internal class AuthenticationResponse
     {
         [JsonProperty("Success")]
         public bool success { get; set; }
 
         [JsonProperty("ErrorType")]
         public int errorNum { get; set; }
+    }
+
+    public enum AuthenticationResult
+    {
+        Success,
+        Failure,
+        InvalidUsernameOrPassowrd,
+        UnactivatedUsername,
+        AccountLocked,
+        AccountDisabled,
+        NeedToChooseUsername,
+        EmailLoginUnavailable
     }
 }

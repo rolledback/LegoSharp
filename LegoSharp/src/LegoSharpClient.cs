@@ -17,10 +17,12 @@ namespace LegoSharp
     public class LegoSharpClient
     {
         internal ILegoRequestFactory requestFactory;
+        internal LegoSession legoSession;
 
-        internal LegoSharpClient()
+        internal LegoSharpClient(LegoSession session)
         {
-            requestFactory = new LegoRequest.LegoRequestFactory();
+            legoSession = session;
+            requestFactory = new LegoRequest.LegoRequestFactory(legoSession);
         }
 
         internal bool runRequest(ILegoRequest request)

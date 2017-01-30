@@ -15,10 +15,10 @@ namespace LegoSharpTest
         [TestMethod]
         public void testLoginFlow()
         {
-            LegoAccountClient client = new LegoAccountClient();
+            LegoAccountClient client = new LegoAccountClient(new LegoSession());
             LegoAccount currUser = null;
 
-            if (client.authenticate(username, password))
+            if (client.authenticate(username, password) == AuthenticationResult.Success)
             {
                 currUser = client.getCurrentUser();
             }
@@ -34,7 +34,7 @@ namespace LegoSharpTest
             pair.initializationVector = "C80CBC672533C9E0A9814C74C7199621";
 
             string password = "password";
-            LegoAccountClient client = new LegoAccountClient();
+            LegoAccountClient client = new LegoAccountClient(new LegoSession());
             string encryptedPassword = client.encrpytPassword(password, pair);
 
             Assert.IsTrue(encryptedPassword.Equals("fa799fac0431044d13e3fbdabc009595"));
@@ -43,26 +43,10 @@ namespace LegoSharpTest
             pair.initializationVector = "2E3E1C4EA673D33667F2052BB8352349";
 
             password = "password";
-            client = new LegoAccountClient();
+            client = new LegoAccountClient(new LegoSession());
             encryptedPassword = client.encrpytPassword(password, pair);
 
             Assert.IsTrue(encryptedPassword.Equals("ff01e40651841e0b4661bb2dbc115924"));
-        }
-
-        [TestMethod]
-        public void readmeCode()
-        {
-            // create an account client
-            LegoAccountClient client = new LegoAccountClient();
-
-            // attempt to authenticate using your username and password
-            bool authenticationSuccessful = client.authenticate(username, password);
-
-            if (authenticationSuccessful)
-            {
-                // if the authentication worked, then get the current user
-                LegoAccount currUser = client.getCurrentUser();
-            }
         }
     }
 }

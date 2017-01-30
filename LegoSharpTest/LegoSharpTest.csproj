@@ -45,12 +45,16 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="LegoAccountTests.cs" />
+    <Compile Include="LegoClientManagerTests.cs" />
+    <Compile Include="ReadmeTests.cs" />
     <Compile Include="PickABrickTests.cs" />
     <Compile Include="PrivateConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
