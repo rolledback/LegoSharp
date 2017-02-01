@@ -9,13 +9,13 @@ namespace LegoSharp
     public class LegoClientManager
     {
         public LegoSession legoSession { get; }
-        public PickABrickClient pickABrickClient { get; }
+        public LegoShopClient legoShopClient { get; }
         public LegoAccountClient legoAccountClient { get; }
 
         public LegoClientManager()
         {
             legoSession = new LegoSession();
-            pickABrickClient = new PickABrickClient(legoSession);
+            legoShopClient = new LegoShopClient(legoSession);
             legoAccountClient = new LegoAccountClient(legoSession);
         }
     }

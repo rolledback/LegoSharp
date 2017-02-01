@@ -12,6 +12,8 @@ namespace LegoSharp
 
         public static readonly string oAuthUri = "oauth/accessToken?api_version=1&accept_language=en-US";
         public static readonly string elementsUri = "sh/rest/products/pab/elements?api_version=1&accept_language=en-US";
+        public static readonly string baskedUri = "sh/rest/users/me/orders/current?pricing=basket&api_version=1&accept_language=en-US";
+        public static readonly string shopMeUri = "sh/rest/users/me?api_version=1&accept_language=en-US";
 
         public static readonly Dictionary<string, int> stringToCategoryId = new Dictionary<string, int>()
         {

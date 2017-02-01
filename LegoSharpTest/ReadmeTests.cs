@@ -20,10 +20,10 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public void PickABrickClientSection()
+        public void LegoShopClientSection()
         {
-            // create a pick a brick client
-            PickABrickClient client = new PickABrickClient(new LegoSession());
+            // create a lego shop client
+            LegoShopClient client = new LegoShopClient(new LegoSession());
 
             // get brick with element id of 300321
             Brick brick = client.getBrickByElementId("300321");
@@ -79,6 +79,7 @@ namespace LegoSharpTest
                 LegoAccount currUser = client.getCurrentUser();
             }
         }
+
         [TestMethod]
         public void LegoClientManagerSection()
         {
@@ -86,7 +87,7 @@ namespace LegoSharpTest
             LegoClientManager clientManager = new LegoClientManager();
 
             // the client manager will have one of each type of client
-            PickABrickClient pickABrickClient = clientManager.pickABrickClient;
+            LegoShopClient pickABrickClient = clientManager.legoShopClient;
             LegoAccountClient legoAccountClient = clientManager.legoAccountClient;
         }
 

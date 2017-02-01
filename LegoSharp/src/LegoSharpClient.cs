@@ -9,6 +9,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 [assembly: InternalsVisibleTo("LegoAccountTests")]
 
@@ -23,6 +24,25 @@ namespace LegoSharp
         {
             legoSession = session;
             requestFactory = new LegoRequest.LegoRequestFactory(legoSession);
+        }
+
+        internal JObject runGeneralRequest(ILegoRequest request)
+        {
+            HttpResponseMessage response = request.getResponse();
+
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    return JObject.Parse(response.Content.ReadAsStringAsync().Result);
+                }
+                catch (Exception)
+                {
+                    return default(JObject);
+                }
+            }
+
+            return default(JObject);
         }
 
         internal bool runRequest(ILegoRequest request)

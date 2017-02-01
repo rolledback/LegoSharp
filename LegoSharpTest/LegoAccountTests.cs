@@ -13,7 +13,7 @@ namespace LegoSharpTest
         string password = PrivateConstants.testPassword;
 
         [TestMethod]
-        public void testLoginFlow()
+        public void loginToUserAccount()
         {
             LegoAccountClient client = new LegoAccountClient(new LegoSession());
             LegoAccount currUser = null;

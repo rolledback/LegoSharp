@@ -39,6 +39,7 @@ namespace LegoSharp
                     if (authenticationResponse.success)
                     {
                         legoSession.updateSessionId();
+                        legoSession.sessionAuthenticated = true;
                         return AuthenticationResult.Success;
                     }
                     else

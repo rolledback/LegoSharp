@@ -73,8 +73,9 @@
     <Compile Include="src\LegoSession.cs" />
     <Compile Include="src\LegoClientManager.cs" />
     <Compile Include="src\LegoSharpClient.cs" />
-    <Compile Include="src\PickABrickClient.cs" />
+    <Compile Include="src\LegoShopClient.cs" />
     <Compile Include="src\LegoRequest.cs" />
+    <Compile Include="src\Shop.cs" />
     <Compile Include="src\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

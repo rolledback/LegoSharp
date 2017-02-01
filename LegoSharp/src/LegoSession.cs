@@ -11,10 +11,12 @@ namespace LegoSharp
     {
         private CookieContainer cookies;
         private string sessionGuid;
+        public bool sessionAuthenticated;
 
         public LegoSession()
         {
             cookies = new CookieContainer();
+            sessionAuthenticated = false;
         }
 
         internal void updateSessionId()

@@ -52,7 +52,7 @@ namespace LegoSharp
 
             public ILegoRequest makeIntialAccessRequest()
             {
-                LegoRequest request = new LegoRequest(Constants.baseShopUri);
+                LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
                 request.uri = Constants.oAuthUri;
                 request.requestType = RequestType.Post;
 
@@ -61,11 +61,31 @@ namespace LegoSharp
 
             public ILegoRequest makeRefreshAccessRequest(string refreshToken)
             {
-                LegoRequest request = new LegoRequest(Constants.baseShopUri);
+                LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
                 request.uri = Constants.oAuthUri;
                 request.requestType = RequestType.Post;
                 request.payloadType = PayloadType.Json;
                 request.payload = "{\"refreshToken\":\"" + refreshToken + "\"}";
+
+                return request;
+            }
+
+            public ILegoRequest makeGetBasketRequest(string accessToken)
+            {
+                LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
+                request.uri = Constants.baskedUri;
+                request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                request.requestType = RequestType.Get;
+
+                return request;
+            }
+
+            public ILegoRequest makeGetCurrentShopperRequest(string accessToken)
+            {
+                LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
+                request.uri = Constants.shopMeUri;
+                request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                request.requestType = RequestType.Get;
 
                 return request;
             }
@@ -116,8 +136,9 @@ namespace LegoSharp
                     new KeyValuePair<string, string>("oauthAccessToken", ""),
                     new KeyValuePair<string, string>("context", "modal"),
                     new KeyValuePair<string, string>("appcontext", "false"),
-                    new KeyValuePair<string, string>("async", "false"),
+                    new KeyValuePair<string, string>("async", "false")
                 });
+
                 return request;
             }
         }

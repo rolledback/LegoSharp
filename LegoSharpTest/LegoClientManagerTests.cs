@@ -19,7 +19,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public void testAccountClient()
+        public void getAccountClientFromManager()
         {
             LegoAccount currUser = null;
 
@@ -32,9 +32,9 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public void testPickABrickClient()
+        public void getShopClientFromManager()
         {
-            Brick brick = testClientManager.pickABrickClient.getBrickByElementId("300321");
+            Brick brick = testClientManager.legoShopClient.getBrickByElementId("300321");
 
             Assert.IsNotNull(brick);
         }

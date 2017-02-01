@@ -14,12 +14,14 @@ using Newtonsoft.Json;
 
 namespace LegoSharp
 {
-    public class PickABrickClient: LegoSharpClient
+    public class LegoShopClient: LegoSharpClient
     {
         private ShopAuthTokens tokens;
+        private bool authenticatedWhenTokensRetrieved;
 
-        public PickABrickClient(LegoSession session): base(session)
+        public LegoShopClient(LegoSession session): base(session)
         {
+            authenticatedWhenTokensRetrieved = false;
             getInitialAccessToken();
         }
 
@@ -35,16 +37,43 @@ namespace LegoSharp
             return handleMultiBrickRequest(request);
         }
 
+        public void getShoppingBasket()
+        {
+            getNewAccessTokensIfRecentlyAuthenticated();
+            ILegoRequest request = requestFactory.makeGetBasketRequest(tokens.accessToken);
+            runGeneralRequest(request);
+        }
+
+        public LegoShopper getCurrentShopper()
+        {
+            getNewAccessTokensIfRecentlyAuthenticated();
+            ILegoRequest request = requestFactory.makeGetCurrentShopperRequest(tokens.accessToken);
+            return runRequest<LegoShopper>(request);
+        }
+
         private void getInitialAccessToken()
         {
             ILegoRequest request = requestFactory.makeIntialAccessRequest();
             tokens = runRequest<ShopAuthTokens>(request);
+
+            if (tokens != null)
+            {
+                authenticatedWhenTokensRetrieved = legoSession.sessionAuthenticated;
+            }
         }
 
         private void refreshAccessToken()
         {
             ILegoRequest request = requestFactory.makeRefreshAccessRequest(tokens.refreshToken);
             tokens = runRequest<ShopAuthTokens>(request);
+        }
+
+        private void getNewAccessTokensIfRecentlyAuthenticated()
+        {
+            if (authenticatedWhenTokensRetrieved != legoSession.sessionAuthenticated)
+            {
+                getInitialAccessToken();
+            }
         }
 
         private Brick handleSingleBrickRequest(ILegoRequest request)

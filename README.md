@@ -1,12 +1,12 @@
 # LegoSharp
 
-LegoSharp is a library for interacting with Lego's web API. At this time, searching for bricks in Lego's [Pick a Brick](https://shop.lego.com/en-US/Pick-a-Brick) and signing into a [LegoId](https://account2.lego.com/en-US/login) account has been implemented.
+LegoSharp is a library for interacting with Lego's web API. At this time, searching for bricks in Lego's [Pick a Brick](https://shop.lego.com/en-US/Pick-a-Brick), a few other [Lego Shop](https://shop.lego.com/) scenarios, and signing into a [LegoId](https://account2.lego.com/en-US/login) account has been implemented.
 
 ## Usage
 
 Using LegoSharp is very simple. In order to interact with Lego, you make client objects. These clients interact with various Lego services. There are currently two clients available:
 
-1. `PickABrickClient`: allows you to query for bricks available in Pick a Brick
+1. `LegoShopClient`: allows you to interact with the Lego Shop, this client is not complete
 2. `LegoAccountClient`: allows you to log in to your LegoId Account
 
 But before you make a client, you have to create a `LegoSession`. This object stores information about the current session for a client. 
@@ -16,10 +16,10 @@ But before you make a client, you have to create a `LegoSession`. This object st
 LegoSession session = new LegoSession();
 ```
 
-You can can then query Pick a Brick:
+You can can then interact with the Lego Shop:
 ```C#
-// create a pick a brick client
-PickABrickClient client = new PickABrickClient(new LegoSession());
+// create a lego shop client
+LegoShopClient client = new LegoShopClient(new LegoSession());
 
 // get brick with element id of 300321
 Brick brick = client.getBrickByElementId("300321");

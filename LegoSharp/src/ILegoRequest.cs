@@ -25,6 +25,10 @@ namespace LegoSharp
 
         ILegoRequest makeRefreshAccessRequest(string refreshToken);
 
+        ILegoRequest makeGetBasketRequest(string accessToken);
+
+        ILegoRequest makeGetCurrentShopperRequest(string accessToken);
+
         ILegoRequest getLoginCookieSettings();
 
         ILegoRequest makeAesPairRequest();

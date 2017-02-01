@@ -52,10 +52,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AuthenticatedUserTests.cs" />
     <Compile Include="LegoAccountTests.cs" />
     <Compile Include="LegoClientManagerTests.cs" />
     <Compile Include="ReadmeTests.cs" />
-    <Compile Include="PickABrickTests.cs" />
+    <Compile Include="LegoShopTests.cs" />
     <Compile Include="PrivateConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
