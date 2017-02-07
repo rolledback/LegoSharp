@@ -14,6 +14,11 @@ namespace LegoSharp
         public static readonly string elementsUri = "sh/rest/products/pab/elements?api_version=1&accept_language=en-US";
         public static readonly string baskedUri = "sh/rest/users/me/orders/current?pricing=basket&api_version=1&accept_language=en-US";
         public static readonly string shopMeUri = "sh/rest/users/me?api_version=1&accept_language=en-US";
+        public static readonly string wishlistUri = "sh/rest/users/me/wishlists/current?api_version=1&accept_language=en-US";
+
+        public static readonly string baseSetDbUri = "https://sp1004f1fe.guided.ss-omtrdc.net/";
+
+        public static readonly string setQueryUri = "?do=json-db&callback=json&S1=&cc=US&i=1&l=2057&pt=shop";
 
         public static readonly Dictionary<string, int> stringToCategoryId = new Dictionary<string, int>()
         {

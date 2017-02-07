@@ -18,14 +18,6 @@ namespace LegoSharp
 
         void setName(string name);
 
-        string getExactColor();
-
-        string getDesignId();
-
-        string getName();
-
-        string[] getCategories();
-
-        string[] getColorFamilies();
+        Dictionary<string, string> toParameterMap();
     }
 }

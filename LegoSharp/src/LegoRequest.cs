@@ -35,16 +35,22 @@ namespace LegoSharp
             public ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, string accessToken, int limit = 10)
             {
                 LegoRequest request = new LegoRequest(Constants.baseShopUri);
-
-                request.parameters["design_id"] = brickSearch.getDesignId();
-                request.parameters["exact_color"] = Utilities.convertExactColorsToId(brickSearch.getExactColor());
-                request.parameters["brick_name"] = brickSearch.getName();
-                request.parameters["categories"] = Utilities.convertCategoriesToIds(brickSearch.getCategories());
-                request.parameters["color_families"] = Utilities.convertColorFamiliesToIds(brickSearch.getColorFamilies());
                 request.parameters["limit"] = limit.ToString();
+                request.addParameters(brickSearch.toParameterMap());
 
                 request.uri = Constants.elementsUri;
                 request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                request.requestType = RequestType.Get;
+
+                return request;
+            }
+
+            public ILegoRequest makeSetSearchRequest(ISetSearch setSearch)
+            {
+                LegoRequest request = new LegoRequest(Constants.baseSetDbUri);
+                request.addParameters(setSearch.toParameterMap());
+
+                request.uri = Constants.setQueryUri;
                 request.requestType = RequestType.Get;
 
                 return request;
@@ -74,6 +80,16 @@ namespace LegoSharp
             {
                 LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
                 request.uri = Constants.baskedUri;
+                request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                request.requestType = RequestType.Get;
+
+                return request;
+            }
+
+            public ILegoRequest makeGetWishlistRequest(string accessToken)
+            {
+                LegoRequest request = new LegoRequest(Constants.baseShopUri, legoSession.getCookies());
+                request.uri = Constants.wishlistUri;
                 request.httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
                 request.requestType = RequestType.Get;
 

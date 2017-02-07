@@ -21,11 +21,15 @@ namespace LegoSharp
 
         ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, string accessToken, int limit = 10);
 
+        ILegoRequest makeSetSearchRequest(ISetSearch setSearch);
+
         ILegoRequest makeIntialAccessRequest();
 
         ILegoRequest makeRefreshAccessRequest(string refreshToken);
 
         ILegoRequest makeGetBasketRequest(string accessToken);
+
+        ILegoRequest makeGetWishlistRequest(string accessToken);
 
         ILegoRequest makeGetCurrentShopperRequest(string accessToken);
 

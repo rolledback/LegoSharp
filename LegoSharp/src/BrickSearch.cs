@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,22 +30,12 @@ namespace LegoSharp
 
         public void setCategories(string[] categoryNames)
         {
-            this.categories = new string[categoryNames.Length];
-
-            for (int i = 0; i < categoryNames.Length; i++)
-            {
-                categories[i] = categoryNames[i];
-            }
+            this.categories = (string[])categoryNames.Clone();
         }
 
         public void setColorFamilies(string[] colorFamilyNames)
         {
-            this.colorFamilies = new string[colorFamilyNames.Length];
-
-            for (int i = 0; i < colorFamilyNames.Length; i++)
-            {
-                colorFamilies[i] = colorFamilyNames[i];
-            }
+            this.colorFamilies = (string[])colorFamilyNames.Clone();
         }
 
         public void setDesignId(string designId)
@@ -58,29 +48,16 @@ namespace LegoSharp
             this.name = name;
         }
 
-        public string getExactColor()
+        public Dictionary<string, string> toParameterMap()
         {
-            return exactColor;
-        }
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["design_id"] = designId;
+            parameters["exact_color"] = Utilities.convertExactColorsToId(exactColor);
+            parameters["brick_name"] = name;
+            parameters["categories"] = Utilities.convertCategoriesToIds(categories);
+            parameters["color_families"] = Utilities.convertColorFamiliesToIds(colorFamilies);
 
-        public string getDesignId()
-        {
-            return designId;
-        }
-
-        public string getName()
-        {
-            return name;
-        }
-
-        public string[] getCategories()
-        {
-            return categories;
-        }
-
-        public string[] getColorFamilies()
-        {
-            return colorFamilies;
+            return parameters;
         }
     }
 }

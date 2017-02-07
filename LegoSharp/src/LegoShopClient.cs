@@ -37,7 +37,20 @@ namespace LegoSharp
             return handleMultiBrickRequest(request);
         }
 
+        public void searchForSets(ISetSearch setSearch)
+        {
+            ILegoRequest request = requestFactory.makeSetSearchRequest(setSearch);
+            runGeneralRequest(request);
+        }
+
         public void getShoppingBasket()
+        {
+            getNewAccessTokensIfRecentlyAuthenticated();
+            ILegoRequest request = requestFactory.makeGetBasketRequest(tokens.accessToken);
+            runGeneralRequest(request);
+        }
+
+        public void getWishlist()
         {
             getNewAccessTokensIfRecentlyAuthenticated();
             ILegoRequest request = requestFactory.makeGetBasketRequest(tokens.accessToken);
