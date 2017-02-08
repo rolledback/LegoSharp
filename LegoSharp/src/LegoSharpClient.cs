@@ -22,7 +22,14 @@ namespace LegoSharp
 
         internal LegoSharpClient(LegoSession session)
         {
-            legoSession = session;
+            if (session != null)
+            {
+                legoSession = session;
+            }
+            else
+            {
+                legoSession = new LegoSession();
+            }
             requestFactory = new LegoRequest.LegoRequestFactory(legoSession);
         }
 

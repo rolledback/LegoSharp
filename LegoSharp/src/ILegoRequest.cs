@@ -17,21 +17,21 @@ namespace LegoSharp
 
     internal interface ILegoRequestFactory
     {
-        ILegoRequest makeBrickByElementIdRequest(string elementId, string accessToken);
+        ILegoRequest makeBrickByElementIdRequest(string elementId);
 
-        ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, string accessToken, int limit = 10);
+        ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, int limit = 10);
 
         ILegoRequest makeSetSearchRequest(ISetSearch setSearch);
 
         ILegoRequest makeIntialAccessRequest();
 
-        ILegoRequest makeRefreshAccessRequest(string refreshToken);
+        ILegoRequest makeRefreshAccessRequest();
 
-        ILegoRequest makeGetBasketRequest(string accessToken);
+        ILegoRequest makeGetBasketRequest();
 
-        ILegoRequest makeGetWishlistRequest(string accessToken);
+        ILegoRequest makeGetWishlistRequest();
 
-        ILegoRequest makeGetCurrentShopperRequest(string accessToken);
+        ILegoRequest makeGetCurrentShopperRequest();
 
         ILegoRequest getLoginCookieSettings();
 

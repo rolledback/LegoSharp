@@ -11,7 +11,9 @@ namespace LegoSharp
     {
         private CookieContainer cookies;
         private string sessionGuid;
-        public bool sessionAuthenticated;
+        private ShopAuthTokens shopAuthTokens;
+        internal bool sessionAuthenticated;
+        internal bool authenticatedWhenTokensRetrieved;
 
         public LegoSession()
         {
@@ -33,6 +35,22 @@ namespace LegoSharp
                     }
                 }
             }
+        }
+
+        internal void updateShopAuthTokens(ShopAuthTokens tokens)
+        {
+            authenticatedWhenTokensRetrieved = sessionAuthenticated;
+            shopAuthTokens = tokens;
+        }
+
+        internal string getShopAccessToken()
+        {
+            return shopAuthTokens.accessToken;
+        }
+
+        internal string getShopRefreshToken()
+        {
+            return shopAuthTokens.refreshToken;
         }
 
         internal bool hasSessionGuid()

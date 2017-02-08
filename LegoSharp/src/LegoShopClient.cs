@@ -16,24 +16,20 @@ namespace LegoSharp
 {
     public class LegoShopClient: LegoSharpClient
     {
-        private ShopAuthTokens tokens;
-        private bool authenticatedWhenTokensRetrieved;
-
         public LegoShopClient(LegoSession session): base(session)
         {
-            authenticatedWhenTokensRetrieved = false;
             getInitialAccessToken();
         }
 
         public Brick getBrickByElementId(string elementId)
         {
-            ILegoRequest request = requestFactory.makeBrickByElementIdRequest(elementId, tokens.accessToken);
+            ILegoRequest request = requestFactory.makeBrickByElementIdRequest(elementId);
             return handleSingleBrickRequest(request);
         }
 
         public List<Brick> searchForBricks(IBrickSearch brickSearch)
         {
-            ILegoRequest request = requestFactory.makeBrickSearchRequest(brickSearch, tokens.accessToken);
+            ILegoRequest request = requestFactory.makeBrickSearchRequest(brickSearch);
             return handleMultiBrickRequest(request);
         }
 
@@ -46,44 +42,49 @@ namespace LegoSharp
         public void getShoppingBasket()
         {
             getNewAccessTokensIfRecentlyAuthenticated();
-            ILegoRequest request = requestFactory.makeGetBasketRequest(tokens.accessToken);
+            ILegoRequest request = requestFactory.makeGetBasketRequest();
             runGeneralRequest(request);
         }
 
         public void getWishlist()
         {
             getNewAccessTokensIfRecentlyAuthenticated();
-            ILegoRequest request = requestFactory.makeGetBasketRequest(tokens.accessToken);
+            ILegoRequest request = requestFactory.makeGetBasketRequest();
             runGeneralRequest(request);
         }
 
         public LegoShopper getCurrentShopper()
         {
             getNewAccessTokensIfRecentlyAuthenticated();
-            ILegoRequest request = requestFactory.makeGetCurrentShopperRequest(tokens.accessToken);
+            ILegoRequest request = requestFactory.makeGetCurrentShopperRequest();
             return runRequest<LegoShopper>(request);
         }
 
         private void getInitialAccessToken()
         {
             ILegoRequest request = requestFactory.makeIntialAccessRequest();
-            tokens = runRequest<ShopAuthTokens>(request);
+            ShopAuthTokens tokens = runRequest<ShopAuthTokens>(request);
 
             if (tokens != null)
             {
-                authenticatedWhenTokensRetrieved = legoSession.sessionAuthenticated;
+                legoSession.updateShopAuthTokens(tokens);
             }
         }
 
         private void refreshAccessToken()
         {
-            ILegoRequest request = requestFactory.makeRefreshAccessRequest(tokens.refreshToken);
-            tokens = runRequest<ShopAuthTokens>(request);
+            ILegoRequest request = requestFactory.makeRefreshAccessRequest();
+            ShopAuthTokens tokens = runRequest<ShopAuthTokens>(request);
+
+            if (tokens != null)
+            {
+                legoSession.updateShopAuthTokens(tokens);
+            }
         }
 
         private void getNewAccessTokensIfRecentlyAuthenticated()
         {
-            if (authenticatedWhenTokensRetrieved != legoSession.sessionAuthenticated)
+            if (legoSession.authenticatedWhenTokensRetrieved != legoSession.sessionAuthenticated)
             {
                 getInitialAccessToken();
             }
