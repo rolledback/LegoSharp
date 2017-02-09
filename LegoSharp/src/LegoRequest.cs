@@ -45,10 +45,10 @@ namespace LegoSharp
                 return request;
             }
 
-            public ILegoRequest makeSetSearchRequest(ISetSearch setSearch)
+            public ILegoRequest makeProductSearchRequest(IProductSearch productSearch)
             {
-                LegoRequest request = new LegoRequest(Constants.baseSetDbUri);
-                request.addParameters(setSearch.toParameterMap());
+                LegoRequest request = new LegoRequest(Constants.baseProductDbUri);
+                request.addParameters(productSearch.toParameterMap());
 
                 request.uri = Constants.setQueryUri;
                 request.requestType = RequestType.Get;

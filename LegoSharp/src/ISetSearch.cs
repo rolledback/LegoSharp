@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LegoSharp
 {
-    public interface ISetSearch
+    public interface IProductSearch
     {
         void setAvailability(string[] availabilities);
 

@@ -21,7 +21,7 @@ namespace LegoSharp
 
         ILegoRequest makeBrickSearchRequest(IBrickSearch brickSearch, int limit = 10);
 
-        ILegoRequest makeSetSearchRequest(ISetSearch setSearch);
+        ILegoRequest makeProductSearchRequest(IProductSearch productSearch);
 
         ILegoRequest makeIntialAccessRequest();
 

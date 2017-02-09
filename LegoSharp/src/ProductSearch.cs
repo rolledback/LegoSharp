@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json;
+
 namespace LegoSharp
 {
-    class SetSearch: ISetSearch
+    internal class ProductSearch: IProductSearch
     {
         private string searchQuery;
 
         Dictionary<string, string[]> searchParameters;
 
-        public SetSearch()
+        public ProductSearch()
         {
             searchParameters = new Dictionary<string, string[]>();
         }
@@ -75,5 +77,35 @@ namespace LegoSharp
 
             return formattedParameters;
         }
+    }
+
+    internal class ProductSearchResult
+    {
+        [JsonProperty("results")]
+        public List<Product> results { get; set; }
+    }
+
+    public class Product
+    {
+        [JsonProperty("name_html")]
+        public string nameHtml { get; set; }
+
+        [JsonProperty("_links")]
+        public Dictionary<string, Dictionary<string, string>> links { get; set; }
+
+        [JsonProperty("media")]
+        public string mediaLink { get; set; }
+
+        [JsonProperty("product_code")]
+        public string productCode { get; set; }
+
+        [JsonProperty("product_type")]
+        public string productType { get; set; }
+
+        [JsonProperty("piece_count")]
+        public string pieceCount { get; set; }
+
+        [JsonProperty("rating")]
+        public string rating { get; set; }
     }
 }

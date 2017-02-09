@@ -360,18 +360,12 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public void setSearchTest()
+        public void productSearchTest()
         {
-            ISetSearch test = new SetSearch();
-            test.setAvailability(new string[] { "available now", "out of stock" });
-            test.setAgeRange(new string[] { "6-8" });
-            test.setProductFlags(new string[] { "New" });
-            test.setDeptName(new string[] { "star warsTM" });
-            test.setPieceRange(new string[] { "500-999" });
-            test.setPriceRange(new string[] { "50-75" });
-            test.setRateRange(new string[] { "60" });
-            test.toParameterMap();
-            testClient.searchForSets(test);
+            IProductSearch test = new ProductSearch();
+            List<Product> results = testClient.searchForProducts(test);
+
+            Assert.IsTrue(results.Count > 0);
         }
     }
 }

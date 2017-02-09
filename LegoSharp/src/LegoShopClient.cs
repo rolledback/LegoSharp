@@ -33,10 +33,19 @@ namespace LegoSharp
             return handleMultiBrickRequest(request);
         }
 
-        public void searchForSets(ISetSearch setSearch)
+        public List<Product> searchForProducts(IProductSearch setSearch)
         {
-            ILegoRequest request = requestFactory.makeSetSearchRequest(setSearch);
-            runGeneralRequest(request);
+            ILegoRequest request = requestFactory.makeProductSearchRequest(setSearch);
+            ProductSearchResult searchResult = runRequest<ProductSearchResult>(request);
+
+            if (searchResult != null)
+            {
+                return searchResult.results;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void getShoppingBasket()

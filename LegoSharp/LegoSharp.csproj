@@ -76,7 +76,7 @@
     <Compile Include="src\LegoSharpClient.cs" />
     <Compile Include="src\LegoShopClient.cs" />
     <Compile Include="src\LegoRequest.cs" />
-    <Compile Include="src\SetSearch.cs" />
+    <Compile Include="src\ProductSearch.cs" />
     <Compile Include="src\Shop.cs" />
     <Compile Include="src\Utilities.cs" />
   </ItemGroup>
