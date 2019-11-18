@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharp", "LegoSharp\LegoSharp.csproj", "{8CF95C96-AC24-4E85-AE5E-EB7969E0789C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharp", "LegoSharp\LegoSharp.csproj", "{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15C43147-3048-4899-B206-707A9B17BF61}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharpTest", "LegoSharpTest\LegoSharpTest.csproj", "{732DA878-5C18-482E-9C21-697F37600F5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharpTest", "LegoSharpTest\LegoSharpTest.csproj", "{611620CE-AE77-4345-B9B1-8B239D1F24C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,16 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CF95C96-AC24-4E85-AE5E-EB7969E0789C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CF95C96-AC24-4E85-AE5E-EB7969E0789C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CF95C96-AC24-4E85-AE5E-EB7969E0789C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CF95C96-AC24-4E85-AE5E-EB7969E0789C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{732DA878-5C18-482E-9C21-697F37600F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{732DA878-5C18-482E-9C21-697F37600F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{732DA878-5C18-482E-9C21-697F37600F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{732DA878-5C18-482E-9C21-697F37600F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEBE2CDE-A6F9-4C8E-AB6A-5813A93D6914}
 	EndGlobalSection
 EndGlobal
