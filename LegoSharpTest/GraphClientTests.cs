@@ -11,22 +11,22 @@ namespace LegoSharpTest
     public class GraphClientTests
     {
         [TestMethod]
-        public async Task testAuthenticate()
+        public async Task readmeTest()
         {
-            var graphClient = new LegoGraphClient();
+            LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
             Assert.IsTrue(graphClient.isAuthenticated());
 
-            var graphSearch = new LegoGraphSearch();
+            LegoGraphSearch graphSearch = new LegoGraphSearch();
             graphSearch.addFilter(new ColorFilter()
                 .addValue(LegoColor.Black)
-                .addValue(LegoColor.Blue)
             );
+            graphSearch.query = "wheel";
 
-            var result = await graphClient.searchForBricksAsync(graphSearch);
+            IEnumerable<Brick> result = await graphClient.searchForBricksAsync(graphSearch);
 
-            foreach (var brick in result)
+            foreach (Brick brick in result)
             {
                 Assert.IsTrue(!string.IsNullOrEmpty(brick.id));
             }
