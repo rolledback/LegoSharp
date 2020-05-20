@@ -1,6 +1,6 @@
 # LegoSharp
 
-LegoSharp is a library for interacting with Lego's web API. Lego recently changed their web API, so this project is undergoing a significant amount of redevelopment. Functionality is very limited at this time.
+LegoSharp is a unofficial library for interacting with Lego's web API. Lego recently changed their web API, so this project is undergoing a significant amount of redevelopment. Functionality is very limited at this time.
 
 [![Build Status](https://mrayermann.visualstudio.com/LegoSharp/_apis/build/status/rolledback.LegoSharp?branchName=master)](https://mrayermann.visualstudio.com/LegoSharp/_build/latest?definitionId=1&branchName=master)
 
