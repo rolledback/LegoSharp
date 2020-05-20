@@ -27,3 +27,6 @@ steps:
       command: test
       projects: '**/LegoSharpTest/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
+
+  - publish: $(System.DefaultWorkingDirectory)/LegoSharp/bin/Release
+    artifact: Release

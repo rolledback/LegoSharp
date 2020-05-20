@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PackageId>LegoSharp</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>rolledback</Authors>
+    <Company>com.rolledback</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>
