@@ -4,18 +4,18 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class LegoGraphSearch
+    public class PickABrickQuery
     {
         public string query;
 
-        public Dictionary<string, ILegoGraphFilter> _filters;
+        public Dictionary<string, IPickABrickFilter> _filters;
 
-        public LegoGraphSearch()
+        public PickABrickQuery()
         {
-            this._filters = new Dictionary<string, ILegoGraphFilter>();
+            this._filters = new Dictionary<string, IPickABrickFilter>();
         }
 
-        public void addFilter(ILegoGraphFilter filter)
+        public void addFilter(IPickABrickFilter filter)
         {
             this._filters[filter.getKey()] = filter;
         }
@@ -25,7 +25,7 @@ namespace LegoSharp
             dynamic[] returnValue = new object[this._filters.Count];
 
             var i = 0;
-            foreach (KeyValuePair<string, ILegoGraphFilter> entry in this._filters)
+            foreach (KeyValuePair<string, IPickABrickFilter> entry in this._filters)
             {
                 returnValue[i++] = new
                 {

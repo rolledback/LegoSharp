@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public interface ILegoGraphFilter
+    public interface IPickABrickFilter
     {
         IEnumerable<string> getValues();
         string getKey();

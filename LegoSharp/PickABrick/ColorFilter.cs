@@ -5,220 +5,220 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class ColorFilter : LegoGraphFilter<LegoColor>
+    public class ColorFilter : PickABrickFilter<BrickColor>
     {
         public ColorFilter() : base("variants.attributes.exactColour.en-US")
         {
         }
 
-        public override string filterEnumToValue(LegoColor color)
+        public override string filterEnumToValue(BrickColor color)
         {
             switch (color)
             {
-                case LegoColor.Black:
+                case BrickColor.Black:
                     return "Black";
-                case LegoColor.BrickYellow:
+                case BrickColor.BrickYellow:
                     return "Brick Yellow";
-                case LegoColor.BrightBlue:
+                case BrickColor.BrightBlue:
                     return "Bright Blue";
-                case LegoColor.BrightBluishGreen:
+                case BrickColor.BrightBluishGreen:
                     return "Bright Bluish Green";
-                case LegoColor.BrightGreen:
+                case BrickColor.BrightGreen:
                     return "Bright Green";
-                case LegoColor.BrightOrange:
+                case BrickColor.BrightOrange:
                     return "Bright Orange";
-                case LegoColor.BrightPurple:
+                case BrickColor.BrightPurple:
                     return "Bright Purple";
-                case LegoColor.BrightRed:
+                case BrickColor.BrightRed:
                     return "Bright Red";
-                case LegoColor.BrightReddishViolet:
+                case BrickColor.BrightReddishViolet:
                     return "Bright Reddish Violet";
-                case LegoColor.BrightYellow:
+                case BrickColor.BrightYellow:
                     return "Bright Yellow";
-                case LegoColor.BrightYellowishGreen:
+                case BrickColor.BrightYellowishGreen:
                     return "Bright Yellowish Green";
-                case LegoColor.CoolYellow:
+                case BrickColor.CoolYellow:
                     return "Cool Yellow";
-                case LegoColor.DarkAzur:
+                case BrickColor.DarkAzur:
                     return "Dark Azur";
-                case LegoColor.DarkBrown:
+                case BrickColor.DarkBrown:
                     return "Dark Brown";
-                case LegoColor.DarkGreen:
+                case BrickColor.DarkGreen:
                     return "Dark Green";
-                case LegoColor.DarkOrange:
+                case BrickColor.DarkOrange:
                     return "Dark Orange";
-                case LegoColor.DarkStoneGrey:
+                case BrickColor.DarkStoneGrey:
                     return "Dark Stone Grey";
-                case LegoColor.EarthBlue:
+                case BrickColor.EarthBlue:
                     return "Earth Blue";
-                case LegoColor.EarthGreen:
+                case BrickColor.EarthGreen:
                     return "Earth Green";
-                case LegoColor.FlameYellowishOrange:
+                case BrickColor.FlameYellowishOrange:
                     return "Flame Yellowish Orange";
-                case LegoColor.Lavender:
+                case BrickColor.Lavender:
                     return "Lavender";
-                case LegoColor.LightPurple:
+                case BrickColor.LightPurple:
                     return "Light Purple";
-                case LegoColor.LightRoyalBlue:
+                case BrickColor.LightRoyalBlue:
                     return "Light Royal Blue";
-                case LegoColor.MediumAzur:
+                case BrickColor.MediumAzur:
                     return "Medium Azur";
-                case LegoColor.MediumBlue:
+                case BrickColor.MediumBlue:
                     return "Medium Blue";
-                case LegoColor.MediumLavendel:
+                case BrickColor.MediumLavendel:
                     return "Medium Lavendel";
-                case LegoColor.MediumLilac:
+                case BrickColor.MediumLilac:
                     return "Medium Lilac";
-                case LegoColor.MediumNougat:
+                case BrickColor.MediumNougat:
                     return "Medium Nougat";
-                case LegoColor.MediumStoneGrey:
+                case BrickColor.MediumStoneGrey:
                     return "Medium Stone Grey";
-                case LegoColor.NewDarkRed:
+                case BrickColor.NewDarkRed:
                     return "New Dark Red";
-                case LegoColor.OliveGreen:
+                case BrickColor.OliveGreen:
                     return "Olive Green";
-                case LegoColor.ReddishBrown:
+                case BrickColor.ReddishBrown:
                     return "Reddish Brown";
-                case LegoColor.SandGreen:
+                case BrickColor.SandGreen:
                     return "Sand Green";
-                case LegoColor.SandYellow:
+                case BrickColor.SandYellow:
                     return "Sand Yellow";
-                case LegoColor.SilverMetallic:
+                case BrickColor.SilverMetallic:
                     return "Silver Metallic";
-                case LegoColor.SpringYellowishGreen:
+                case BrickColor.SpringYellowishGreen:
                     return "Spring Yellowish Green";
-                case LegoColor.TitaniumMetallic:
+                case BrickColor.TitaniumMetallic:
                     return "Titanium Metallic";
-                case LegoColor.TrBlue:
+                case BrickColor.TrBlue:
                     return "Tr. Blue";
-                case LegoColor.TrBrightOrange:
+                case BrickColor.TrBrightOrange:
                     return "Tr. Bright Orange";
-                case LegoColor.TrBrown:
+                case BrickColor.TrBrown:
                     return "Tr. Brown";
-                case LegoColor.TrFluoreReddOrange:
+                case BrickColor.TrFluoreReddOrange:
                     return "Tr. Fluore. Redd. Orange";
-                case LegoColor.TrGreen:
+                case BrickColor.TrGreen:
                     return "Tr. Green";
-                case LegoColor.TrLightBlue:
+                case BrickColor.TrLightBlue:
                     return "Tr. Light Blue";
-                case LegoColor.TrMediumReddishViolet:
+                case BrickColor.TrMediumReddishViolet:
                     return "Tr. Medium Reddish Violet";
-                case LegoColor.TrRed:
+                case BrickColor.TrRed:
                     return "Tr. Red";
-                case LegoColor.TrYellow:
+                case BrickColor.TrYellow:
                     return "Tr. Yellow";
-                case LegoColor.Transparent:
+                case BrickColor.Transparent:
                     return "Transparent";
-                case LegoColor.WarmGold:
+                case BrickColor.WarmGold:
                     return "Warm Gold";
-                case LegoColor.White:
+                case BrickColor.White:
                     return "White";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        public override string filterEnumToName(LegoColor color)
+        public override string filterEnumToName(BrickColor color)
         {
             switch (color)
             {
-                case LegoColor.Black:
+                case BrickColor.Black:
                     return "Black";
-                case LegoColor.BrickYellow:
+                case BrickColor.BrickYellow:
                     return "Brick Yellow";
-                case LegoColor.BrightBlue:
+                case BrickColor.BrightBlue:
                     return "Bright Blue";
-                case LegoColor.BrightBluishGreen:
+                case BrickColor.BrightBluishGreen:
                     return "Bright Bluish Green";
-                case LegoColor.BrightGreen:
+                case BrickColor.BrightGreen:
                     return "Bright Green";
-                case LegoColor.BrightOrange:
+                case BrickColor.BrightOrange:
                     return "Bright Orange";
-                case LegoColor.BrightPurple:
+                case BrickColor.BrightPurple:
                     return "Bright Purple";
-                case LegoColor.BrightRed:
+                case BrickColor.BrightRed:
                     return "Bright Red";
-                case LegoColor.BrightReddishViolet:
+                case BrickColor.BrightReddishViolet:
                     return "Bright Reddish Violet";
-                case LegoColor.BrightYellow:
+                case BrickColor.BrightYellow:
                     return "Bright Yellow";
-                case LegoColor.BrightYellowishGreen:
+                case BrickColor.BrightYellowishGreen:
                     return "Bright Yellowish Green";
-                case LegoColor.CoolYellow:
+                case BrickColor.CoolYellow:
                     return "Cool Yellow";
-                case LegoColor.DarkAzur:
+                case BrickColor.DarkAzur:
                     return "Dark Azur";
-                case LegoColor.DarkBrown:
+                case BrickColor.DarkBrown:
                     return "Dark Brown";
-                case LegoColor.DarkGreen:
+                case BrickColor.DarkGreen:
                     return "Dark Green";
-                case LegoColor.DarkOrange:
+                case BrickColor.DarkOrange:
                     return "Dark Orange";
-                case LegoColor.DarkStoneGrey:
+                case BrickColor.DarkStoneGrey:
                     return "Dark Stone Grey";
-                case LegoColor.EarthBlue:
+                case BrickColor.EarthBlue:
                     return "Earth Blue";
-                case LegoColor.EarthGreen:
+                case BrickColor.EarthGreen:
                     return "Earth Green";
-                case LegoColor.FlameYellowishOrange:
+                case BrickColor.FlameYellowishOrange:
                     return "Flame Yellowish Orange";
-                case LegoColor.Lavender:
+                case BrickColor.Lavender:
                     return "Lavender";
-                case LegoColor.LightPurple:
+                case BrickColor.LightPurple:
                     return "Light Purple";
-                case LegoColor.LightRoyalBlue:
+                case BrickColor.LightRoyalBlue:
                     return "Light Royal Blue";
-                case LegoColor.MediumAzur:
+                case BrickColor.MediumAzur:
                     return "Medium Azur";
-                case LegoColor.MediumBlue:
+                case BrickColor.MediumBlue:
                     return "Medium Blue";
-                case LegoColor.MediumLavendel:
+                case BrickColor.MediumLavendel:
                     return "Medium Lavendel";
-                case LegoColor.MediumLilac:
+                case BrickColor.MediumLilac:
                     return "Medium Lilac";
-                case LegoColor.MediumNougat:
+                case BrickColor.MediumNougat:
                     return "Medium Nougat";
-                case LegoColor.MediumStoneGrey:
+                case BrickColor.MediumStoneGrey:
                     return "Medium Stone Grey";
-                case LegoColor.NewDarkRed:
+                case BrickColor.NewDarkRed:
                     return "New Dark Red";
-                case LegoColor.OliveGreen:
+                case BrickColor.OliveGreen:
                     return "Olive Green";
-                case LegoColor.ReddishBrown:
+                case BrickColor.ReddishBrown:
                     return "Reddish Brown";
-                case LegoColor.SandGreen:
+                case BrickColor.SandGreen:
                     return "Sand Green";
-                case LegoColor.SandYellow:
+                case BrickColor.SandYellow:
                     return "Sand Yellow";
-                case LegoColor.SilverMetallic:
+                case BrickColor.SilverMetallic:
                     return "Silver Metallic";
-                case LegoColor.SpringYellowishGreen:
+                case BrickColor.SpringYellowishGreen:
                     return "Spring Yellowish Green";
-                case LegoColor.TitaniumMetallic:
+                case BrickColor.TitaniumMetallic:
                     return "Titanium Metallic";
-                case LegoColor.TrBlue:
+                case BrickColor.TrBlue:
                     return "Tr. Blue";
-                case LegoColor.TrBrightOrange:
+                case BrickColor.TrBrightOrange:
                     return "Tr. Bright Orange";
-                case LegoColor.TrBrown:
+                case BrickColor.TrBrown:
                     return "Tr. Brown";
-                case LegoColor.TrFluoreReddOrange:
+                case BrickColor.TrFluoreReddOrange:
                     return "Tr. Fluore. Redd. Orange";
-                case LegoColor.TrGreen:
+                case BrickColor.TrGreen:
                     return "Tr. Green";
-                case LegoColor.TrLightBlue:
+                case BrickColor.TrLightBlue:
                     return "Tr. Light Blue";
-                case LegoColor.TrMediumReddishViolet:
+                case BrickColor.TrMediumReddishViolet:
                     return "Tr. Medium Reddish Violet";
-                case LegoColor.TrRed:
+                case BrickColor.TrRed:
                     return "Tr. Red";
-                case LegoColor.TrYellow:
+                case BrickColor.TrYellow:
                     return "Tr. Yellow";
-                case LegoColor.Transparent:
+                case BrickColor.Transparent:
                     return "Transparent";
-                case LegoColor.WarmGold:
+                case BrickColor.WarmGold:
                     return "Warm Gold";
-                case LegoColor.White:
+                case BrickColor.White:
                     return "White";
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -226,7 +226,7 @@ namespace LegoSharp
         }
     }
 
-    public enum LegoColor
+    public enum BrickColor
     {
         Black,
         BrickYellow,

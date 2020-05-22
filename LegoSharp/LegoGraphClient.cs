@@ -20,12 +20,12 @@ namespace LegoSharp
             this._authToken = LegoGraphClient._parseAuthTokenFromAuthenticateResponse(body);
         }
 
-        public async Task<IEnumerable<Brick>> searchForBricksAsync(LegoGraphSearch search)
+        public async Task<IEnumerable<Brick>> pickABrick(PickABrickQuery query)
         {
-            ILegoRequest brickSearchRequest = LegoGraphClient._makeGraphSearchRequest(search);
-            var response = await brickSearchRequest.getResponseAsync();
+            ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, Constants.pickABrickUri);
+            var response = await request.getResponseAsync();
             var body = await response.Content.ReadAsStringAsync();
-            return LegoGraphClient._parseElementsFromGraphSearchResponse(body);
+            return LegoGraphClient._parseElementsFromGraphQueryResponse(body);
         }
 
         public bool isAuthenticated()
@@ -56,10 +56,10 @@ namespace LegoSharp
             return request;
         }
 
-        private static ILegoRequest _makeGraphSearchRequest(LegoGraphSearch search)
+        private static ILegoRequest _makeGraphQueryRequest(PickABrickQuery query, string resource)
         {
             LegoRequest request = new LegoRequest(Constants.baseLegoUri);
-            request.resource = Constants.pickABrickUri;
+            request.resource = resource;
             request.requestType = LegoRequest.RequestType.Post;
             request.payloadType = LegoRequest.PayloadType.Json;
 
@@ -70,8 +70,8 @@ namespace LegoSharp
                 {
                     page = 1,
                     perPage = 12,
-                    query = search.query,
-                    filters = search.getFiltersInQL()
+                    query = query.query,
+                    filters = query.getFiltersInQL()
                 },
                 query = Constants.pickABrickQuery
             };
@@ -89,9 +89,9 @@ namespace LegoSharp
             return data.GetProperty("login").GetString();
         }
 
-        private static IEnumerable<Brick> _parseElementsFromGraphSearchResponse(string graphSearchResponseBody)
+        private static IEnumerable<Brick> _parseElementsFromGraphQueryResponse(string graphQueryResponseBody)
         {
-            JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(graphSearchResponseBody);
+            JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(graphQueryResponseBody);
             JsonElement data = parsedResponse.GetProperty("data");
             JsonElement elements = data.GetProperty("elements");
             JsonElement results = elements.GetProperty("results");

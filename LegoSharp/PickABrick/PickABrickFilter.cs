@@ -5,13 +5,13 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class LegoGraphFilter<FilterEnumT> : ILegoGraphFilter
+    public abstract class PickABrickFilter<FilterEnumT> : IPickABrickFilter
     {
         private string _key;
 
         protected List<FilterEnumT> _values;
 
-        public LegoGraphFilter(string key)
+        public PickABrickFilter(string key)
         {
             this._values = new List<FilterEnumT>();
             this._key = key;
@@ -22,7 +22,7 @@ namespace LegoSharp
             return this._key;
         }
 
-        public LegoGraphFilter<FilterEnumT> addValue(FilterEnumT value)
+        public PickABrickFilter<FilterEnumT> addValue(FilterEnumT value)
         {
             this._values.Add(value);
             return this;

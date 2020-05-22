@@ -18,13 +18,13 @@ namespace LegoSharpTest
 
             Assert.IsTrue(graphClient.isAuthenticated());
 
-            LegoGraphSearch graphSearch = new LegoGraphSearch();
-            graphSearch.addFilter(new ColorFilter()
-                .addValue(LegoColor.Black)
+            PickABrickQuery query = new PickABrickQuery();
+            query.addFilter(new ColorFilter()
+                .addValue(BrickColor.Black)
             );
-            graphSearch.query = "wheel";
+            query.query = "wheel";
 
-            IEnumerable<Brick> result = await graphClient.searchForBricksAsync(graphSearch);
+            IEnumerable<Brick> result = await graphClient.pickABrick(query);
 
             foreach (Brick brick in result)
             {
@@ -38,18 +38,18 @@ namespace LegoSharpTest
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
-            var colors = (LegoColor[])Enum.GetValues(typeof(LegoColor));
+            var colors = (BrickColor[])Enum.GetValues(typeof(BrickColor));
 
             for (int i = 0; i < colors.Length; i++)
             {
-                LegoColor currColor = colors[i];
+                BrickColor currColor = colors[i];
 
-                LegoGraphSearch graphSearch = new LegoGraphSearch();
-                graphSearch.addFilter(new ColorFilter()
+                PickABrickQuery query = new PickABrickQuery();
+                query.addFilter(new ColorFilter()
                     .addValue(currColor)
                 );
 
-                await graphClient.searchForBricksAsync(graphSearch);
+                await graphClient.pickABrick(query);
             }
         }
 
@@ -59,18 +59,18 @@ namespace LegoSharpTest
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
-            var categories = (LegoCategory[])Enum.GetValues(typeof(LegoCategory));
+            var categories = (BrickCategory[])Enum.GetValues(typeof(BrickCategory));
 
             for (int i = 0; i < categories.Length; i++)
             {
-                LegoCategory currCategory = categories[i];
+                BrickCategory currCategory = categories[i];
 
-                LegoGraphSearch graphSearch = new LegoGraphSearch();
-                graphSearch.addFilter(new CategoryFilter()
+                PickABrickQuery query = new PickABrickQuery();
+                query.addFilter(new CategoryFilter()
                     .addValue(currCategory)
                 );
 
-                await graphClient.searchForBricksAsync(graphSearch);
+                await graphClient.pickABrick(query);
             }
         }
     }
