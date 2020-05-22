@@ -7,6 +7,7 @@ using LegoSharp;
 using LegoSharp.PickABrick;
 using System.Linq;
 using System.Reflection;
+using System.IO.MemoryMappedFiles;
 
 namespace LegoSharpTest
 {
@@ -38,61 +39,36 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachColor()
         {
-            LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
-
-            var colors = (BrickColor[])Enum.GetValues(typeof(BrickColor));
-
-            for (int i = 0; i < colors.Length; i++)
-            {
-                BrickColor currColor = colors[i];
-
-                PickABrickQuery query = new PickABrickQuery();
-                query.addFilter(new ColorFilter()
-                    .addValue(currColor)
-                );
-
-                await graphClient.pickABrick(query);
-            }
+            await this.tryQueryWithEachFilterValue<ColorFilter, BrickColor>(() => new ColorFilter());
         }
 
         [TestMethod]
         public async Task tryQueryWithEachCategory()
         {
-            LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
-
-            var categories = (BrickCategory[])Enum.GetValues(typeof(BrickCategory));
-
-            for (int i = 0; i < categories.Length; i++)
-            {
-                BrickCategory currCategory = categories[i];
-
-                PickABrickQuery query = new PickABrickQuery();
-                query.addFilter(new CategoryFilter()
-                    .addValue(currCategory)
-                );
-
-                await graphClient.pickABrick(query);
-            }
+            await this.tryQueryWithEachFilterValue<CategoryFilter, BrickCategory>(() => new CategoryFilter());
         }
 
         [TestMethod]
         public async Task tryQueryWithEachColorFamily()
         {
+            await this.tryQueryWithEachFilterValue<ColorFamilyFilter, BrickColorFamily>(() => new ColorFamilyFilter());
+        }
+
+        private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : PickABrickFilter<FilterEnumT>
+        {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
-            var colorFamilies = (BrickColorFamily[])Enum.GetValues(typeof(BrickColorFamily));
+            var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
 
-            for (int i = 0; i < colorFamilies.Length; i++)
+            for (int i = 0; i < enumValues.Length; i++)
             {
-                BrickColorFamily currColorFamily = colorFamilies[i];
+                FilterEnumT currEnum = enumValues[i];
 
                 PickABrickQuery query = new PickABrickQuery();
-                query.addFilter(new ColorFamilyFilter()
-                    .addValue(currColorFamily)
-                );
+                FilterT filter = newFilter();
+                filter.addValue(currEnum);
+                query.addFilter(filter);
 
                 await graphClient.pickABrick(query);
             }
@@ -101,89 +77,22 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingColors()
         {
-            LegoGraphClient graphClient = new LegoGraphClient();
-
-            await graphClient.authenticateAsync();
-
-            FacetScraper query = new FacetScraper();
-            var facets = await graphClient.queryGraph(query);
-
-            var colors = (BrickColor[])Enum.GetValues(typeof(BrickColor));
-            var colorFilter = new ColorFilter();
-            var colorFilterKey = colorFilter.key;
-
-            var colorFacet = facets.FirstOrDefault(f => f.key == colorFilterKey);
-
-            Assert.IsTrue(colorFacet != null, "No color facet");
-
-            var missingCategories = new List<FacetLabel>();
-            foreach (var label in colorFacet.labels)
-            {
-                try
-                {
-                    colors.First(c => colorFilter.filterEnumToName(c) == label.name && colorFilter.filterEnumToValue(c) == label.value);
-                }
-                catch (InvalidOperationException)
-                {
-                    missingCategories.Add(label);
-                }
-            }
-
-            if (missingCategories.Count() > 0)
-            {
-                string err = "Missing colors exist:";
-                foreach (var label in missingCategories)
-                {
-                    err += "\nname: " + label.name + ", value: " + label.value;
-                }
-                Assert.IsTrue(false, err);
-            }
+            await this.noMissingFilterValues(new ColorFilter(), "color");
         }
 
         [TestMethod]
         public async Task noMissingCategories()
         {
-            LegoGraphClient graphClient = new LegoGraphClient();
-
-            await graphClient.authenticateAsync();
-
-            FacetScraper query = new FacetScraper();
-            var facets = await graphClient.queryGraph(query);
-
-            var categories = (BrickCategory[])Enum.GetValues(typeof(BrickCategory));
-            var categoryFilter = new CategoryFilter();
-            var categoryFilterKey = categoryFilter.key;
-
-            var categoryFacet = facets.FirstOrDefault(f => f.key == categoryFilterKey);
-
-            Assert.IsTrue(categoryFacet != null, "No category facet");
-
-            var missingCategories = new List<FacetLabel>();
-            foreach (var label in categoryFacet.labels)
-            {
-                try
-                {
-                    categories.First(c => categoryFilter.filterEnumToName(c) == label.name && categoryFilter.filterEnumToValue(c) == label.value);
-                }
-                catch (InvalidOperationException)
-                {
-                    missingCategories.Add(label);
-                }
-            }
-
-            if (missingCategories.Count() > 0)
-            {
-                string err = "Missing categories exist:";
-                foreach (var label in missingCategories)
-                {
-                    err += "\nname: " + label.name + ", value: " + label.value;
-                }
-                Assert.IsTrue(false, err);
-            }
+            await this.noMissingFilterValues(new CategoryFilter(), "category");
         }
 
         [TestMethod]
         public async Task noMissingColorFamilies()
+        {
+            await this.noMissingFilterValues(new ColorFamilyFilter(), "color family");
+        }
+
+        private async Task noMissingFilterValues<FilterEnumT>(PickABrickFilter<FilterEnumT> filter, string displayName)
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
@@ -192,31 +101,30 @@ namespace LegoSharpTest
             FacetScraper query = new FacetScraper();
             var facets = await graphClient.queryGraph(query);
 
-            var colorFamilies = (BrickColorFamily[])Enum.GetValues(typeof(BrickColorFamily));
-            var colorFamilyFilter = new ColorFamilyFilter();
-            var categoryFilterKey = colorFamilyFilter.key;
+            var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
+            var filterKey = filter.key;
 
-            var colorFamilyFacet = facets.FirstOrDefault(f => f.key == categoryFilterKey);
+            var facet = facets.FirstOrDefault(f => f.key == filterKey);
 
-            Assert.IsTrue(colorFamilyFacet != null, "No color family facet");
+            Assert.IsTrue(facet != null, "No " + displayName + " facet");
 
-            var missingColorFamilies = new List<FacetLabel>();
-            foreach (var label in colorFamilyFacet.labels)
+            var missingValues = new List<FacetLabel>();
+            foreach (var label in facet.labels)
             {
                 try
                 {
-                    colorFamilies.First(c => colorFamilyFilter.filterEnumToName(c) == label.name && colorFamilyFilter.filterEnumToValue(c) == label.value);
+                    enumValues.First(c => filter.filterEnumToName(c) == label.name && filter.filterEnumToValue(c) == label.value);
                 }
                 catch (InvalidOperationException)
                 {
-                    missingColorFamilies.Add(label);
+                    missingValues.Add(label);
                 }
             }
 
-            if (missingColorFamilies.Count() > 0)
+            if (missingValues.Count() > 0)
             {
-                string err = "Missing color families exist:";
-                foreach (var label in missingColorFamilies)
+                string err = "Missing " + displayName + " values exist:";
+                foreach (var label in missingValues)
                 {
                     err += "\nname: " + label.name + ", value: " + label.value;
                 }
