@@ -43,18 +43,34 @@ namespace LegoSharpTest
             for (int i = 0; i < colors.Length; i++)
             {
                 LegoColor currColor = colors[i];
-                string currColorString = ColorFilter.colorToString(currColor);
 
                 LegoGraphSearch graphSearch = new LegoGraphSearch();
                 graphSearch.addFilter(new ColorFilter()
                     .addValue(currColor)
                 );
 
-                IEnumerable<Brick> result = await graphClient.searchForBricksAsync(graphSearch);
-                foreach (Brick brick in result)
-                {
-                    Assert.IsTrue(brick.variant.attributes.colour.Equals(currColorString));
-                }
+                await graphClient.searchForBricksAsync(graphSearch);
+            }
+        }
+
+        [TestMethod]
+        public async Task allCategoriesValid()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+            await graphClient.authenticateAsync();
+
+            var categories = (LegoCategory[])Enum.GetValues(typeof(LegoCategory));
+
+            for (int i = 0; i < categories.Length; i++)
+            {
+                LegoCategory currCategory = categories[i];
+
+                LegoGraphSearch graphSearch = new LegoGraphSearch();
+                graphSearch.addFilter(new CategoryFilter()
+                    .addValue(currCategory)
+                );
+
+                await graphClient.searchForBricksAsync(graphSearch);
             }
         }
     }

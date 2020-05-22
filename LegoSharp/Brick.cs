@@ -8,7 +8,7 @@ namespace LegoSharp
     {
         public string id { get; set; }
         public string name { get; set; }
-        public string primaryImageUrl { get; set; }
+        public string primaryImage { get; set; }
         public Variant variant { get; set; }
     }
 

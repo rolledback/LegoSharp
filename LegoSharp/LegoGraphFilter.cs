@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class LegoGraphFilter<T> : ILegoGraphFilter
+    public abstract class LegoGraphFilter<FilterEnumT> : ILegoGraphFilter
     {
         private string _key;
 
-        protected List<T> _values;
+        protected List<FilterEnumT> _values;
 
         public LegoGraphFilter(string key)
         {
-            this._values = new List<T>();
+            this._values = new List<FilterEnumT>();
             this._key = key;
         }
 
@@ -21,12 +22,19 @@ namespace LegoSharp
             return this._key;
         }
 
-        public LegoGraphFilter<T> addValue(T value)
+        public LegoGraphFilter<FilterEnumT> addValue(FilterEnumT value)
         {
             this._values.Add(value);
             return this;
         }
 
-        public abstract IEnumerable<string> getValues();
+        public IEnumerable<string> getValues()
+        {
+            return from v in this._values select this.filterEnumToValue(v);
+        }
+
+        public abstract string filterEnumToValue(FilterEnumT value);
+
+        public abstract string filterEnumToName(FilterEnumT value);
     }
 }
