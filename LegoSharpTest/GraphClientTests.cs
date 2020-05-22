@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using LegoSharp;
+using LegoSharp.PickABrick;
+using System.Linq;
+using System.Reflection;
 
 namespace LegoSharpTest
 {
@@ -33,7 +36,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public async Task allColorsValid()
+        public async Task tryQueryWithEachColor()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
@@ -54,7 +57,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public async Task allCategoriesValid()
+        public async Task tryQueryWithEachCategory()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
@@ -71,6 +74,90 @@ namespace LegoSharpTest
                 );
 
                 await graphClient.pickABrick(query);
+            }
+        }
+
+        [TestMethod]
+        public async Task noMissingColors()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+
+            await graphClient.authenticateAsync();
+
+            FacetScraper query = new FacetScraper();
+            var facets = await graphClient.queryGraph(query);
+
+            var colors = (BrickColor[])Enum.GetValues(typeof(BrickColor));
+            var colorFilter = new ColorFilter();
+            var colorFilterKey = colorFilter.key;
+
+            var colorFacet = facets.FirstOrDefault(f => f.key == colorFilterKey);
+
+            Assert.IsTrue(colorFacet != null, "No color facet");
+
+            var missingCategories = new List<FacetLabel>();
+            foreach (var label in colorFacet.labels)
+            {
+                try
+                {
+                    colors.First(c => colorFilter.filterEnumToName(c) == label.name && colorFilter.filterEnumToValue(c) == label.value);
+                }
+                catch (InvalidOperationException)
+                {
+                    missingCategories.Add(label);
+                }
+            }
+
+            if (missingCategories.Count() > 0)
+            {
+                string err = "Missing colors exist:";
+                foreach (var label in missingCategories)
+                {
+                    err += "\nname: " + label.name + ", value: " + label.value;
+                }
+                Assert.IsTrue(false, err);
+            }
+        }
+
+        [TestMethod]
+        public async Task noMissingCategories()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+
+            await graphClient.authenticateAsync();
+
+            FacetScraper query = new FacetScraper();
+            var facets = await graphClient.queryGraph(query);
+
+            var categories = (BrickCategory[])Enum.GetValues(typeof(BrickCategory));
+            var categoryFilter = new CategoryFilter();
+            var categoryFilterKey = categoryFilter.key;
+
+            var categoriesFacet = facets.FirstOrDefault(f => f.key == categoryFilterKey);
+
+            Assert.IsTrue(categoriesFacet != null, "No category facet");
+
+            var missingCategories = new List<FacetLabel>();
+            foreach (var label in categoriesFacet.labels)
+            {
+                try
+                {
+                    categories.First(c => categoryFilter.filterEnumToName(c) == label.name && categoryFilter.filterEnumToValue(c) == label.value);
+                }
+                catch (InvalidOperationException)
+                {
+                    missingCategories.Add(label);
+                }
+            }
+
+            if (missingCategories.Count() > 0)
+            {
+                string err = "Missing categories exist:";
+                foreach (var label in missingCategories)
+                {
+                    err += "\nname: " + label.name + ", value: " + label.value;
+                }
+                Assert.IsTrue(false, err);
             }
         }
     }

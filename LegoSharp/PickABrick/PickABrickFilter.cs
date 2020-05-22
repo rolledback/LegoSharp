@@ -7,19 +7,14 @@ namespace LegoSharp
 {
     public abstract class PickABrickFilter<FilterEnumT> : IPickABrickFilter
     {
-        private string _key;
+        public string key { get; }
 
         protected List<FilterEnumT> _values;
 
         public PickABrickFilter(string key)
         {
             this._values = new List<FilterEnumT>();
-            this._key = key;
-        }
-
-        public string getKey()
-        {
-            return this._key;
+            this.key = key;
         }
 
         public PickABrickFilter<FilterEnumT> addValue(FilterEnumT value)

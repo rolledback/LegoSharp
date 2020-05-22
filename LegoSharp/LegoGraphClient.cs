@@ -22,15 +22,25 @@ namespace LegoSharp
 
         public async Task<IEnumerable<Brick>> pickABrick(PickABrickQuery query)
         {
-            ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, Constants.pickABrickUri);
-            var response = await request.getResponseAsync();
-            var body = await response.Content.ReadAsStringAsync();
-            return LegoGraphClient._parseElementsFromGraphQueryResponse(body);
+            return await this.queryGraph(query);
         }
 
         public bool isAuthenticated()
         {
             return !string.IsNullOrEmpty(this._authToken);
+        }
+
+        public async Task<ResultT> queryGraph<ResultT>(IGraphQuery<ResultT> query)
+        {
+            if (!this.isAuthenticated())
+            {
+                throw new UnauthorizedAccessException();
+            }
+
+            ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, this._authToken);
+            var response = await request.getResponseAsync();
+            var body = await response.Content.ReadAsStringAsync();
+            return query.parseResponse(body);
         }
 
         private static ILegoRequest _makeGraphAuthenticateRequest()
@@ -56,28 +66,18 @@ namespace LegoSharp
             return request;
         }
 
-        private static ILegoRequest _makeGraphQueryRequest(PickABrickQuery query, string resource)
+        private static ILegoRequest _makeGraphQueryRequest<ResultT>(IGraphQuery<ResultT> query, string authToken)
         {
             LegoRequest request = new LegoRequest(Constants.baseLegoUri);
-            request.resource = resource;
+            request.resource = query.endpoint;
             request.requestType = LegoRequest.RequestType.Post;
             request.payloadType = LegoRequest.PayloadType.Json;
 
-            var payloadObj = new
-            {
-                operationName = "PickABrickQuery",
-                variables = new
-                {
-                    page = 1,
-                    perPage = 12,
-                    query = query.query,
-                    filters = query.getFiltersInQL()
-                },
-                query = Constants.pickABrickQuery
-            };
+            var payloadObj = query.getPayload();
 
             request.payload = JsonSerializer.Serialize(payloadObj);
             request.headers["x-locale"] = "en-US";
+            request.headers["authorization"] = authToken;
 
             return request;
         }
@@ -87,25 +87,6 @@ namespace LegoSharp
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(authenticateResponseBody);
             JsonElement data = parsedResponse.GetProperty("data");
             return data.GetProperty("login").GetString();
-        }
-
-        private static IEnumerable<Brick> _parseElementsFromGraphQueryResponse(string graphQueryResponseBody)
-        {
-            JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(graphQueryResponseBody);
-            JsonElement data = parsedResponse.GetProperty("data");
-            JsonElement elements = data.GetProperty("elements");
-            JsonElement results = elements.GetProperty("results");
-            
-            var enumerator = results.EnumerateArray();
-            var retValue = new List<Brick>();
-
-            while (enumerator.MoveNext())
-            {
-                JsonElement brickEl = enumerator.Current;
-                retValue.Add(JsonSerializer.Deserialize<Brick>(brickEl.ToString()));
-            }
-
-            return retValue;
         }
     }
 }

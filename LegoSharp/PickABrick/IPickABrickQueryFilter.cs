@@ -6,7 +6,8 @@ namespace LegoSharp
 {
     public interface IPickABrickFilter
     {
+        string key { get; }
+
         IEnumerable<string> getValues();
-        string getKey();
     }
 }

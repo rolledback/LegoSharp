@@ -15,6 +15,8 @@ namespace LegoSharp
         {
             switch (color)
             {
+                case BrickColor.Aqua:
+                    return "Aqua";
                 case BrickColor.Black:
                     return "Black";
                 case BrickColor.BrickYellow:
@@ -66,7 +68,7 @@ namespace LegoSharp
                 case BrickColor.MediumBlue:
                     return "Medium Blue";
                 case BrickColor.MediumLavendel:
-                    return "Medium Lavendel";
+                    return "Medium Lavender";
                 case BrickColor.MediumLilac:
                     return "Medium Lilac";
                 case BrickColor.MediumNougat:
@@ -91,6 +93,8 @@ namespace LegoSharp
                     return "Titanium Metallic";
                 case BrickColor.TrBlue:
                     return "Tr. Blue";
+                case BrickColor.TrBrightGreen:
+                    return "Tr. Bright Green";
                 case BrickColor.TrBrightOrange:
                     return "Tr. Bright Orange";
                 case BrickColor.TrBrown:
@@ -113,6 +117,8 @@ namespace LegoSharp
                     return "Warm Gold";
                 case BrickColor.White:
                     return "White";
+                case BrickColor.VibrantCoral:
+                    return "Vibrant Coral";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -122,6 +128,8 @@ namespace LegoSharp
         {
             switch (color)
             {
+                case BrickColor.Aqua:
+                    return "Aqua";
                 case BrickColor.Black:
                     return "Black";
                 case BrickColor.BrickYellow:
@@ -173,7 +181,7 @@ namespace LegoSharp
                 case BrickColor.MediumBlue:
                     return "Medium Blue";
                 case BrickColor.MediumLavendel:
-                    return "Medium Lavendel";
+                    return "Medium Lavender";
                 case BrickColor.MediumLilac:
                     return "Medium Lilac";
                 case BrickColor.MediumNougat:
@@ -198,6 +206,8 @@ namespace LegoSharp
                     return "Titanium Metallic";
                 case BrickColor.TrBlue:
                     return "Tr. Blue";
+                case BrickColor.TrBrightGreen:
+                    return "Tr. Bright Green";
                 case BrickColor.TrBrightOrange:
                     return "Tr. Bright Orange";
                 case BrickColor.TrBrown:
@@ -220,6 +230,8 @@ namespace LegoSharp
                     return "Warm Gold";
                 case BrickColor.White:
                     return "White";
+                case BrickColor.VibrantCoral:
+                    return "Vibrant Coral";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -228,6 +240,7 @@ namespace LegoSharp
 
     public enum BrickColor
     {
+        Aqua,
         Black,
         BrickYellow,
         BrightBlue,
@@ -266,6 +279,7 @@ namespace LegoSharp
         SpringYellowishGreen,
         TitaniumMetallic,
         TrBlue,
+        TrBrightGreen,
         TrBrightOrange,
         TrBrown,
         TrFluoreReddOrange,
@@ -275,6 +289,7 @@ namespace LegoSharp
         TrRed,
         TrYellow,
         Transparent,
+        VibrantCoral,
         WarmGold,
         White
     }
