@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegoSharp.PickABrick;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
@@ -20,7 +21,7 @@ namespace LegoSharp
             this._authToken = LegoGraphClient._parseAuthTokenFromAuthenticateResponse(body);
         }
 
-        public async Task<IEnumerable<Brick>> pickABrick(PickABrickQuery query)
+        public async Task<PickABrickQueryResult> pickABrick(PickABrickQuery query)
         {
             return await this.queryGraph(query);
         }

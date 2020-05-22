@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegoSharp.PickABrick;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
@@ -6,15 +7,20 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class PickABrickQuery : IGraphQuery<IEnumerable<Brick>>
+    public class PickABrickQuery : IGraphQuery<PickABrickQueryResult>
     {
         public string query;
+        public int page;
+        public int perPage;
+
         public string endpoint { get; } = Constants.pickABrickUri;
         public Dictionary<string, IPickABrickFilter> _filters;
 
         public PickABrickQuery()
         {
             this._filters = new Dictionary<string, IPickABrickFilter>();
+            this.page = 1;
+            this.perPage = 12;
         }
 
         public void addFilter(IPickABrickFilter filter)
@@ -55,23 +61,24 @@ namespace LegoSharp
             return returnValue;
         }
 
-        public IEnumerable<Brick> parseResponse(string responseBody)
+        public PickABrickQueryResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
             JsonElement data = parsedResponse.GetProperty("data");
             JsonElement elements = data.GetProperty("elements");
             JsonElement results = elements.GetProperty("results");
+            JsonElement total = elements.GetProperty("total");
 
             var enumerator = results.EnumerateArray();
-            var retValue = new List<Brick>();
+            var elementsList = new List<Brick>();
 
             while (enumerator.MoveNext())
             {
                 JsonElement brickEl = enumerator.Current;
-                retValue.Add(JsonSerializer.Deserialize<Brick>(brickEl.ToString()));
+                elementsList.Add(JsonSerializer.Deserialize<Brick>(brickEl.ToString()));
             }
 
-            return retValue;
+            return new PickABrickQueryResult(elementsList, JsonSerializer.Deserialize<int>(total.ToString()));
         }
     }
 }

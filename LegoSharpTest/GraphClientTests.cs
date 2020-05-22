@@ -27,9 +27,9 @@ namespace LegoSharpTest
             );
             query.query = "wheel";
 
-            IEnumerable<Brick> result = await graphClient.pickABrick(query);
+            PickABrickQueryResult result = await graphClient.pickABrick(query);
 
-            foreach (Brick brick in result)
+            foreach (Brick brick in result.elements)
             {
                 Assert.IsTrue(!string.IsNullOrEmpty(brick.id));
             }
