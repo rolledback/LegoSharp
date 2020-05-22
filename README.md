@@ -4,7 +4,7 @@ LegoSharp is an unofficial library for interacting with Lego's web API. Lego rec
 
 [![Build Status](https://mrayermann.visualstudio.com/LegoSharp/_apis/build/status/rolledback.LegoSharp?branchName=master)](https://mrayermann.visualstudio.com/LegoSharp/_build/latest?definitionId=1&branchName=master)
 
-![Nuget](https://img.shields.io/nuget/v/LegoSharp)
+[![Nuget](https://img.shields.io/nuget/v/LegoSharp)](https://www.nuget.org/packages/LegoSharp/)
 
 ## Usage
 
@@ -20,20 +20,20 @@ You then authenticate the client (no Lego account is required).
 await graphClient.authenticateAsync();
 ```
 
-Once you authenticate, you create a graph search. The search can use a variety of filters, or specify a specific text based query.
+Once you authenticate, you can query different graph APIs.
+
+## Pick a Brick
+
+You can query [Pick a Brick](https://www.lego.com/en-us/page/static/pick-a-brick). The search can use a variety of filters, or specify a specific text based query.
 ```C#
-LegoGraphSearch graphSearch = new LegoGraphSearch();
-graphSearch.addFilter(new ColorFilter()
-    .addValue(LegoColor.Black)
+PickABrickQuery query = new PickABrickQuery();
+query.addFilter(new ColorFilter()
+    .addValue(BrickColor.Black)
 );
-graphSearch.query = "wheel";
-```
+query.query = "wheel";
 
-Once you have your graph search ready, you give it to the graph client who will execute the search.
-```C#
-IEnumerable<Brick> result = await graphClient.searchForBricksAsync(graphSearch);
-
-foreach (Brick brick in result)
+PickABrickQueryResult result = await graphClient.searchForBricksAsync(graphSearch);
+foreach (Brick brick in result.elements)
 {
     // do something with each brick
 }
