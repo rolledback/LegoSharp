@@ -13,14 +13,14 @@ namespace LegoSharpTest
 {
     public class ScrapingTestUtils
     {
-        public static async Task noMissingFilterValues<FilterEnumT>(QueryFilter<FilterEnumT> filter, string displayName)
+        public static async Task noMissingFilterValues<FilterEnumT, QureyResultT>(IGraphQuery<QureyResultT> query, QueryFilter<FilterEnumT> filter, string displayName)
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
             await graphClient.authenticateAsync();
 
-            var query = new FacetScraper<PickABrickQueryResult>(new PickABrickQuery());
-            var facets = await graphClient.queryGraph(query);
+            var scraper = new FacetScraper<QureyResultT>(query);
+            var facets = await graphClient.queryGraph(scraper);
 
             var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
             var filterKey = filter.key;

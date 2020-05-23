@@ -55,19 +55,19 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingColors()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new ColorFilter(), "color");
+            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new ColorFilter(), "color");
         }
 
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new CategoryFilter(), "category");
+            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new CategoryFilter(), "category");
         }
 
         [TestMethod]
         public async Task noMissingColorFamilies()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new ColorFamilyFilter(), "color family");
+            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new ColorFamilyFilter(), "color family");
         }
     }
 }
