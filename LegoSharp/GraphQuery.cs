@@ -14,8 +14,8 @@ namespace LegoSharp
         public int perPage;
 
         public string endpoint { get; }
-        public Dictionary<string, IQueryFilter> _filters;
-
+        
+        private Dictionary<string, IQueryFilter> _filters;
         private string _operationName;
         private string _queryString;
 
