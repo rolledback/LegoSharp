@@ -23,6 +23,7 @@ namespace LegoSharp
             this._filters = new Dictionary<string, IQueryFilter>();
             this.page = 1;
             this.perPage = 12;
+            this.query = "";
             this.endpoint = endpoint;
             this._operationName = operationName;
             this._queryString = queryString;
@@ -38,18 +39,12 @@ namespace LegoSharp
             return new
             {
                 operationName = this._operationName,
-                variables = new
-                {
-                    page = this.page,
-                    perPage = this.perPage,
-                    query = this.query,
-                    filters = this._getFiltersInQL()
-                },
+                variables = this._getVariables(),
                 query = this._queryString
             };
         }
 
-        private dynamic[] _getFiltersInQL()
+        protected dynamic[] _getFiltersInQL()
         {
             dynamic[] returnValue = new object[this._filters.Count];
 
@@ -66,6 +61,8 @@ namespace LegoSharp
             return returnValue;
         }
 
-        public abstract ResultT parseResponse(string responseBody);        
+        public abstract ResultT parseResponse(string responseBody);
+
+        protected abstract dynamic _getVariables();
     }
 }

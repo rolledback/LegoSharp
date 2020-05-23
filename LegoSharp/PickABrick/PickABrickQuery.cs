@@ -51,5 +51,16 @@ namespace LegoSharp
 
             return new PickABrickQueryResult(elementsList, JsonSerializer.Deserialize<int>(total.ToString()));
         }
+
+        protected override dynamic _getVariables()
+        {
+            return new
+            {
+                page = this.page,
+                perPage = this.perPage,
+                query = this.query,
+                filters = this._getFiltersInQL()
+            };
+        }
     }
 }

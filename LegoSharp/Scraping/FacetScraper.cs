@@ -8,7 +8,7 @@ namespace LegoSharp
 {
     public class FacetScraper<GraphQueryT, GraphQueryResultT> : IGraphQuery<IEnumerable<Facet>> where GraphQueryT : IGraphQuery<GraphQueryResultT>
     {
-        public string endpoint { get; } = Constants.pickABrickUri;
+        public string endpoint { get; }
 
         private IGraphQuery<GraphQueryResultT> _queryToScrape;
         private IFacetExtractor<GraphQueryT> _facetExtractor;
@@ -17,6 +17,7 @@ namespace LegoSharp
         {
             this._queryToScrape = queryToScrape;
             this._facetExtractor = facetExtractor;
+            this.endpoint = queryToScrape.endpoint;
         }
 
         public dynamic getPayload()
