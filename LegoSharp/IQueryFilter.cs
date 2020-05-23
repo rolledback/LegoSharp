@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public interface IPickABrickFilter
+    public interface IQueryFilter
     {
         string key { get; }
 

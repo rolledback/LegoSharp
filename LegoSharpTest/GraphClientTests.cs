@@ -98,7 +98,7 @@ namespace LegoSharpTest
 
             await graphClient.authenticateAsync();
 
-            FacetScraper query = new FacetScraper();
+            var query = new FacetScraper<PickABrickQueryResult>(new PickABrickQuery());
             var facets = await graphClient.queryGraph(query);
 
             var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));

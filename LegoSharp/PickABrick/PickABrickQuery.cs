@@ -7,61 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class PickABrickQuery : IGraphQuery<PickABrickQueryResult>
+    public class PickABrickQuery : GraphQuery<PickABrickQueryResult>
     {
-        public string query;
-        public int page;
-        public int perPage;
-
-        public string endpoint { get; } = Constants.pickABrickUri;
-        public Dictionary<string, IPickABrickFilter> _filters;
-
-        public PickABrickQuery()
+        public PickABrickQuery() : base(Constants.pickABrickUri, "PickABrickQuery", Constants.pickABrickQuery)
         {
-            this._filters = new Dictionary<string, IPickABrickFilter>();
-            this.page = 1;
-            this.perPage = 12;
         }
 
-        public void addFilter(IPickABrickFilter filter)
-        {
-            this._filters[filter.key] = filter;
-        }
-
-        public dynamic getPayload()
-        {
-            return new
-            {
-                operationName = "PickABrickQuery",
-                variables = new
-                {
-                    page = 1,
-                    perPage = 12,
-                    query = this.query,
-                    filters = this._getFiltersInQL()
-                },
-                query = Constants.pickABrickQuery
-            };
-        }
-
-        private dynamic[] _getFiltersInQL()
-        {
-            dynamic[] returnValue = new object[this._filters.Count];
-
-            var i = 0;
-            foreach (KeyValuePair<string, IPickABrickFilter> entry in this._filters)
-            {
-                returnValue[i++] = new
-                {
-                    key = entry.Key,
-                    values = entry.Value.getValues()
-                };
-            }
-
-            return returnValue;
-        }
-
-        public PickABrickQueryResult parseResponse(string responseBody)
+        public override PickABrickQueryResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
             JsonElement data = parsedResponse.GetProperty("data");

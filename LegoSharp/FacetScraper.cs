@@ -6,28 +6,20 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp.PickABrick
 {
-    public class FacetScraper : IGraphQuery<IEnumerable<Facet>>
+    public class FacetScraper<GraphQueryResultT> : IGraphQuery<IEnumerable<Facet>>
     {
         public string endpoint { get; } = Constants.pickABrickUri;
 
-        public FacetScraper()
+        private IGraphQuery<GraphQueryResultT> _queryToScrape;
+
+        public FacetScraper(IGraphQuery<GraphQueryResultT> queryToScrape)
         {
+            this._queryToScrape = queryToScrape;
         }
 
         public dynamic getPayload()
         {
-            return new
-            {
-                operationName = "PickABrickQuery",
-                variables = new
-                {
-                    page = 1,
-                    perPage = 1,
-                    query = "",
-                    filters = new object[0]
-                },
-                query = Constants.pickABrickQuery
-            };
+            return this._queryToScrape.getPayload();
         }
 
         public IEnumerable<Facet> parseResponse(string responseBody)

@@ -10,4 +10,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ProductSearch\" />
+  </ItemGroup>
+
 </Project>

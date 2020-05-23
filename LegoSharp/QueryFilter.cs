@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class PickABrickFilter<FilterEnumT> : IPickABrickFilter
+    public abstract class PickABrickFilter<FilterEnumT> : IQueryFilter
     {
         public string key { get; }
 
