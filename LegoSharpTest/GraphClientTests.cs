@@ -92,7 +92,7 @@ namespace LegoSharpTest
             await this.noMissingFilterValues(new ColorFamilyFilter(), "color family");
         }
 
-        private async Task noMissingFilterValues<FilterEnumT>(PickABrickFilter<FilterEnumT> filter, string displayName)
+        private async Task noMissingFilterValues<FilterEnumT>(QueryFilter<FilterEnumT> filter, string displayName)
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 

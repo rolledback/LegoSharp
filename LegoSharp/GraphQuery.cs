@@ -29,7 +29,7 @@ namespace LegoSharp
             this._queryString = queryString;
         }
 
-        public void addFilter(IQueryFilter filter)
+        protected void _addFilter(IQueryFilter filter)
         {
             this._filters[filter.key] = filter;
         }

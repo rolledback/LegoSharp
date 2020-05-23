@@ -13,6 +13,26 @@ namespace LegoSharp
         {
         }
 
+        public void addFilter(QueryFilter<BrickCategory> filter)
+        {
+            this._addFilter(filter);
+        }
+
+        public void addFilter(QueryFilter<BrickColorFamily> filter)
+        {
+            this._addFilter(filter);
+        }
+
+        public void addFilter(QueryFilter<BrickColor> filter)
+        {
+            this._addFilter(filter);
+        }
+
+        public void addFilter<FilterEnumT>(PickABrickFilter<FilterEnumT> filter)
+        {
+            this._addFilter(filter);
+        }
+
         public override PickABrickQueryResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);

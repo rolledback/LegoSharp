@@ -5,19 +5,19 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class PickABrickFilter<FilterEnumT> : IQueryFilter
+    public abstract class QueryFilter<FilterEnumT> : IQueryFilter
     {
         public string key { get; }
 
         protected List<FilterEnumT> _values;
 
-        public PickABrickFilter(string key)
+        public QueryFilter(string key)
         {
             this._values = new List<FilterEnumT>();
             this.key = key;
         }
 
-        public PickABrickFilter<FilterEnumT> addValue(FilterEnumT value)
+        public QueryFilter<FilterEnumT> addValue(FilterEnumT value)
         {
             this._values.Add(value);
             return this;
