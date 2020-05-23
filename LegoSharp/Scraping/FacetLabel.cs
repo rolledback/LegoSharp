@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegoSharp.PickABrick
+namespace LegoSharp
 {
     public class Facet
     {

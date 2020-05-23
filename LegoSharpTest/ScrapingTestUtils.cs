@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using LegoSharp;
-using LegoSharp.PickABrick;
 using System.Linq;
 using System.Reflection;
 using System.IO.MemoryMappedFiles;
@@ -13,13 +12,13 @@ namespace LegoSharpTest
 {
     public class ScrapingTestUtils
     {
-        public static async Task noMissingFilterValues<FilterEnumT, QureyResultT>(IGraphQuery<QureyResultT> query, QueryFilter<FilterEnumT> filter, string displayName)
+        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, FilterEnumT>(GraphQueryT query, QueryFilter<FilterEnumT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
             await graphClient.authenticateAsync();
 
-            var scraper = new FacetScraper<QureyResultT>(query);
+            var scraper = new FacetScraper<GraphQueryT, QueryResultT>(query, facetExtractor);
             var facets = await graphClient.queryGraph(scraper);
 
             var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));

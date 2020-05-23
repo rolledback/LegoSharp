@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using LegoSharp;
-using LegoSharp.PickABrick;
 using System.Linq;
 using System.Reflection;
 using System.IO.MemoryMappedFiles;

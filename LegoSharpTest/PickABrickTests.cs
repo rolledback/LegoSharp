@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using LegoSharp;
-using LegoSharp.PickABrick;
 using System.Linq;
 using System.Reflection;
 using System.IO.MemoryMappedFiles;
@@ -55,19 +54,19 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingColors()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new ColorFilter(), "color");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickColor>(new PickABrickQuery(), new ColorFilter(), new PickABrickFacetExtractor(), "color");
         }
 
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new CategoryFilter(), "category");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickCategory>(new PickABrickQuery(), new CategoryFilter(), new PickABrickFacetExtractor(), "category");
         }
 
         [TestMethod]
         public async Task noMissingColorFamilies()
         {
-            await ScrapingTestUtils.noMissingFilterValues(new PickABrickQuery(), new ColorFamilyFilter(), "color family");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickColorFamily>(new PickABrickQuery(), new ColorFamilyFilter(), new PickABrickFacetExtractor(), "color family");
         }
     }
 }
