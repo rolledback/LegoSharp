@@ -24,17 +24,31 @@ Once you authenticate, you can query different graph APIs.
 
 ## Pick a Brick
 
-You can query [Pick a Brick](https://www.lego.com/en-us/page/static/pick-a-brick). The search can use a variety of filters, or specify a specific text based query.
+You can query [Pick a Brick](https://www.lego.com/en-us/page/static/pick-a-brick).
 ```C#
+LegoGraphClient graphClient = new LegoGraphClient();
+await graphClient.authenticateAsync();
+
 PickABrickQuery query = new PickABrickQuery();
 query.addFilter(new ColorFilter()
     .addValue(BrickColor.Black)
 );
 query.query = "wheel";
 
-PickABrickQueryResult result = await graphClient.searchForBricksAsync(graphSearch);
+PickABrickQueryResult result = await graphClient.pickABrick(query);
 foreach (Brick brick in result.elements)
 {
     // do something with each brick
 }
+```
+
+## Product Search
+
+You can query for Lego Products.
+```C#
+LegoGraphClient graphClient = new LegoGraphClient();
+await graphClient.authenticateAsync();
+
+ProductSearchQuery query = new ProductSearchQuery();
+await graphClient.productSearch(query);
 ```

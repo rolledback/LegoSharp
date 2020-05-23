@@ -14,12 +14,10 @@ namespace LegoSharpTest
     public class LegoSharpTests
     {
         [TestMethod]
-        public async Task readmeTest()
+        public async Task readmeTestOne()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
-
-            Assert.IsTrue(graphClient.isAuthenticated());
 
             PickABrickQuery query = new PickABrickQuery();
             query.addFilter(new ColorFilter()
@@ -28,11 +26,20 @@ namespace LegoSharpTest
             query.query = "wheel";
 
             PickABrickQueryResult result = await graphClient.pickABrick(query);
-
             foreach (Brick brick in result.elements)
             {
-                Assert.IsTrue(!string.IsNullOrEmpty(brick.id));
+                // do something with each brick
             }
+        }
+
+        [TestMethod]
+        public async Task readmeTestTwo()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+            await graphClient.authenticateAsync();
+
+            ProductSearchQuery query = new ProductSearchQuery();
+            await graphClient.productSearch(query);
         }
     }
 }
