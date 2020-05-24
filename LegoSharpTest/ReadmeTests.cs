@@ -11,10 +11,10 @@ using System.IO.MemoryMappedFiles;
 namespace LegoSharpTest
 {
     [TestClass]
-    public class LegoSharpTests
+    public class ReadmeTests
     {
         [TestMethod]
-        public async Task readmeTestOne()
+        public async Task PickABrickExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
@@ -33,7 +33,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public async Task readmeTestTwo()
+        public async Task ProductSearchExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
