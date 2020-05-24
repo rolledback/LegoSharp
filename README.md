@@ -50,5 +50,10 @@ LegoGraphClient graphClient = new LegoGraphClient();
 await graphClient.authenticateAsync();
 
 ProductSearchQuery query = new ProductSearchQuery();
+query.addFilter(new ProductCategoryFilter()
+    .addValue(ProductCategory.Sets)
+);
+query.query = "train";
+
 await graphClient.productSearch(query);
 ```
