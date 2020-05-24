@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharp", "LegoSharp\LegoSharp.csproj", "{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoSharp", "LegoSharp\LegoSharp.csproj", "{77DE67C6-7ADA-423E-85CB-34229E2F9ED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoSharpTest", "LegoSharpTest\LegoSharpTest.csproj", "{611620CE-AE77-4345-B9B1-8B239D1F24C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoSharpTest", "LegoSharpTest\LegoSharpTest.csproj", "{611620CE-AE77-4345-B9B1-8B239D1F24C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper", "Scraper\Scraper.csproj", "{E05A955C-C727-4BF8-9C40-6F0E8FEDC237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{611620CE-AE77-4345-B9B1-8B239D1F24C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05A955C-C727-4BF8-9C40-6F0E8FEDC237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05A955C-C727-4BF8-9C40-6F0E8FEDC237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05A955C-C727-4BF8-9C40-6F0E8FEDC237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05A955C-C727-4BF8-9C40-6F0E8FEDC237}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

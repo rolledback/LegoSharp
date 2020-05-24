@@ -12,6 +12,16 @@ namespace LegoSharp
         {
         }
 
+        public void addFilter(QueryFilter<ProductCategory> filter)
+        {
+            this._addFilter(filter);
+        }
+
+        public void addFilter<FilterEnumT>(ProductSearchFilter<FilterEnumT> filter)
+        {
+            this._addFilter(filter);
+        }
+
         public override dynamic parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
