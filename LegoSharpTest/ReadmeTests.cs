@@ -14,7 +14,7 @@ namespace LegoSharpTest
     public class ReadmeTests
     {
         [TestMethod]
-        public async Task PickABrickExample()
+        public async Task pickABrickExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
@@ -33,7 +33,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public async Task ProductSearchExample()
+        public async Task productSearchExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
