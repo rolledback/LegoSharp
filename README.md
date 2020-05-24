@@ -55,7 +55,11 @@ query.addFilter(new ProductCategoryFilter()
 );
 query.query = "train";
 
-await graphClient.productSearch(query);
+ProductSearchResult result = await graphClient.productSearch(query);
+foreach (Product product in result.products)
+{
+    // do something with each product
+}
 ```
 
 ## Contributing
