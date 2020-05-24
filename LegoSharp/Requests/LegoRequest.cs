@@ -25,6 +25,7 @@ namespace LegoSharp
         public LegoRequest(string baseAddress)
         {
             _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
 
             this.baseUri = baseAddress;
             parameters = new Dictionary<string, string>();
