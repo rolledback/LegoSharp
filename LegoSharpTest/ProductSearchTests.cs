@@ -42,7 +42,7 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, dynamic, ProductCategory>(new ProductSearchQuery(), new ProductCategoryFilter(), new ProductSearchFacetExtractor(), "category");
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductCategory>(new ProductSearchQuery(), new ProductCategoryFilter(), new ProductSearchFacetExtractor(), "category");
         }
     }
 }

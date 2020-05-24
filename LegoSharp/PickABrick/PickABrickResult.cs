@@ -4,12 +4,12 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class PickABrickQueryResult
+    public class PickABrickResult
     {
         public IEnumerable<Brick> elements;
         public int total;
 
-        public PickABrickQueryResult(IEnumerable<Brick> elements, int total)
+        public PickABrickResult(IEnumerable<Brick> elements, int total)
         {
             this.elements = elements;
             this.total = total;

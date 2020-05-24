@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class ProductSearchQuery : GraphQuery<dynamic>
+    public class ProductSearchQuery : GraphQuery<ProductSearchResult>
     {
         public ProductSearchQuery() : base(Constants.productSearchUri, "SearchQuery", Constants.productSearchQuery)
         {
@@ -22,12 +22,25 @@ namespace LegoSharp
             this._addFilter(filter);
         }
 
-        public override dynamic parseResponse(string responseBody)
+        public override ProductSearchResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
             JsonElement data = parsedResponse.GetProperty("data");
+            JsonElement search = data.GetProperty("search");
+            JsonElement productResult = search.GetProperty("productResult");
+            JsonElement results = productResult.GetProperty("results");
+            JsonElement total = productResult.GetProperty("total");
 
-            return null;
+            var enumerator = results.EnumerateArray();
+            var productList = new List<Product>();
+
+            while (enumerator.MoveNext())
+            {
+                JsonElement product = enumerator.Current;
+                productList.Add(JsonSerializer.Deserialize<Product>(product.ToString()));
+            }
+
+            return new ProductSearchResult(productList, JsonSerializer.Deserialize<int>(total.ToString()));
         }
 
         protected override dynamic _getVariables()

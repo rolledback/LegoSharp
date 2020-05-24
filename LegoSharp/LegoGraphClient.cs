@@ -20,7 +20,7 @@ namespace LegoSharp
             this._authToken = LegoGraphClient._parseAuthTokenFromAuthenticateResponse(body);
         }
 
-        public async Task<PickABrickQueryResult> pickABrick(PickABrickQuery query)
+        public async Task<PickABrickResult> pickABrick(PickABrickQuery query)
         {
             return await this.queryGraph(query);
         }

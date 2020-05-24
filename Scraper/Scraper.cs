@@ -11,7 +11,7 @@ namespace Scraper
             LegoGraphClient client = new LegoGraphClient();
             await client.authenticateAsync();
 
-            var scraper = new FacetScraper<ProductSearchQuery, dynamic>(new ProductSearchQuery(), new ProductSearchFacetExtractor());
+            var scraper = new FacetScraper<ProductSearchQuery, ProductSearchResult>(new ProductSearchQuery(), new ProductSearchFacetExtractor());
             var facets = await client.queryGraph(scraper);
 
             foreach (var facet in facets)

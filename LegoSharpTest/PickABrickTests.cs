@@ -54,19 +54,19 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingColors()
         {
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickColor>(new PickABrickQuery(), new BrickColorFilter(), new PickABrickFacetExtractor(), "color");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColor>(new PickABrickQuery(), new BrickColorFilter(), new PickABrickFacetExtractor(), "color");
         }
 
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickCategory>(new PickABrickQuery(), new BrickCategoryFilter(), new PickABrickFacetExtractor(), "category");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategory>(new PickABrickQuery(), new BrickCategoryFilter(), new PickABrickFacetExtractor(), "category");
         }
 
         [TestMethod]
         public async Task noMissingColorFamilies()
         {
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickQueryResult, BrickColorFamily>(new PickABrickQuery(), new BrickColorFamilyFilter(), new PickABrickFacetExtractor(), "color family");
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamily>(new PickABrickQuery(), new BrickColorFamilyFilter(), new PickABrickFacetExtractor(), "color family");
         }
     }
 }

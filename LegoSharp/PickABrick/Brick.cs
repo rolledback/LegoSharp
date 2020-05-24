@@ -9,23 +9,23 @@ namespace LegoSharp
         public string id { get; set; }
         public string name { get; set; }
         public string primaryImage { get; set; }
-        public Variant variant { get; set; }
+        public BrickVariant variant { get; set; }
     }
 
-    public class Variant
+    public class BrickVariant
     {
         public string id { get; set; }
-        public VariantAttributes attributes { get; set; }
-        public VariantPrice price { get; set; }
+        public BrickVariantAttributes attributes { get; set; }
+        public BrickVariantPrice price { get; set; }
     }
 
-    public class VariantAttributes
+    public class BrickVariantAttributes
     {
         public string colour { get; set; }
         public string colourFamily { get; set; }
     }
 
-    public class VariantPrice
+    public class BrickVariantPrice
     {
         public int centAmount { get; set; }
         public string currencyCode { get; set; }

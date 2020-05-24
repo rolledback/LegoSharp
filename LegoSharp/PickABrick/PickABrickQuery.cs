@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class PickABrickQuery : GraphQuery<PickABrickQueryResult>
+    public class PickABrickQuery : GraphQuery<PickABrickResult>
     {
         public PickABrickQuery() : base(Constants.pickABrickUri, "PickABrickQuery", Constants.pickABrickQuery)
         {
@@ -32,7 +32,7 @@ namespace LegoSharp
             this._addFilter(filter);
         }
 
-        public override PickABrickQueryResult parseResponse(string responseBody)
+        public override PickABrickResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
             JsonElement data = parsedResponse.GetProperty("data");
@@ -49,7 +49,7 @@ namespace LegoSharp
                 elementsList.Add(JsonSerializer.Deserialize<Brick>(brickEl.ToString()));
             }
 
-            return new PickABrickQueryResult(elementsList, JsonSerializer.Deserialize<int>(total.ToString()));
+            return new PickABrickResult(elementsList, JsonSerializer.Deserialize<int>(total.ToString()));
         }
 
         protected override dynamic _getVariables()
