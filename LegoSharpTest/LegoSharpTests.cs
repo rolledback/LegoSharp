@@ -20,7 +20,7 @@ namespace LegoSharpTest
             await graphClient.authenticateAsync();
 
             PickABrickQuery query = new PickABrickQuery();
-            query.addFilter(new ColorFilter()
+            query.addFilter(new BrickColorFilter()
                 .addValue(BrickColor.Black)
             );
             query.query = "wheel";

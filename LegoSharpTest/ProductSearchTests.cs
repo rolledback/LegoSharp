@@ -13,10 +13,10 @@ namespace LegoSharpTest
     [TestClass]
     public class ProductSearchTests
     {
-        //[TestMethod]
-        //public async Task noMissingColors()
-        //{
-        //    await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, dynamic, BrickColor>(new ProductSearchQuery(), new ColorFilter(), new ProductSearchFacetExtractor(), "color");
-        //}
+        [TestMethod]
+        public async Task noMissingCategories()
+        {
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, dynamic, ProductCategory>(new ProductSearchQuery(), new ProductCategoryFilter(), new ProductSearchFacetExtractor(), "category");
+        }
     }
 }
