@@ -7,14 +7,16 @@ namespace LegoSharp
 {
     public abstract class QueryFilter<FilterEnumT> : IQueryFilter
     {
-        public string key { get; }
+        public string facetKey { get; }
+        public string facetId { get; }
 
         protected List<FilterEnumT> _values;
 
-        public QueryFilter(string key)
+        public QueryFilter(string facetKey, string facetId)
         {
             this._values = new List<FilterEnumT>();
-            this.key = key;
+            this.facetKey = facetKey;
+            this.facetId = facetId;
         }
 
         public QueryFilter<FilterEnumT> addValue(FilterEnumT value)

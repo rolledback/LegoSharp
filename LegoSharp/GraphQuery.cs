@@ -31,7 +31,7 @@ namespace LegoSharp
 
         protected void _addFilter(IQueryFilter filter)
         {
-            this._filters[filter.key] = filter;
+            this._filters[filter.facetKey] = filter;
         }
 
         public dynamic getPayload()

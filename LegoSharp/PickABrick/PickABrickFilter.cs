@@ -6,7 +6,7 @@ namespace LegoSharp
 {
     public abstract class PickABrickFilter<FilterEnumT> : QueryFilter<FilterEnumT>
     {
-        public PickABrickFilter(string key) : base(key)
+        public PickABrickFilter(string facetKey, string facetId) : base(facetKey, facetId)
         {
 
         }

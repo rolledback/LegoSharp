@@ -8,7 +8,7 @@ namespace LegoSharp
 {
     public class BrickCategoryFilter : PickABrickFilter<BrickCategory>
     {
-        public BrickCategoryFilter() : base("categories.id")
+        public BrickCategoryFilter() : base("categories.id", "element.facet.pickABrick")
         {
         }
 

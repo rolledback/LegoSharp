@@ -22,9 +22,10 @@ namespace LegoSharpTest
             var facets = await graphClient.queryGraph(scraper);
 
             var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
-            var filterKey = filter.key;
+            var filterKey = filter.facetKey;
+            var filterId = filter.facetId;
 
-            var facet = facets.FirstOrDefault(f => f.key == filterKey);
+            var facet = facets.FirstOrDefault(f => f.key == filterKey && f.id == filterId);
 
             Assert.IsTrue(facet != null, "No " + displayName + " facet");
 

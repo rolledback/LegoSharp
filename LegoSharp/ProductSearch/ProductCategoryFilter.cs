@@ -6,7 +6,7 @@ namespace LegoSharp
 {
     public class ProductCategoryFilter : ProductSearchFilter<ProductCategory>
     {
-        public ProductCategoryFilter() : base("categories.id")
+        public ProductCategoryFilter() : base("categories.id", "product.facet.productType")
         {
         }
 

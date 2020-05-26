@@ -6,7 +6,7 @@ namespace LegoSharp
 {
     public abstract class ProductSearchFilter<FilterEnumT> : QueryFilter<FilterEnumT>
     {
-        public ProductSearchFilter(string key) : base(key)
+        public ProductSearchFilter(string facetKey, string facetId) : base(facetKey, facetId)
         {
 
         }

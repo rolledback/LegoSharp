@@ -6,7 +6,7 @@ namespace LegoSharp
 {
     public interface IQueryFilter
     {
-        string key { get; }
+        string facetKey { get; }
 
         IEnumerable<string> getValues();
     }

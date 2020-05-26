@@ -19,6 +19,12 @@ namespace LegoSharpTest
             await this.tryQueryWithEachFilterValue<ProductCategoryFilter, ProductCategory>(() => new ProductCategoryFilter());
         }
 
+        [TestMethod]
+        public async Task tryQueryWithEachTheme()
+        {
+            await this.tryQueryWithEachFilterValue<ProductThemeFilter, ProductTheme>(() => new ProductThemeFilter());
+        }
+
         private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : ProductSearchFilter<FilterEnumT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
@@ -43,6 +49,12 @@ namespace LegoSharpTest
         public async Task noMissingCategories()
         {
             await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductCategory>(new ProductSearchQuery(), new ProductCategoryFilter(), new ProductSearchFacetExtractor(), "category");
+        }
+
+        [TestMethod]
+        public async Task noMissingThemes()
+        {
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(new ProductSearchQuery(), new ProductThemeFilter(), new ProductSearchFacetExtractor(), "theme");
         }
     }
 }

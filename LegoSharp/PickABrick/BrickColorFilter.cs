@@ -7,7 +7,7 @@ namespace LegoSharp
 {
     public class BrickColorFilter : PickABrickFilter<BrickColor>
     {
-        public BrickColorFilter() : base("variants.attributes.exactColour.en-US")
+        public BrickColorFilter() : base("variants.attributes.exactColour.en-US", "element.facet.colour")
         {
         }
 
