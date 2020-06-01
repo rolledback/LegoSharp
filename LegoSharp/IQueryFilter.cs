@@ -8,6 +8,6 @@ namespace LegoSharp
     {
         string facetKey { get; }
 
-        IEnumerable<string> getValues();
+        dynamic getQueryLangValue();
     }
 }

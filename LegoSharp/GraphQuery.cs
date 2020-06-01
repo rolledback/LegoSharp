@@ -14,13 +14,13 @@ namespace LegoSharp
 
         public string endpoint { get; }
         
-        private Dictionary<string, IQueryFilter> _filters;
+        private List<IQueryFilter> _filters;
         private string _operationName;
         private string _queryString;
 
         public GraphQuery(string endpoint, string operationName, string queryString)
         {
-            this._filters = new Dictionary<string, IQueryFilter>();
+            this._filters = new List<IQueryFilter>();
             this.page = 1;
             this.perPage = 12;
             this.query = "";
@@ -31,7 +31,7 @@ namespace LegoSharp
 
         protected void _addFilter(IQueryFilter filter)
         {
-            this._filters[filter.facetKey] = filter;
+            this._filters.Add(filter);
         }
 
         public dynamic getPayload()
@@ -49,13 +49,9 @@ namespace LegoSharp
             dynamic[] returnValue = new object[this._filters.Count];
 
             var i = 0;
-            foreach (KeyValuePair<string, IQueryFilter> entry in this._filters)
+            foreach (IQueryFilter filter in this._filters)
             {
-                returnValue[i++] = new
-                {
-                    key = entry.Key,
-                    values = entry.Value.getValues()
-                };
+                returnValue[i++] = filter.getQueryLangValue();
             }
 
             return returnValue;

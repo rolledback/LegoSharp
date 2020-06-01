@@ -25,9 +25,13 @@ namespace LegoSharp
             return this;
         }
 
-        public IEnumerable<string> getValues()
+        public dynamic getQueryLangValue()
         {
-            return from v in this._values select this.filterEnumToValue(v);
+            return new
+            {
+                key = this.facetKey,
+                values = from v in this._values select this.filterEnumToValue(v)
+            };
         }
 
         public abstract string filterEnumToValue(FilterEnumT value);
