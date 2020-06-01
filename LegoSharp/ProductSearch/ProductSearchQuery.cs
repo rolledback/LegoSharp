@@ -17,6 +17,11 @@ namespace LegoSharp
             this._addFilter(filter);
         }
 
+        public void addFilter(ProductSearchRangeFilter filter)
+        {
+            this._addFilter(filter);
+        }
+
         public override ProductSearchResult parseResponse(string responseBody)
         {
             JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);

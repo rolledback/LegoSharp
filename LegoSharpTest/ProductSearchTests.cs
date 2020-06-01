@@ -25,6 +25,24 @@ namespace LegoSharpTest
             await this.tryQueryWithEachFilterValue<ProductThemeFilter, ProductTheme>(() => new ProductThemeFilter());
         }
 
+        [TestMethod]
+        public async Task priceRangeReducesResults()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+            await graphClient.authenticateAsync();
+
+            ProductSearchQuery queryAllPrices = new ProductSearchQuery();
+            ProductSearchResult resultAllPrices = await graphClient.productSearch(queryAllPrices);
+
+            ProductSearchQuery queryFilteredPrices = new ProductSearchQuery();
+            queryFilteredPrices.addFilter(new ProductPriceFilter()
+                .fromTo(1000, 2500)
+            );
+            ProductSearchResult resultFilteredPrices = await graphClient.productSearch(queryFilteredPrices);
+
+            Assert.IsTrue(resultFilteredPrices.total < resultAllPrices.total);
+        }
+
         private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : ProductSearchValuesFilter<FilterEnumT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();

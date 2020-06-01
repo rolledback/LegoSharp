@@ -42,6 +42,9 @@ namespace LegoSharpTest
             query.addFilter(new ProductTypeFilter()
                 .addValue(ProductType.Sets)
             );
+            query.addFilter(new ProductPriceFilter()
+                .fromTo(1000, 2500)
+            );
             query.query = "train";
 
             ProductSearchResult result = await graphClient.productSearch(query);
