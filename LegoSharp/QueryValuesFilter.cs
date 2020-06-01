@@ -5,21 +5,21 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class QueryFilter<FilterEnumT> : IQueryFilter
+    public abstract class QueryValuesFilter<FilterEnumT> : IQueryFilter
     {
         public string facetKey { get; }
         public string facetId { get; }
 
         protected List<FilterEnumT> _values;
 
-        public QueryFilter(string facetKey, string facetId)
+        public QueryValuesFilter(string facetKey, string facetId)
         {
             this._values = new List<FilterEnumT>();
             this.facetKey = facetKey;
             this.facetId = facetId;
         }
 
-        public QueryFilter<FilterEnumT> addValue(FilterEnumT value)
+        public QueryValuesFilter<FilterEnumT> addValue(FilterEnumT value)
         {
             this._values.Add(value);
             return this;

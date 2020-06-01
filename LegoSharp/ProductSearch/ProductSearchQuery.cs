@@ -12,7 +12,7 @@ namespace LegoSharp
         {
         }
 
-        public void addFilter(QueryFilter<ProductType> filter)
+        public void addFilter(QueryValuesFilter<ProductType> filter)
         {
             this._addFilter(filter);
         }

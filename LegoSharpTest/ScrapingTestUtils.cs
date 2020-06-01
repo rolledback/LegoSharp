@@ -12,7 +12,7 @@ namespace LegoSharpTest
 {
     public class ScrapingTestUtils
     {
-        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, FilterEnumT>(GraphQueryT query, QueryFilter<FilterEnumT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT>
+        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, FilterEnumT>(GraphQueryT query, QueryValuesFilter<FilterEnumT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
