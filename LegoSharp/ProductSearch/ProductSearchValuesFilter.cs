@@ -13,7 +13,7 @@ namespace LegoSharp
 
         public ProductSearchValuesFilter<FilterEnumT> addValue(FilterEnumT value)
         {
-            this.addValue(value);
+            this._addValue(value);
             return this;
         }
     }
