@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class BrickCategoryFilter : PickABrickFilter<BrickCategory>
+    public class BrickCategoryFilter : PickABrickValuesFilter<BrickCategory>
     {
         public BrickCategoryFilter() : base("categories.id", "element.facet.pickABrick")
         {

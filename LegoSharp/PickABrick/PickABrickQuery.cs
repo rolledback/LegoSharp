@@ -12,22 +12,7 @@ namespace LegoSharp
         {
         }
 
-        public void addFilter(QueryValuesFilter<BrickCategory> filter)
-        {
-            this._addFilter(filter);
-        }
-
-        public void addFilter(QueryValuesFilter<BrickColorFamily> filter)
-        {
-            this._addFilter(filter);
-        }
-
-        public void addFilter(QueryValuesFilter<BrickColor> filter)
-        {
-            this._addFilter(filter);
-        }
-
-        public void addFilter<FilterEnumT>(PickABrickFilter<FilterEnumT> filter)
+        public void addFilter<FilterEnumT>(PickABrickValuesFilter<FilterEnumT> filter)
         {
             this._addFilter(filter);
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class ProductThemeFilter : ProductSearchFilter<ProductTheme>
+    public class ProductThemeFilter : ProductSearchValuesFilter<ProductTheme>
     {
         public ProductThemeFilter() : base("categories.id", "product.facet.theme")
         {

@@ -19,12 +19,6 @@ namespace LegoSharp
             this.facetId = facetId;
         }
 
-        public QueryValuesFilter<FilterEnumT> addValue(FilterEnumT value)
-        {
-            this._values.Add(value);
-            return this;
-        }
-
         public dynamic getQueryLangValue()
         {
             return new
@@ -32,6 +26,10 @@ namespace LegoSharp
                 key = this.facetKey,
                 values = from v in this._values select this.filterEnumToValue(v)
             };
+        }
+        protected void _addValue(FilterEnumT value)
+        {
+            this._values.Add(value);
         }
 
         public abstract string filterEnumToValue(FilterEnumT value);

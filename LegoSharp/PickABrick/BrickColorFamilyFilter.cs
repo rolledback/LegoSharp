@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class BrickColorFamilyFilter : PickABrickFilter<BrickColorFamily>
+    public class BrickColorFamilyFilter : PickABrickValuesFilter<BrickColorFamily>
     {
         public BrickColorFamilyFilter() : base("variants.attributes.colourFamily.en-US", "element.facet.colourFamily")
         {
