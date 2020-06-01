@@ -4,72 +4,72 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class ProductCategoryFilter : ProductSearchFilter<ProductCategory>
+    public class ProductTypeFilter : ProductSearchFilter<ProductType>
     {
-        public ProductCategoryFilter() : base("categories.id", "product.facet.productType")
+        public ProductTypeFilter() : base("categories.id", "product.facet.productType")
         {
         }
 
-        public override string filterEnumToValue(ProductCategory category)
+        public override string filterEnumToValue(ProductType type)
         {
-            switch (category)
+            switch (type)
             {
-                case ProductCategory.Sets:
+                case ProductType.Sets:
                     return "12ba8640-7fb5-4281-991d-ac55c65d8001";
-                case ProductCategory.ForTheHome:
+                case ProductType.ForTheHome:
                     return "b32cddff-52e5-4f22-a212-1dfb3fd31fbb";
-                case ProductCategory.KeyChains:
+                case ProductType.KeyChains:
                     return "0b05a003-1702-40e9-8f65-185dcfc640ed";
-                case ProductCategory.ClothingANDAccessories:
+                case ProductType.ClothingANDAccessories:
                     return "de583581-4dd0-4f6b-981b-8b31b9a0fb48";
-                case ProductCategory.IndividualBricks:
+                case ProductType.IndividualBricks:
                     return "b4c8be0b-436f-445a-8b3e-a96cbd531920";
-                case ProductCategory.Minifigures:
+                case ProductType.Minifigures:
                     return "a46f1ffd-db4d-4813-89d1-5d19f8737ef5";
-                case ProductCategory.PowerFunctions:
+                case ProductType.PowerFunctions:
                     return "a6013c1e-72dd-4e0b-a506-c13c0a0dc44b";
-                case ProductCategory.BrickAccessories:
+                case ProductType.BrickAccessories:
                     return "59d5df5c-543e-4b5b-9299-d41b7b480afa";
-                case ProductCategory.Classic:
+                case ProductType.Classic:
                     return "975369b1-17a2-42e6-a39f-0386b85def5b";
-                case ProductCategory.Stationery:
+                case ProductType.Stationery:
                     return "275e987f-0cc8-44fb-9afe-a2ee0791da78";
-                case ProductCategory.Books:
+                case ProductType.Books:
                     return "d20ecc4f-1dd8-4f1d-8158-fe2c59bdbbbe";
-                case ProductCategory.WatchesAndClocks:
+                case ProductType.WatchesAndClocks:
                     return "aa9810a1-cf06-450f-a39f-f3a27100b2aa";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        public override string filterEnumToName(ProductCategory category)
+        public override string filterEnumToName(ProductType type)
         {
-            switch (category)
+            switch (type)
             {
-                case ProductCategory.Sets:
+                case ProductType.Sets:
                     return "Sets";
-                case ProductCategory.ForTheHome:
+                case ProductType.ForTheHome:
                     return "For the Home";
-                case ProductCategory.KeyChains:
+                case ProductType.KeyChains:
                     return "Key Chains";
-                case ProductCategory.ClothingANDAccessories:
+                case ProductType.ClothingANDAccessories:
                     return "Clothing & Accessories";
-                case ProductCategory.IndividualBricks:
+                case ProductType.IndividualBricks:
                     return "Individual Bricks";
-                case ProductCategory.Minifigures:
+                case ProductType.Minifigures:
                     return "Minifigures";
-                case ProductCategory.PowerFunctions:
+                case ProductType.PowerFunctions:
                     return "Power Functions";
-                case ProductCategory.BrickAccessories:
+                case ProductType.BrickAccessories:
                     return "Brick accessories";
-                case ProductCategory.Classic:
+                case ProductType.Classic:
                     return "Classic";
-                case ProductCategory.Stationery:
+                case ProductType.Stationery:
                     return "Stationery";
-                case ProductCategory.Books:
+                case ProductType.Books:
                     return "Books";
-                case ProductCategory.WatchesAndClocks:
+                case ProductType.WatchesAndClocks:
                     return "Watches & Clocks";
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -77,7 +77,7 @@ namespace LegoSharp
         }
     }
 
-    public enum ProductCategory
+    public enum ProductType
     {
         Sets,
         ForTheHome,

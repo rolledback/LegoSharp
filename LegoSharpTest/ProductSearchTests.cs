@@ -16,7 +16,7 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachCategory()
         {
-            await this.tryQueryWithEachFilterValue<ProductCategoryFilter, ProductCategory>(() => new ProductCategoryFilter());
+            await this.tryQueryWithEachFilterValue<ProductTypeFilter, ProductType>(() => new ProductTypeFilter());
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductCategory>(new ProductSearchQuery(), new ProductCategoryFilter(), new ProductSearchFacetExtractor(), "category");
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(new ProductSearchQuery(), new ProductTypeFilter(), new ProductSearchFacetExtractor(), "category");
         }
 
         [TestMethod]

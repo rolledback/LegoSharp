@@ -39,8 +39,8 @@ namespace LegoSharpTest
             await graphClient.authenticateAsync();
 
             ProductSearchQuery query = new ProductSearchQuery();
-            query.addFilter(new ProductCategoryFilter()
-                .addValue(ProductCategory.Sets)
+            query.addFilter(new ProductTypeFilter()
+                .addValue(ProductType.Sets)
             );
             query.query = "train";
 
