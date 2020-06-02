@@ -43,6 +43,24 @@ namespace LegoSharpTest
             Assert.IsTrue(resultFilteredPrices.total < resultAllPrices.total);
         }
 
+        [TestMethod]
+        public async Task pieceCountRangeReducesResults()
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+            await graphClient.authenticateAsync();
+
+            ProductSearchQuery queryAllCounts = new ProductSearchQuery();
+            ProductSearchResult resultAllCounts = await graphClient.productSearch(queryAllCounts);
+
+            ProductSearchQuery queryFilteredCounts = new ProductSearchQuery();
+            queryFilteredCounts.addFilter(new ProductPieceCountFilter()
+                .fromTo(100, 200)
+            );
+            ProductSearchResult resultFilteredCounts = await graphClient.productSearch(queryFilteredCounts);
+
+            Assert.IsTrue(resultFilteredCounts.total < resultAllCounts.total);
+        }
+
         private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : ProductSearchValuesFilter<FilterEnumT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
