@@ -30,12 +30,12 @@ LegoGraphClient graphClient = new LegoGraphClient();
 await graphClient.authenticateAsync();
 
 PickABrickQuery query = new PickABrickQuery();
-query.addFilter(new ColorFilter()
+query.addFilter(new BrickColorFilter()
     .addValue(BrickColor.Black)
 );
 query.query = "wheel";
 
-PickABrickQueryResult result = await graphClient.pickABrick(query);
+PickABrickResult result = await graphClient.pickABrick(query);
 foreach (Brick brick in result.elements)
 {
     // do something with each brick
@@ -50,8 +50,11 @@ LegoGraphClient graphClient = new LegoGraphClient();
 await graphClient.authenticateAsync();
 
 ProductSearchQuery query = new ProductSearchQuery();
-query.addFilter(new ProductCategoryFilter()
-    .addValue(ProductCategory.Sets)
+query.addFilter(new ProductTypeFilter()
+    .addValue(ProductType.Sets)
+);
+query.addFilter(new ProductPriceFilter()
+    .fromTo(1000, 2500)
 );
 query.query = "train";
 
