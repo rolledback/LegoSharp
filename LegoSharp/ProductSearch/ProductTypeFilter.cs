@@ -38,6 +38,8 @@ namespace LegoSharp
                     return "d20ecc4f-1dd8-4f1d-8158-fe2c59bdbbbe";
                 case ProductType.WatchesAndClocks:
                     return "aa9810a1-cf06-450f-a39f-f3a27100b2aa";
+                case ProductType.Polybag:
+                    return "c9f9b650-5988-4828-acd8-194a83668100";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -71,6 +73,8 @@ namespace LegoSharp
                     return "Books";
                 case ProductType.WatchesAndClocks:
                     return "Watches & Clocks";
+                case ProductType.Polybag:
+                    return "Polybag";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -90,6 +94,7 @@ namespace LegoSharp
         Classic,
         Stationery,
         Books,
-        WatchesAndClocks
+        WatchesAndClocks,
+        Polybag
     }
 }
