@@ -15,8 +15,9 @@ namespace LegoSharpTest
         public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, FilterEnumT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<FilterEnumT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-
             await graphClient.authenticateAsync();
+
+            var missingValues = new List<FacetLabel>();
 
             foreach (var query in queries)
             {
@@ -31,7 +32,6 @@ namespace LegoSharpTest
 
                 Assert.IsTrue(facet != null, "No " + displayName + " facet");
 
-                var missingValues = new List<FacetLabel>();
                 foreach (var label in facet.labels)
                 {
                     try
@@ -44,15 +44,26 @@ namespace LegoSharpTest
                     }
                 }
 
-                if (missingValues.Count() > 0)
+            }
+
+            var missingValuesStrings = new HashSet<string>();
+            if (missingValues.Count() > 0)
+            {
+                foreach (var label in missingValues)
                 {
-                    string err = "Missing " + displayName + " values exist:";
-                    foreach (var label in missingValues)
-                    {
-                        err += "\nname: " + label.name + ", value: " + label.value;
-                    }
-                    Assert.IsTrue(false, err);
+                    missingValuesStrings.Add("\nname: " + label.name + ", value: " + label.value);
                 }
+            }
+
+            if (missingValuesStrings.Count() > 0)
+            {
+
+                string err = "Missing " + displayName + " values exist:";
+                foreach (var str in missingValuesStrings)
+                {
+                    err += str;
+                }
+                Assert.IsTrue(false, err);
             }
         }
     }
