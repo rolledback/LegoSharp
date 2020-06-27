@@ -84,13 +84,17 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(new ProductSearchQuery(), new ProductTypeFilter(), new ProductSearchFacetExtractor(), "category");
+            var queries = new List<ProductSearchQuery>();
+            queries.Add(new ProductSearchQuery());
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, new ProductTypeFilter(), new ProductSearchFacetExtractor(), "category");
         }
 
         [TestMethod]
         public async Task noMissingThemes()
         {
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(new ProductSearchQuery(), new ProductThemeFilter(), new ProductSearchFacetExtractor(), "theme");
+            var queries = new List<ProductSearchQuery>();
+            queries.Add(new ProductSearchQuery());
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, new ProductThemeFilter(), new ProductSearchFacetExtractor(), "theme");
         }
     }
 }
