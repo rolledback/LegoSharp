@@ -30,6 +30,8 @@ namespace LegoSharp
                     return "953a74ca-c284-43a8-8240-b3b8d2f5ae1c";
                 case ProductTheme.CreatorExport:
                     return "450a4b31-0a26-461a-9c2d-994b1c98e945";
+                case ProductTheme.DC:
+                    return "3fb68ba1-d86e-4e85-807b-54a418c01b73";
                 case ProductTheme.DCSuperHeroGirls:
                     return "5fc087bb-ce7c-457c-9da3-a902b4660e18";
                 case ProductTheme.DCSuperHeroes:
@@ -139,6 +141,8 @@ namespace LegoSharp
                     return "Creator 3-in-1";
                 case ProductTheme.CreatorExport:
                     return "Creator Expert";
+                case ProductTheme.DC:
+                    return "DC";
                 case ProductTheme.DCSuperHeroGirls:
                     return "DC Super Hero Girls";
                 case ProductTheme.DCSuperHeroes:
@@ -239,6 +243,7 @@ namespace LegoSharp
         Classic,
         Creator3In1,
         CreatorExport,
+        DC,
         DCSuperHeroGirls,
         DCSuperHeroes,
         Disney,
