@@ -10,19 +10,27 @@ namespace LegoSharp
     {
         public IEnumerable<Facet> extractFacets(string responseBody)
         {
-            JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
-            JsonElement data = parsedResponse.GetProperty("data");
-            JsonElement elements = data.GetProperty("search");
-            JsonElement productResult = elements.GetProperty("productResult");
-            JsonElement facets = productResult.GetProperty("facets");
-
-            var enumerator = facets.EnumerateArray();
             var retValue = new List<Facet>();
 
-            while (enumerator.MoveNext())
+            try
             {
-                JsonElement facetEl = enumerator.Current;
-                retValue.Add(JsonSerializer.Deserialize<Facet>(facetEl.ToString()));
+                JsonElement parsedResponse = JsonSerializer.Deserialize<JsonElement>(responseBody);
+                JsonElement data = parsedResponse.GetProperty("data");
+                JsonElement elements = data.GetProperty("search");
+                JsonElement productResult = elements.GetProperty("productResult");
+                JsonElement facets = productResult.GetProperty("facets");
+
+                var enumerator = facets.EnumerateArray();
+
+                while (enumerator.MoveNext())
+                {
+                    JsonElement facetEl = enumerator.Current;
+                    retValue.Add(JsonSerializer.Deserialize<Facet>(facetEl.ToString()));
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Unable to extract facets from response body: " + responseBody);
             }
 
             return retValue;

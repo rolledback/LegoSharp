@@ -30,20 +30,24 @@ namespace LegoSharpTest
 
                 var facet = facets.FirstOrDefault(f => f.key == filterKey && f.id == filterId);
 
-                Assert.IsTrue(facet != null, "No " + displayName + " facet");
-
-                foreach (var label in facet.labels)
+                if (facet != null)
                 {
-                    try
+                    foreach (var label in facet.labels)
                     {
-                        enumValues.First(c => filter.filterEnumToName(c) == label.name && filter.filterEnumToValue(c) == label.value);
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        missingValues.Add(label);
+                        try
+                        {
+                            enumValues.First(c => filter.filterEnumToName(c) == label.name && filter.filterEnumToValue(c) == label.value);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            missingValues.Add(label);
+                        }
                     }
                 }
-
+                else
+                {
+                    Console.WriteLine("No " + displayName + " facet found for a query.");
+                }
             }
 
             var missingValuesStrings = new HashSet<string>();
