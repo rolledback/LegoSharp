@@ -86,6 +86,19 @@ namespace LegoSharpTest
         {
             var queries = new List<ProductSearchQuery>();
             queries.Add(new ProductSearchQuery());
+
+            var enumValues = (ProductType[])Enum.GetValues(typeof(ProductType));
+            foreach (var enumValue in enumValues)
+            {
+                var queryByEnumValue = new ProductSearchQuery();
+                queryByEnumValue.query = new ProductTypeFilter().filterEnumToValue(enumValue);
+                queries.Add(queryByEnumValue);
+
+                var queryByEnumName = new ProductSearchQuery();
+                queryByEnumName.query = new ProductTypeFilter().filterEnumToName(enumValue);
+                queries.Add(queryByEnumName);
+            }
+
             await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, new ProductTypeFilter(), new ProductSearchFacetExtractor(), "category");
         }
 
@@ -94,6 +107,19 @@ namespace LegoSharpTest
         {
             var queries = new List<ProductSearchQuery>();
             queries.Add(new ProductSearchQuery());
+
+            var enumValues = (ProductTheme[])Enum.GetValues(typeof(ProductTheme));
+            foreach (var enumValue in enumValues)
+            {
+                var queryByEnumValue = new ProductSearchQuery();
+                queryByEnumValue.query = new ProductThemeFilter().filterEnumToValue(enumValue);
+                queries.Add(queryByEnumValue);
+
+                var queryByEnumName = new ProductSearchQuery();
+                queryByEnumName.query = new ProductThemeFilter().filterEnumToName(enumValue);
+                queries.Add(queryByEnumName);
+            }
+
             await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, new ProductThemeFilter(), new ProductSearchFacetExtractor(), "theme");
         }
     }
