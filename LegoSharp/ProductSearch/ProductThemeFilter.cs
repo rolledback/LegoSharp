@@ -14,12 +14,16 @@ namespace LegoSharp
         {
             switch (category)
             {
+                case ProductTheme.AngryBirds:
+                    return "b43d5be2-ebef-49d4-b216-8e2767b50f56";
                 case ProductTheme.Architecture:
                     return "6048f0c8-4ce4-4f5e-bc96-1caadd7c1fbd";
                 case ProductTheme.Batman:
                     return "babb1fb5-b9ca-4df3-a92c-89b1fa7a9780";
                 case ProductTheme.Bionicle:
                     return "0d1814a9-10b1-412d-bcf6-fa4a44bfc0dc";
+                case ProductTheme.BOOST:
+                    return "0e089d07-20b8-4ef8-a096-d74eb7291c00";
                 case ProductTheme.BrickHeadz:
                     return "51d0d8f6-2032-435f-b7a5-492242590842";
                 case ProductTheme.City:
@@ -36,6 +40,8 @@ namespace LegoSharp
                     return "5fc087bb-ce7c-457c-9da3-a902b4660e18";
                 case ProductTheme.DCSuperHeroes:
                     return "3fb68ba1-d86e-4e85-807b-54a418c01b73";
+                case ProductTheme.DIMENSIONS:
+                    return "17eb97da-9a8d-467b-9c1e-3366b83cd09d";
                 case ProductTheme.Disney:
                     return "b57f6c1e-f0a0-48a9-91b0-eda8dab39528";
                 case ProductTheme.DOTS:
@@ -44,8 +50,12 @@ namespace LegoSharp
                     return "4a4493a4-3513-4fa1-888c-353da1437851";
                 case ProductTheme.Elves:
                     return "5d4a286b-77f9-449f-8aaf-d3d52ba63099";
+                case ProductTheme.FantasticBeasts:
+                    return "fa3fa838-4aa0-49d4-b3e6-e76327a16ade";
                 case ProductTheme.Fiends:
                     return "1bcfd7b6-4895-42fb-8e18-9b374a8bb677";
+                case ProductTheme.Ghostbusters:
+                    return "8d49e53e-3102-49fe-8cd2-90eb23a61952";
                 case ProductTheme.HardToFindItems:
                     return "66f37576-ca80-4510-95ed-d8ea51acef41";
                 case ProductTheme.HarryPotte:
@@ -70,6 +80,10 @@ namespace LegoSharp
                     return "e92d1f5f-91be-4083-9e99-766ca3e90c55";
                 case ProductTheme.LegoMonkieKid:
                     return "42ef643e-d7d3-4b31-b3ed-e4275541ade3";
+                case ProductTheme.LegoOriginals:
+                    return "a12b7c32-c859-40ff-9901-46e498f648a1";
+                case ProductTheme.LegoPirates:
+                    return "feabaccb-34f4-4d0d-9a3d-bc3350df684c";
                 case ProductTheme.LegoSpiderMan:
                     return "241c583a-af08-46ec-9534-a13f1b29e5de";
                 case ProductTheme.LegoSuperMario:
@@ -82,6 +96,8 @@ namespace LegoSharp
                     return "3ee0ddbe-0986-42ea-9700-f2aabef966b1";
                 case ProductTheme.Minifigures:
                     return "13afd5e3-4b4f-4ead-89a3-931b961565d2";
+                case ProductTheme.Minions:
+                    return "7caa382c-966d-4241-bc94-be6b9436d82a";
                 case ProductTheme.LegoMinions:
                     return "7caa382c-966d-4241-bc94-be6b9436d82a";
                 case ProductTheme.Miscellaneous:
@@ -89,7 +105,7 @@ namespace LegoSharp
                 case ProductTheme.Mixels:
                     return "5b4703bc-a5d6-4a03-98e8-ef45d4363abd";
                 case ProductTheme.MonkieKid:
-                    return "Monkie Kid";
+                    return "42ef643e-d7d3-4b31-b3ed-e4275541ade3";
                 case ProductTheme.NexoKnights:
                     return "aed82de4-65fd-4ed5-9ea5-90e3f2a9035b";
                 case ProductTheme.NinjaGo:
@@ -98,20 +114,34 @@ namespace LegoSharp
                     return "501d7529-d6ea-485c-bc62-469513984324";
                 case ProductTheme.PoweredUP:
                     return "4d494039-babf-4791-bbd2-889acd4cc266";
+                case ProductTheme.PowerpuffGirls:
+                    return "501d96f0-6986-4cf2-92ed-d90859df54d5";
+                case ProductTheme.SERIOUSPLAY:
+                    return "1b9ecd61-c56b-4385-afcb-a6a1d0f8c52a";
                 case ProductTheme.SpeedChampions:
                     return "ae210cc7-ed71-4509-9872-7228f38ef4b0";
                 case ProductTheme.SpiderMan:
                     return "241c583a-af08-46ec-9534-a13f1b29e5de";
                 case ProductTheme.StarWars:
                     return "571ed551-f375-4b0b-925b-057aa50973f0";
+                case ProductTheme.StrangerThings:
+                    return "94343006-690d-43ac-bb3c-8474f1e3b401";
                 case ProductTheme.Technic:
                     return "fc77028c-e984-4dfe-b698-4423f69ee663";
                 case ProductTheme.TheLegoBatmanMovie:
                     return "96d7af69-5e46-45d9-84fc-9662ac621602";
                 case ProductTheme.TheLegoMovie2:
                     return "407fe674-adbc-4754-a86b-fe184966cba4";
+                case ProductTheme.THELEGOMOVIE:
+                    return "419e34c6-5a59-4b64-86fd-e5bf05c44df2";
                 case ProductTheme.TheLegoNinjagoMovie:
                     return "44be4334-442b-4867-8b0b-6b2601b471ca";
+                case ProductTheme.TheSimpsons:
+                    return "18dd7025-6986-4910-b6b2-62bb219515ca";
+                case ProductTheme.ToyStory4:
+                    return "4649daab-8c3b-458f-8abd-8e7292e8524d";
+                case ProductTheme.TrollsWorldTour:
+                    return "236de155-02f6-4c54-93bc-34966eaaf029";
                 case ProductTheme.Unikitty:
                     return "82e17b50-b96e-4bf3-86a2-bdf87bcb9db2";
                 case ProductTheme.Xtra:
@@ -125,12 +155,16 @@ namespace LegoSharp
         {
             switch (category)
             {
+                case ProductTheme.AngryBirds:
+                    return "Angry Birds™";
                 case ProductTheme.Architecture:
                     return "Architecture";
                 case ProductTheme.Batman:
                     return "Batman";
                 case ProductTheme.Bionicle:
                     return "BIONICLE®";
+                case ProductTheme.BOOST:
+                    return "BOOST";
                 case ProductTheme.BrickHeadz:
                     return "BrickHeadz";
                 case ProductTheme.City:
@@ -147,6 +181,8 @@ namespace LegoSharp
                     return "DC Super Hero Girls";
                 case ProductTheme.DCSuperHeroes:
                     return "DC Super Heroes";
+                case ProductTheme.DIMENSIONS:
+                    return "DIMENSIONS™";
                 case ProductTheme.Disney:
                     return "Disney™";
                 case ProductTheme.DOTS:
@@ -155,8 +191,12 @@ namespace LegoSharp
                     return "DUPLO®";
                 case ProductTheme.Elves:
                     return "Elves";
+                case ProductTheme.FantasticBeasts:
+                    return "Fantastic Beasts™";
                 case ProductTheme.Fiends:
                     return "Friends";
+                case ProductTheme.Ghostbusters:
+                    return "Ghostbusters™";
                 case ProductTheme.HardToFindItems:
                     return "Hard to Find Items";
                 case ProductTheme.HarryPotte:
@@ -181,6 +221,10 @@ namespace LegoSharp
                     return "LEGO® Marvel";
                 case ProductTheme.LegoMonkieKid:
                     return "LEGO® Monkie Kid";
+                case ProductTheme.LegoOriginals:
+                    return "LEGO® Originals";
+                case ProductTheme.LegoPirates:
+                    return "LEGO® Pirates";
                 case ProductTheme.LegoSpiderMan:
                     return "LEGO® Spider-Man";
                 case ProductTheme.LegoSuperMario:
@@ -193,6 +237,8 @@ namespace LegoSharp
                     return "Minecraft™";
                 case ProductTheme.Minifigures:
                     return "Minifigures";
+                case ProductTheme.Minions:
+                    return "Minions";
                 case ProductTheme.LegoMinions:
                     return "LEGO® Minions";
                 case ProductTheme.Miscellaneous:
@@ -209,20 +255,34 @@ namespace LegoSharp
                     return "Overwatch®";
                 case ProductTheme.PoweredUP:
                     return "Powered UP";
+                case ProductTheme.PowerpuffGirls:
+                    return "Powerpuff Girls™";
+                case ProductTheme.SERIOUSPLAY:
+                    return "SERIOUS PLAY®";
                 case ProductTheme.SpeedChampions:
                     return "Speed Champions";
                 case ProductTheme.SpiderMan:
                     return "Spider-Man";
                 case ProductTheme.StarWars:
                     return "Star Wars™";
+                case ProductTheme.StrangerThings:
+                    return "Stranger Things";
                 case ProductTheme.Technic:
                     return "Technic™";
                 case ProductTheme.TheLegoBatmanMovie:
                     return "THE LEGO® BATMAN MOVIE";
                 case ProductTheme.TheLegoMovie2:
                     return "THE LEGO® MOVIE 2™";
+                case ProductTheme.THELEGOMOVIE:
+                    return "THE LEGO® MOVIE™";
                 case ProductTheme.TheLegoNinjagoMovie:
                     return "THE LEGO® NINJAGO® MOVIE™";
+                case ProductTheme.TheSimpsons:
+                    return "The Simpsons™";
+                case ProductTheme.ToyStory4:
+                    return "Toy Story 4";
+                case ProductTheme.TrollsWorldTour:
+                    return "Trolls World Tour";
                 case ProductTheme.Unikitty:
                     return "Unikitty!™";
                 case ProductTheme.Xtra:
@@ -235,9 +295,11 @@ namespace LegoSharp
 
     public enum ProductTheme
     {
+        AngryBirds,
         Architecture,
         Batman,
         Bionicle,
+        BOOST,
         BrickHeadz,
         City,
         Classic,
@@ -246,11 +308,14 @@ namespace LegoSharp
         DC,
         DCSuperHeroGirls,
         DCSuperHeroes,
+        DIMENSIONS,
         Disney,
         DOTS,
         DUPLO,
         Elves,
+        FantasticBeasts,
         Fiends,
+        Ghostbusters,
         HardToFindItems,
         HarryPotte,
         HiddenSide,
@@ -263,12 +328,15 @@ namespace LegoSharp
         LegoFrozen2,
         LegoMarvel,
         LegoMonkieKid,
+        LegoOriginals,
+        LegoPirates,
         LegoSpiderMan,
         LegoSuperMario,
         Marvel,
         Mindstorms,
         Minecraft,
         Minifigures,
+        Minions,
         MonkieKid,
         LegoMinions,
         Miscellaneous,
@@ -277,13 +345,20 @@ namespace LegoSharp
         NinjaGo,
         Overwatch,
         PoweredUP,
+        PowerpuffGirls,
+        SERIOUSPLAY,
         SpeedChampions,
         SpiderMan,
         StarWars,
+        StrangerThings,
         Technic,
         TheLegoBatmanMovie,
         TheLegoMovie2,
+        THELEGOMOVIE,
         TheLegoNinjagoMovie,
+        TheSimpsons,
+        ToyStory4,
+        TrollsWorldTour,
         Unikitty,
         Xtra
     }

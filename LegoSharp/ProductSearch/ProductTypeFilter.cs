@@ -40,6 +40,10 @@ namespace LegoSharp
                     return "aa9810a1-cf06-450f-a39f-f3a27100b2aa";
                 case ProductType.Polybag:
                     return "c9f9b650-5988-4828-acd8-194a83668100";
+                case ProductType.RolePlayAndCostumes:
+                    return "5dc73b3a-0138-4e0b-afd2-01a6b30fb94e";
+                case ProductType.VideoGames:
+                    return "db541156-1955-4ad9-a45d-679742692c78";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -75,6 +79,10 @@ namespace LegoSharp
                     return "Watches & Clocks";
                 case ProductType.Polybag:
                     return "Polybag";
+                case ProductType.RolePlayAndCostumes:
+                    return "Role Play & Costumes";
+                case ProductType.VideoGames:
+                    return "Video Games";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -95,6 +103,8 @@ namespace LegoSharp
         Stationery,
         Books,
         WatchesAndClocks,
-        Polybag
+        Polybag,
+        RolePlayAndCostumes,
+        VideoGames
     }
 }
