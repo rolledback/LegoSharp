@@ -91,6 +91,8 @@ namespace LegoSharp
                     return "Spring Yellowish Green";
                 case BrickColor.TitaniumMetallic:
                     return "Titanium Metallic";
+                case BrickColor.Transparent:
+                    return "Transparent";
                 case BrickColor.TrBlue:
                     return "Tr. Blue";
                 case BrickColor.TrBrightGreen:
@@ -111,14 +113,12 @@ namespace LegoSharp
                     return "Tr. Red";
                 case BrickColor.TrYellow:
                     return "Tr. Yellow";
-                case BrickColor.Transparent:
-                    return "Transparent";
+                case BrickColor.VibrantCoral:
+                    return "Vibrant Coral";
                 case BrickColor.WarmGold:
                     return "Warm Gold";
                 case BrickColor.White:
                     return "White";
-                case BrickColor.VibrantCoral:
-                    return "Vibrant Coral";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -204,6 +204,8 @@ namespace LegoSharp
                     return "Spring Yellowish Green";
                 case BrickColor.TitaniumMetallic:
                     return "Titanium Metallic";
+                case BrickColor.Transparent:
+                    return "Transparent";
                 case BrickColor.TrBlue:
                     return "Tr. Blue";
                 case BrickColor.TrBrightGreen:
@@ -224,14 +226,12 @@ namespace LegoSharp
                     return "Tr. Red";
                 case BrickColor.TrYellow:
                     return "Tr. Yellow";
-                case BrickColor.Transparent:
-                    return "Transparent";
+                case BrickColor.VibrantCoral:
+                    return "Vibrant Coral";
                 case BrickColor.WarmGold:
                     return "Warm Gold";
                 case BrickColor.White:
                     return "White";
-                case BrickColor.VibrantCoral:
-                    return "Vibrant Coral";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -278,6 +278,7 @@ namespace LegoSharp
         SilverMetallic,
         SpringYellowishGreen,
         TitaniumMetallic,
+        Transparent,
         TrBlue,
         TrBrightGreen,
         TrBrightOrange,
@@ -288,7 +289,6 @@ namespace LegoSharp
         TrMediumReddishViolet,
         TrRed,
         TrYellow,
-        Transparent,
         VibrantCoral,
         WarmGold,
         White
