@@ -68,8 +68,12 @@ namespace LegoSharp
                     return "ab2618af-0e1a-415d-a561-ddc7bd8f3e89";
                 case ProductTheme.Juniors:
                     return "7bba8647-c0ec-4d29-b6a8-dc0337798886";
+                case ProductTheme.LegoArt:
+                    return "60f5b610-f541-4b10-b7f5-6925be132af6";
                 case ProductTheme.LegoBatman:
                     return "babb1fb5-b9ca-4df3-a92c-89b1fa7a9780";
+                case ProductTheme.LegoBrickSketches:
+                    return "43df8665-86da-48aa-9f18-715ce8d57bac";
                 case ProductTheme.LegoDOTS:
                     return "709942a5-8b04-49de-a1c6-3137ecb3853d";
                 case ProductTheme.LegoEducation:
@@ -209,8 +213,12 @@ namespace LegoSharp
                     return "Jurassic World™";
                 case ProductTheme.Juniors:
                     return "Juniors";
+                case ProductTheme.LegoArt:
+                    return "LEGO® Art";
                 case ProductTheme.LegoBatman:
                     return "LEGO® Batman";
+                case ProductTheme.LegoBrickSketches:
+                    return "LEGO® Brick Sketches™";
                 case ProductTheme.LegoDOTS:
                     return "LEGO® DOTS";
                 case ProductTheme.LegoEducation:
@@ -322,7 +330,9 @@ namespace LegoSharp
         Ideas,
         JuarssicWold,
         Juniors,
+        LegoArt,
         LegoBatman,
+        LegoBrickSketches,
         LegoDOTS,
         LegoEducation,
         LegoFrozen2,
