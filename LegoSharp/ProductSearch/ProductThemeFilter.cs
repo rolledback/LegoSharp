@@ -214,7 +214,7 @@ namespace LegoSharp
                 case ProductTheme.Juniors:
                     return "Juniors";
                 case ProductTheme.LegoArt:
-                    return "LEGO® Art";
+                    return "LEGO® ART";
                 case ProductTheme.LegoBatman:
                     return "LEGO® Batman";
                 case ProductTheme.LegoBrickSketches:
