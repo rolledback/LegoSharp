@@ -61,20 +61,18 @@ namespace LegoSharpTest
             Assert.IsTrue(resultFilteredCounts.total < resultAllCounts.total);
         }
 
-        private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : ProductSearchValuesFilter<FilterEnumT>
+        private async Task tryQueryWithEachFilterValue<FilterT, ValuesFilterValueT>(Func<FilterT> newFilter) where FilterT : ProductSearchValuesFilter<ValuesFilterValueT> where ValuesFilterValueT : ValuesFilterValue
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
-            var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
+            var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
 
-            for (int i = 0; i < enumValues.Length; i++)
+            foreach (var value in allValues)
             {
-                FilterEnumT currEnum = enumValues[i];
-
                 ProductSearchQuery query = new ProductSearchQuery();
                 FilterT filter = newFilter();
-                filter.addValue(currEnum);
+                filter.addValue(value);
                 query.addFilter(filter);
 
                 await graphClient.productSearch(query);
@@ -87,19 +85,23 @@ namespace LegoSharpTest
             var queries = new List<ProductSearchQuery>();
             queries.Add(new ProductSearchQuery());
 
-            var enumValues = (ProductType[])Enum.GetValues(typeof(ProductType));
-            foreach (var enumValue in enumValues)
+            var allValues = ValuesFilterValue.GetAll<ProductType>();
+            foreach (var value in allValues)
             {
                 var queryByEnumValue = new ProductSearchQuery();
-                queryByEnumValue.query = new ProductTypeFilter().filterEnumToValue(enumValue);
+                queryByEnumValue.query = value.value;
                 queries.Add(queryByEnumValue);
 
                 var queryByEnumName = new ProductSearchQuery();
-                queryByEnumName.query = new ProductTypeFilter().filterEnumToName(enumValue);
+                queryByEnumName.query = value.name;
                 queries.Add(queryByEnumName);
             }
 
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, new ProductTypeFilter(), new ProductSearchFacetExtractor(), "category");
+            var filter = new ProductTypeFilter();
+
+            var facetExtractor = new ProductSearchFacetExtractor();
+
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "category");
         }
 
         [TestMethod]
@@ -108,19 +110,23 @@ namespace LegoSharpTest
             var queries = new List<ProductSearchQuery>();
             queries.Add(new ProductSearchQuery());
 
-            var enumValues = (ProductTheme[])Enum.GetValues(typeof(ProductTheme));
-            foreach (var enumValue in enumValues)
+            var allValues = ValuesFilterValue.GetAll<ProductTheme>();
+            foreach (var value in allValues)
             {
                 var queryByEnumValue = new ProductSearchQuery();
-                queryByEnumValue.query = new ProductThemeFilter().filterEnumToValue(enumValue);
+                queryByEnumValue.query = value.value;
                 queries.Add(queryByEnumValue);
 
                 var queryByEnumName = new ProductSearchQuery();
-                queryByEnumName.query = new ProductThemeFilter().filterEnumToName(enumValue);
+                queryByEnumName.query = value.name;
                 queries.Add(queryByEnumName);
             }
 
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, new ProductThemeFilter(), new ProductSearchFacetExtractor(), "theme");
+            var filter = new ProductThemeFilter();
+
+            var facetExtractor = new ProductSearchFacetExtractor();
+
+            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "theme");
         }
     }
 }

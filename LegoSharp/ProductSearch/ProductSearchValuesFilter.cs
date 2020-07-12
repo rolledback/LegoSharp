@@ -4,14 +4,14 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public abstract class ProductSearchValuesFilter<FilterEnumT> : QueryValuesFilter<FilterEnumT>
+    public abstract class ProductSearchValuesFilter<ValuesFilterValueT> : QueryValuesFilter<ValuesFilterValueT> where ValuesFilterValueT : ValuesFilterValue
     {
         public ProductSearchValuesFilter(string facetKey, string facetId) : base(facetKey, facetId)
         {
 
         }
 
-        public ProductSearchValuesFilter<FilterEnumT> addValue(FilterEnumT value)
+        public ProductSearchValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
         {
             this._addValue(value);
             return this;

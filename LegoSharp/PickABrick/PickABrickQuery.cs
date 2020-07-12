@@ -12,7 +12,7 @@ namespace LegoSharp
         {
         }
 
-        public void addFilter<FilterEnumT>(PickABrickValuesFilter<FilterEnumT> filter)
+        public void addFilter<ValuesFilterValueT>(PickABrickValuesFilter<ValuesFilterValueT> filter) where ValuesFilterValueT : ValuesFilterValue
         {
             this._addFilter(filter);
         }

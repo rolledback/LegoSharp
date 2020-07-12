@@ -31,20 +31,18 @@ namespace LegoSharpTest
             await this.tryQueryWithEachFilterValue<BrickColorFamilyFilter, BrickColorFamily>(() => new BrickColorFamilyFilter());
         }
 
-        private async Task tryQueryWithEachFilterValue<FilterT, FilterEnumT>(Func<FilterT> newFilter) where FilterT : PickABrickValuesFilter<FilterEnumT>
+        private async Task tryQueryWithEachFilterValue<FilterT, ValuesFilterValueT>(Func<FilterT> newFilter) where FilterT : PickABrickValuesFilter<ValuesFilterValueT> where ValuesFilterValueT : ValuesFilterValue
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
 
-            var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
+            var allValues = BrickColor.GetAll<ValuesFilterValueT>();
 
-            for (int i = 0; i < enumValues.Length; i++)
+            foreach (var value in allValues)
             {
-                FilterEnumT currEnum = enumValues[i];
-
                 PickABrickQuery query = new PickABrickQuery();
                 FilterT filter = newFilter();
-                filter.addValue(currEnum);
+                filter.addValue(value);
                 query.addFilter(filter);
 
                 await graphClient.pickABrick(query);
@@ -57,19 +55,23 @@ namespace LegoSharpTest
             var queries = new List<PickABrickQuery>();
             queries.Add(new PickABrickQuery());
 
-            var enumValues = (BrickColor[])Enum.GetValues(typeof(BrickColor));
-            foreach (var enumValue in enumValues)
+            var allValues = ValuesFilterValue.GetAll<BrickColor>();
+            foreach (var value in allValues)
             {
                 var queryByEnumValue = new PickABrickQuery();
-                queryByEnumValue.query = new BrickColorFilter().filterEnumToValue(enumValue);
+                queryByEnumValue.query = value.value;
                 queries.Add(queryByEnumValue);
 
                 var queryByEnumName = new PickABrickQuery();
-                queryByEnumName.query = new BrickColorFilter().filterEnumToName(enumValue);
+                queryByEnumName.query = value.name;
                 queries.Add(queryByEnumName);
             }
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColor>(queries, new BrickColorFilter(), new PickABrickFacetExtractor(), "color");
+            var filter = new BrickColorFilter();
+
+            var facetExtractor = new PickABrickFacetExtractor();
+
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColor>(queries, filter, facetExtractor, "color");
         }
 
         [TestMethod]
@@ -78,19 +80,23 @@ namespace LegoSharpTest
             var queries = new List<PickABrickQuery>();
             queries.Add(new PickABrickQuery());
 
-            var enumValues = (BrickCategory[])Enum.GetValues(typeof(BrickCategory));
-            foreach (var enumValue in enumValues)
+            var allValues = ValuesFilterValue.GetAll<BrickCategory>();
+            foreach (var value in allValues)
             {
                 var queryByEnumValue = new PickABrickQuery();
-                queryByEnumValue.query = new BrickCategoryFilter().filterEnumToValue(enumValue);
+                queryByEnumValue.query = value.value;
                 queries.Add(queryByEnumValue);
 
                 var queryByEnumName = new PickABrickQuery();
-                queryByEnumName.query = new BrickCategoryFilter().filterEnumToName(enumValue);
+                queryByEnumName.query = value.name;
                 queries.Add(queryByEnumName);
             }
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategory>(queries, new BrickCategoryFilter(), new PickABrickFacetExtractor(), "category");
+            var filter = new BrickCategoryFilter();
+
+            var facetExtractor = new PickABrickFacetExtractor();
+
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategory>(queries, filter, facetExtractor, "category");
         }
 
         [TestMethod]
@@ -99,19 +105,23 @@ namespace LegoSharpTest
             var queries = new List<PickABrickQuery>();
             queries.Add(new PickABrickQuery());
 
-            var enumValues = (BrickColorFamily[])Enum.GetValues(typeof(BrickColorFamily));
-            foreach (var enumValue in enumValues)
+            var allValues = ValuesFilterValue.GetAll<BrickColorFamily>();
+            foreach (var value in allValues)
             {
                 var queryByEnumValue = new PickABrickQuery();
-                queryByEnumValue.query = new BrickColorFamilyFilter().filterEnumToValue(enumValue);
+                queryByEnumValue.query = value.value;
                 queries.Add(queryByEnumValue);
 
                 var queryByEnumName = new PickABrickQuery();
-                queryByEnumName.query = new BrickColorFamilyFilter().filterEnumToName(enumValue);
+                queryByEnumName.query = value.name;
                 queries.Add(queryByEnumName);
             }
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamily>(queries, new BrickColorFamilyFilter(), new PickABrickFacetExtractor(), "color family");
+            var filter = new BrickColorFamilyFilter();
+
+            var facetExtractor = new PickABrickFacetExtractor();
+
+            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamily>(queries, filter, facetExtractor, "color family");
         }
     }
 }

@@ -10,287 +10,66 @@ namespace LegoSharp
         public BrickColorFilter() : base("variants.attributes.exactColour.en-US", "element.facet.colour")
         {
         }
-
-        public override string filterEnumToValue(BrickColor color)
-        {
-            switch (color)
-            {
-                case BrickColor.Aqua:
-                    return "Aqua";
-                case BrickColor.Black:
-                    return "Black";
-                case BrickColor.BrickYellow:
-                    return "Brick Yellow";
-                case BrickColor.BrightBlue:
-                    return "Bright Blue";
-                case BrickColor.BrightBluishGreen:
-                    return "Bright Bluish Green";
-                case BrickColor.BrightGreen:
-                    return "Bright Green";
-                case BrickColor.BrightOrange:
-                    return "Bright Orange";
-                case BrickColor.BrightPurple:
-                    return "Bright Purple";
-                case BrickColor.BrightRed:
-                    return "Bright Red";
-                case BrickColor.BrightReddishViolet:
-                    return "Bright Reddish Violet";
-                case BrickColor.BrightYellow:
-                    return "Bright Yellow";
-                case BrickColor.BrightYellowishGreen:
-                    return "Bright Yellowish Green";
-                case BrickColor.CoolYellow:
-                    return "Cool Yellow";
-                case BrickColor.DarkAzur:
-                    return "Dark Azur";
-                case BrickColor.DarkBrown:
-                    return "Dark Brown";
-                case BrickColor.DarkGreen:
-                    return "Dark Green";
-                case BrickColor.DarkOrange:
-                    return "Dark Orange";
-                case BrickColor.DarkStoneGrey:
-                    return "Dark Stone Grey";
-                case BrickColor.EarthBlue:
-                    return "Earth Blue";
-                case BrickColor.EarthGreen:
-                    return "Earth Green";
-                case BrickColor.FlameYellowishOrange:
-                    return "Flame Yellowish Orange";
-                case BrickColor.Lavender:
-                    return "Lavender";
-                case BrickColor.LightPurple:
-                    return "Light Purple";
-                case BrickColor.LightRoyalBlue:
-                    return "Light Royal Blue";
-                case BrickColor.MediumAzur:
-                    return "Medium Azur";
-                case BrickColor.MediumBlue:
-                    return "Medium Blue";
-                case BrickColor.MediumLavendel:
-                    return "Medium Lavender";
-                case BrickColor.MediumLilac:
-                    return "Medium Lilac";
-                case BrickColor.MediumNougat:
-                    return "Medium Nougat";
-                case BrickColor.MediumStoneGrey:
-                    return "Medium Stone Grey";
-                case BrickColor.NewDarkRed:
-                    return "New Dark Red";
-                case BrickColor.OliveGreen:
-                    return "Olive Green";
-                case BrickColor.ReddishBrown:
-                    return "Reddish Brown";
-                case BrickColor.SandGreen:
-                    return "Sand Green";
-                case BrickColor.SandYellow:
-                    return "Sand Yellow";
-                case BrickColor.SilverMetallic:
-                    return "Silver Metallic";
-                case BrickColor.SpringYellowishGreen:
-                    return "Spring Yellowish Green";
-                case BrickColor.TitaniumMetallic:
-                    return "Titanium Metallic";
-                case BrickColor.Transparent:
-                    return "Transparent";
-                case BrickColor.TrBlue:
-                    return "Tr. Blue";
-                case BrickColor.TrBrightGreen:
-                    return "Tr. Bright Green";
-                case BrickColor.TrBrightOrange:
-                    return "Tr. Bright Orange";
-                case BrickColor.TrBrown:
-                    return "Tr. Brown";
-                case BrickColor.TrFluoreReddOrange:
-                    return "Tr. Fluore. Redd. Orange";
-                case BrickColor.TrGreen:
-                    return "Tr. Green";
-                case BrickColor.TrLightBlue:
-                    return "Tr. Light Blue";
-                case BrickColor.TrMediumReddishViolet:
-                    return "Tr. Medium Reddish Violet";
-                case BrickColor.TrRed:
-                    return "Tr. Red";
-                case BrickColor.TrYellow:
-                    return "Tr. Yellow";
-                case BrickColor.VibrantCoral:
-                    return "Vibrant Coral";
-                case BrickColor.WarmGold:
-                    return "Warm Gold";
-                case BrickColor.White:
-                    return "White";
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public override string filterEnumToName(BrickColor color)
-        {
-            switch (color)
-            {
-                case BrickColor.Aqua:
-                    return "Aqua";
-                case BrickColor.Black:
-                    return "Black";
-                case BrickColor.BrickYellow:
-                    return "Brick Yellow";
-                case BrickColor.BrightBlue:
-                    return "Bright Blue";
-                case BrickColor.BrightBluishGreen:
-                    return "Bright Bluish Green";
-                case BrickColor.BrightGreen:
-                    return "Bright Green";
-                case BrickColor.BrightOrange:
-                    return "Bright Orange";
-                case BrickColor.BrightPurple:
-                    return "Bright Purple";
-                case BrickColor.BrightRed:
-                    return "Bright Red";
-                case BrickColor.BrightReddishViolet:
-                    return "Bright Reddish Violet";
-                case BrickColor.BrightYellow:
-                    return "Bright Yellow";
-                case BrickColor.BrightYellowishGreen:
-                    return "Bright Yellowish Green";
-                case BrickColor.CoolYellow:
-                    return "Cool Yellow";
-                case BrickColor.DarkAzur:
-                    return "Dark Azur";
-                case BrickColor.DarkBrown:
-                    return "Dark Brown";
-                case BrickColor.DarkGreen:
-                    return "Dark Green";
-                case BrickColor.DarkOrange:
-                    return "Dark Orange";
-                case BrickColor.DarkStoneGrey:
-                    return "Dark Stone Grey";
-                case BrickColor.EarthBlue:
-                    return "Earth Blue";
-                case BrickColor.EarthGreen:
-                    return "Earth Green";
-                case BrickColor.FlameYellowishOrange:
-                    return "Flame Yellowish Orange";
-                case BrickColor.Lavender:
-                    return "Lavender";
-                case BrickColor.LightPurple:
-                    return "Light Purple";
-                case BrickColor.LightRoyalBlue:
-                    return "Light Royal Blue";
-                case BrickColor.MediumAzur:
-                    return "Medium Azur";
-                case BrickColor.MediumBlue:
-                    return "Medium Blue";
-                case BrickColor.MediumLavendel:
-                    return "Medium Lavender";
-                case BrickColor.MediumLilac:
-                    return "Medium Lilac";
-                case BrickColor.MediumNougat:
-                    return "Medium Nougat";
-                case BrickColor.MediumStoneGrey:
-                    return "Medium Stone Grey";
-                case BrickColor.NewDarkRed:
-                    return "New Dark Red";
-                case BrickColor.OliveGreen:
-                    return "Olive Green";
-                case BrickColor.ReddishBrown:
-                    return "Reddish Brown";
-                case BrickColor.SandGreen:
-                    return "Sand Green";
-                case BrickColor.SandYellow:
-                    return "Sand Yellow";
-                case BrickColor.SilverMetallic:
-                    return "Silver Metallic";
-                case BrickColor.SpringYellowishGreen:
-                    return "Spring Yellowish Green";
-                case BrickColor.TitaniumMetallic:
-                    return "Titanium Metallic";
-                case BrickColor.Transparent:
-                    return "Transparent";
-                case BrickColor.TrBlue:
-                    return "Tr. Blue";
-                case BrickColor.TrBrightGreen:
-                    return "Tr. Bright Green";
-                case BrickColor.TrBrightOrange:
-                    return "Tr. Bright Orange";
-                case BrickColor.TrBrown:
-                    return "Tr. Brown";
-                case BrickColor.TrFluoreReddOrange:
-                    return "Tr. Fluore. Redd. Orange";
-                case BrickColor.TrGreen:
-                    return "Tr. Green";
-                case BrickColor.TrLightBlue:
-                    return "Tr. Light Blue";
-                case BrickColor.TrMediumReddishViolet:
-                    return "Tr. Medium Reddish Violet";
-                case BrickColor.TrRed:
-                    return "Tr. Red";
-                case BrickColor.TrYellow:
-                    return "Tr. Yellow";
-                case BrickColor.VibrantCoral:
-                    return "Vibrant Coral";
-                case BrickColor.WarmGold:
-                    return "Warm Gold";
-                case BrickColor.White:
-                    return "White";
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
     }
 
-    public enum BrickColor
+    public class BrickColor : ValuesFilterValue
     {
-        Aqua,
-        Black,
-        BrickYellow,
-        BrightBlue,
-        BrightBluishGreen,
-        BrightGreen,
-        BrightOrange,
-        BrightPurple,
-        BrightRed,
-        BrightReddishViolet,
-        BrightYellow,
-        BrightYellowishGreen,
-        CoolYellow,
-        DarkAzur,
-        DarkBrown,
-        DarkGreen,
-        DarkOrange,
-        DarkStoneGrey,
-        EarthBlue,
-        EarthGreen,
-        FlameYellowishOrange,
-        Lavender,
-        LightPurple,
-        LightRoyalBlue,
-        MediumAzur,
-        MediumBlue,
-        MediumLavendel,
-        MediumLilac,
-        MediumNougat,
-        MediumStoneGrey,
-        NewDarkRed,
-        OliveGreen,
-        ReddishBrown,
-        SandGreen,
-        SandYellow,
-        SilverMetallic,
-        SpringYellowishGreen,
-        TitaniumMetallic,
-        Transparent,
-        TrBlue,
-        TrBrightGreen,
-        TrBrightOrange,
-        TrBrown,
-        TrFluoreReddOrange,
-        TrGreen,
-        TrLightBlue,
-        TrMediumReddishViolet,
-        TrRed,
-        TrYellow,
-        VibrantCoral,
-        WarmGold,
-        White
+
+        public BrickColor(string value, string name) : base(value, name)
+        {
+        }
+
+        public static readonly BrickColor Aqua = new BrickColor("Aqua", "Aqua");
+        public static readonly BrickColor Black = new BrickColor("Black", "Black");
+        public static readonly BrickColor BrickYellow = new BrickColor("Brick Yellow", "Brick Yellow");
+        public static readonly BrickColor BrightBlue = new BrickColor("Bright Blue", "Bright Blue");
+        public static readonly BrickColor BrightBluishGreen = new BrickColor("Bright Bluish Green", "Bright Bluish Green");
+        public static readonly BrickColor BrightGreen = new BrickColor("Bright Green", "Bright Green");
+        public static readonly BrickColor BrightOrange = new BrickColor("Bright Orange", "Bright Orange");
+        public static readonly BrickColor BrightPurple = new BrickColor("Bright Purple", "Bright Purple");
+        public static readonly BrickColor BrightRed = new BrickColor("Bright Red", "Bright Red");
+        public static readonly BrickColor BrightReddishViolet = new BrickColor("Bright Reddish Violet", "Bright Reddish Violet");
+        public static readonly BrickColor BrightYellow = new BrickColor("Bright Yellow", "Bright Yellow");
+        public static readonly BrickColor BrightYellowishGreen = new BrickColor("Bright Yellowish Green", "Bright Yellowish Green");
+        public static readonly BrickColor CoolYellow = new BrickColor("Cool Yellow", "Cool Yellow");
+        public static readonly BrickColor DarkAzur = new BrickColor("Dark Azur", "Dark Azur");
+        public static readonly BrickColor DarkBrown = new BrickColor("Dark Brown", "Dark Brown");
+        public static readonly BrickColor DarkGreen = new BrickColor("Dark Green", "Dark Green");
+        public static readonly BrickColor DarkOrange = new BrickColor("Dark Orange", "Dark Orange");
+        public static readonly BrickColor DarkStoneGrey = new BrickColor("Dark Stone Grey", "Dark Stone Grey");
+        public static readonly BrickColor EarthBlue = new BrickColor("Earth Blue", "Earth Blue");
+        public static readonly BrickColor EarthGreen = new BrickColor("Earth Green", "Earth Green");
+        public static readonly BrickColor FlameYellowishOrange = new BrickColor("Flame Yellowish Orange", "Flame Yellowish Orange");
+        public static readonly BrickColor Lavender = new BrickColor("Lavender", "Lavender");
+        public static readonly BrickColor LightPurple = new BrickColor("Light Purple", "Light Purple");
+        public static readonly BrickColor LightRoyalBlue = new BrickColor("Light Royal Blue", "Light Royal Blue");
+        public static readonly BrickColor MediumAzur = new BrickColor("Medium Azur", "Medium Azur");
+        public static readonly BrickColor MediumBlue = new BrickColor("Medium Blue", "Medium Blue");
+        public static readonly BrickColor MediumLavendel = new BrickColor("Medium Lavender", "Medium Lavender");
+        public static readonly BrickColor MediumLilac = new BrickColor("Medium Lilac", "Medium Lilac");
+        public static readonly BrickColor MediumNougat = new BrickColor("Medium Nougat", "Medium Nougat");
+        public static readonly BrickColor MediumStoneGrey = new BrickColor("Medium Stone Grey", "Medium Stone Grey");
+        public static readonly BrickColor NewDarkRed = new BrickColor("New Dark Red", "New Dark Red");
+        public static readonly BrickColor OliveGreen = new BrickColor("Olive Green", "Olive Green");
+        public static readonly BrickColor ReddishBrown = new BrickColor("Reddish Brown", "Reddish Brown");
+        public static readonly BrickColor SandGreen = new BrickColor("Sand Green", "Sand Green");
+        public static readonly BrickColor SandYellow = new BrickColor("Sand Yellow", "Sand Yellow");
+        public static readonly BrickColor SilverMetallic = new BrickColor("Silver Metallic", "Silver Metallic");
+        public static readonly BrickColor SpringYellowishGreen = new BrickColor("Spring Yellowish Green", "Spring Yellowish Green");
+        public static readonly BrickColor TitaniumMetallic = new BrickColor("Titanium Metallic", "Titanium Metallic");
+        public static readonly BrickColor Transparent = new BrickColor("Transparent", "Transparent");
+        public static readonly BrickColor TrBlue = new BrickColor("Tr. Blue", "Tr. Blue");
+        public static readonly BrickColor TrBrightGreen = new BrickColor("Tr. Bright Green", "Tr. Bright Green");
+        public static readonly BrickColor TrBrightOrange = new BrickColor("Tr. Bright Orange", "Tr. Bright Orange");
+        public static readonly BrickColor TrBrown = new BrickColor("Tr. Brown", "Tr. Brown");
+        public static readonly BrickColor TrFluoreReddOrange = new BrickColor("Tr. Fluore. Redd. Orange", "Tr. Fluore. Redd. Orange");
+        public static readonly BrickColor TrGreen = new BrickColor("Tr. Green", "Tr. Green");
+        public static readonly BrickColor TrLightBlue = new BrickColor("Tr. Light Blue", "Tr. Light Blue");
+        public static readonly BrickColor TrMediumReddishViolet = new BrickColor("Tr. Medium Reddish Violet", "Tr. Medium Reddish Violet");
+        public static readonly BrickColor TrRed = new BrickColor("Tr. Red", "Tr. Red");
+        public static readonly BrickColor TrYellow = new BrickColor("Tr. Yellow", "Tr. Yellow");
+        public static readonly BrickColor VibrantCoral = new BrickColor("Vibrant Coral", "Vibrant Coral");
+        public static readonly BrickColor WarmGold = new BrickColor("Warm Gold", "Warm Gold");
+        public static readonly BrickColor White = new BrickColor("White", "White");
     }
 }

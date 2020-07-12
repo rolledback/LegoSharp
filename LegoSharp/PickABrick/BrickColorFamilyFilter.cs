@@ -10,92 +10,26 @@ namespace LegoSharp
         public BrickColorFamilyFilter() : base("variants.attributes.colourFamily.en-US", "element.facet.colourFamily")
         {
         }
-
-        public override string filterEnumToValue(BrickColorFamily color)
-        {
-            switch (color)
-            {
-                case BrickColorFamily.Black:
-                    return "Black";
-                case BrickColorFamily.Blue:
-                    return "Blue";
-                case BrickColorFamily.BrightOrange:
-                    return "Bright Orange";
-                case BrickColorFamily.DarkGreen:
-                    return "Dark Green";
-                case BrickColorFamily.Grey:
-                    return "Grey";
-                case BrickColorFamily.Lilac:
-                    return "Lilac";
-                case BrickColorFamily.Purple:
-                    return "Purple";
-                case BrickColorFamily.Red:
-                    return "Red";
-                case BrickColorFamily.ReddishBrown:
-                    return "Reddish Brown";
-                case BrickColorFamily.Silver:
-                    return "Silver";
-                case BrickColorFamily.WarmGold:
-                    return "Warm Gold";
-                case BrickColorFamily.White:
-                    return "White";
-                case BrickColorFamily.Yellow:
-                    return "Yellow";
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public override string filterEnumToName(BrickColorFamily color)
-        {
-            switch (color)
-            {
-                case BrickColorFamily.Black:
-                    return "Black";
-                case BrickColorFamily.Blue:
-                    return "Blue";
-                case BrickColorFamily.BrightOrange:
-                    return "Bright Orange";
-                case BrickColorFamily.DarkGreen:
-                    return "Dark Green";
-                case BrickColorFamily.Grey:
-                    return "Grey";
-                case BrickColorFamily.Lilac:
-                    return "Lilac";
-                case BrickColorFamily.Purple:
-                    return "Purple";
-                case BrickColorFamily.Red:
-                    return "Red";
-                case BrickColorFamily.ReddishBrown:
-                    return "Reddish Brown";
-                case BrickColorFamily.Silver:
-                    return "Silver";
-                case BrickColorFamily.WarmGold:
-                    return "Warm Gold";
-                case BrickColorFamily.White:
-                    return "White";
-                case BrickColorFamily.Yellow:
-                    return "Yellow";
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
     }
 
-    public enum BrickColorFamily
+    public class BrickColorFamily : ValuesFilterValue
     {
-        Black,
-        Blue,
-        BrightOrange,
-        DarkGreen,
-        Grey,
-        Lilac,
-        Purple,
-        Red,
-        ReddishBrown,
-        Silver,
-        WarmGold,
-        White,
-        Yellow
+        public BrickColorFamily(string value, string name) : base(value, name)
+        {
+        }
+
+        public static readonly BrickColorFamily Black = new BrickColorFamily("Black", "Black");
+        public static readonly BrickColorFamily Blue = new BrickColorFamily("Blue", "Blue");
+        public static readonly BrickColorFamily BrightOrange = new BrickColorFamily("Bright Orange", "Bright Orange");
+        public static readonly BrickColorFamily DarkGreen = new BrickColorFamily("Dark Green", "Dark Green");
+        public static readonly BrickColorFamily Grey = new BrickColorFamily("Grey", "Grey");
+        public static readonly BrickColorFamily Lilac = new BrickColorFamily("Lilac", "Lilac");
+        public static readonly BrickColorFamily Purple = new BrickColorFamily("Purple", "Purple");
+        public static readonly BrickColorFamily Red = new BrickColorFamily("Red", "Red");
+        public static readonly BrickColorFamily ReddishBrown = new BrickColorFamily("Reddish Brown", "Reddish Brown");
+        public static readonly BrickColorFamily Silver = new BrickColorFamily("Silver", "Silver");
+        public static readonly BrickColorFamily WarmGold = new BrickColorFamily("Warm Gold", "Warm Gold");
+        public static readonly BrickColorFamily White = new BrickColorFamily("White", "White");
+        public static readonly BrickColorFamily Yellow = new BrickColorFamily("Yellow", "Yellow");
     }
 }

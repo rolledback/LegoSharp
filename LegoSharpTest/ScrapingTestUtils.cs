@@ -12,7 +12,7 @@ namespace LegoSharpTest
 {
     public class ScrapingTestUtils
     {
-        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, FilterEnumT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<FilterEnumT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT>
+        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, ValuesFilterValueT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<ValuesFilterValueT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue
         {
             LegoGraphClient graphClient = new LegoGraphClient();
             await graphClient.authenticateAsync();
@@ -24,7 +24,7 @@ namespace LegoSharpTest
                 var scraper = new FacetScraperQuery<GraphQueryT, QueryResultT>(query, facetExtractor);
                 var facets = await graphClient.queryGraph(scraper);
 
-                var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
+                var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
                 var filterKey = filter.facetKey;
                 var filterId = filter.facetId;
 
@@ -36,7 +36,7 @@ namespace LegoSharpTest
                     {
                         try
                         {
-                            enumValues.First(c => filter.filterEnumToName(c) == label.name && filter.filterEnumToValue(c) == label.value);
+                            allValues.First(c => c.name == label.name && c.value == label.value);
                         }
                         catch (InvalidOperationException)
                         {
