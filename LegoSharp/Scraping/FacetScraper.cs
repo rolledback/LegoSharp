@@ -1,33 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace LegoSharp
 {
-    public class FacetScraper<GraphQueryT, GraphQueryResultT> : IGraphQuery<IEnumerable<Facet>> where GraphQueryT : IGraphQuery<GraphQueryResultT>
+    public class FacetScraper<GraphQueryT, GraphQueryResultT> where GraphQueryT : IGraphQuery<GraphQueryResultT>
     {
-        public string endpoint { get; }
+        private IList<FacetScraperQuery<GraphQueryT, GraphQueryResultT>> _facetQueries;
 
-        private IGraphQuery<GraphQueryResultT> _queryToScrape;
-        private IFacetExtractor<GraphQueryT> _facetExtractor;
-
-        public FacetScraper(IGraphQuery<GraphQueryResultT> queryToScrape, IFacetExtractor<GraphQueryT> facetExtractor)
+        public FacetScraper(IEnumerable<IGraphQuery<GraphQueryResultT>> queriesToScrapeWith, IFacetExtractor<GraphQueryT> facetExtractor)
         {
-            this._queryToScrape = queryToScrape;
-            this._facetExtractor = facetExtractor;
-            this.endpoint = queryToScrape.endpoint;
+            this._facetQueries = new List<FacetScraperQuery<GraphQueryT, GraphQueryResultT>>();
+            foreach (var query in queriesToScrapeWith)
+            {
+                this._facetQueries.Add(new FacetScraperQuery<GraphQueryT, GraphQueryResultT>(query, facetExtractor));
+            }
         }
 
-        public dynamic getPayload()
+        public async Task<ISet<ScrapedFacetLabel>> scrapeFacet<FilterEnumT>(string facetId, string facetKey)
         {
-            return this._queryToScrape.getPayload();
-        }
+            var scrapedFacets = new HashSet<ScrapedFacetLabel>(new ScrapedFacetLabelComparaer());
 
-        public IEnumerable<Facet> parseResponse(string responseBody)
-        {
-            return this._facetExtractor.extractFacets(responseBody);
+            foreach (var facetQuery in this._facetQueries)
+            {
+                LegoGraphClient graphClient = new LegoGraphClient();
+                await graphClient.authenticateAsync();
+
+                var facets = await graphClient.queryGraph(facetQuery);
+
+                var facet = facets.FirstOrDefault(f => f.key == facetKey && f.id == facetId);
+
+                if (facet != null)
+                {
+                    foreach (var label in facet.labels)
+                    {
+                        scrapedFacets.Add(new ScrapedFacetLabel { enumField = "", name = label.name, value = label.value });
+                    }
+                }
+            }
+
+            return scrapedFacets;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LegoSharp;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Scraper
 {
@@ -8,20 +9,26 @@ namespace Scraper
     {
         static async Task Main(string[] args)
         {
-            LegoGraphClient client = new LegoGraphClient();
-            await client.authenticateAsync();
+            var queries = new List<ProductSearchQuery>();
+            queries.Add(new ProductSearchQuery());
 
-            var scraper = new FacetScraper<ProductSearchQuery, ProductSearchResult>(new ProductSearchQuery(), new ProductSearchFacetExtractor());
-            var facets = await client.queryGraph(scraper);
-
-            foreach (var facet in facets)
+            var enumValues = (ProductType[])Enum.GetValues(typeof(ProductType));
+            foreach (var enumValue in enumValues)
             {
-                Console.WriteLine(facet.key);
-                foreach (var label in facet.labels)
-                {
-                        Console.WriteLine(label.name + "," + label.value + "," + label.key);
-                }
-                Console.WriteLine();
+                var queryByEnumValue = new ProductSearchQuery();
+                queryByEnumValue.query = new ProductTypeFilter().filterEnumToValue(enumValue);
+                queries.Add(queryByEnumValue);
+
+                var queryByEnumName = new ProductSearchQuery();
+                queryByEnumName.query = new ProductTypeFilter().filterEnumToName(enumValue);
+                queries.Add(queryByEnumName);
+            }
+
+            FacetScraper<ProductSearchQuery, ProductSearchResult> test = new FacetScraper<ProductSearchQuery, ProductSearchResult>(queries, new ProductSearchFacetExtractor());
+            var result = await test.scrapeFacet<ProductTypeFilter>(new ProductTypeFilter().facetId, new ProductTypeFilter().facetKey);
+            foreach (var label in result)
+            {
+                Console.WriteLine(label.name + " " + label.value);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace LegoSharpTest
 
             foreach (var query in queries)
             {
-                var scraper = new FacetScraper<GraphQueryT, QueryResultT>(query, facetExtractor);
+                var scraper = new FacetScraperQuery<GraphQueryT, QueryResultT>(query, facetExtractor);
                 var facets = await graphClient.queryGraph(scraper);
 
                 var enumValues = (FilterEnumT[])Enum.GetValues(typeof(FilterEnumT));
