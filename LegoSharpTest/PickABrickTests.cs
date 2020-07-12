@@ -16,37 +16,34 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachColor()
         {
-            await this.tryQueryWithEachFilterValue<BrickColorFilter, BrickColor>(() => new BrickColorFilter());
+            await TestUtils.tryQueryWithEachFilterValue<BrickColor, PickABrickResult>((value) =>
+            {
+                var query = new PickABrickQuery();
+                query.addFilter(new BrickColorFilter().addValue(value));
+                return query;
+            });
         }
 
         [TestMethod]
         public async Task tryQueryWithEachCategory()
         {
-            await this.tryQueryWithEachFilterValue<BrickCategoryFilter, BrickCategory>(() => new BrickCategoryFilter());
+            await TestUtils.tryQueryWithEachFilterValue<BrickCategory, PickABrickResult>((value) =>
+            {
+                var query = new PickABrickQuery();
+                query.addFilter(new BrickCategoryFilter().addValue(value));
+                return query;
+            });
         }
 
         [TestMethod]
         public async Task tryQueryWithEachColorFamily()
         {
-            await this.tryQueryWithEachFilterValue<BrickColorFamilyFilter, BrickColorFamily>(() => new BrickColorFamilyFilter());
-        }
-
-        private async Task tryQueryWithEachFilterValue<FilterT, ValuesFilterValueT>(Func<FilterT> newFilter) where FilterT : PickABrickValuesFilter<ValuesFilterValueT> where ValuesFilterValueT : ValuesFilterValue
-        {
-            LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
-
-            var allValues = BrickColor.GetAll<ValuesFilterValueT>();
-
-            foreach (var value in allValues)
+            await TestUtils.tryQueryWithEachFilterValue<BrickColorFamily, PickABrickResult>((value) =>
             {
-                PickABrickQuery query = new PickABrickQuery();
-                FilterT filter = newFilter();
-                filter.addValue(value);
-                query.addFilter(filter);
-
-                await graphClient.pickABrick(query);
-            }
+                var query = new PickABrickQuery();
+                query.addFilter(new BrickColorFamilyFilter().addValue(value));
+                return query;
+            });
         }
 
         [TestMethod]
@@ -71,7 +68,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new PickABrickFacetExtractor();
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColor>(queries, filter, facetExtractor, "color");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColor>(queries, filter, facetExtractor, "color");
         }
 
         [TestMethod]
@@ -96,7 +93,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new PickABrickFacetExtractor();
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategory>(queries, filter, facetExtractor, "category");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategory>(queries, filter, facetExtractor, "category");
         }
 
         [TestMethod]
@@ -121,7 +118,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new PickABrickFacetExtractor();
 
-            await ScrapingTestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamily>(queries, filter, facetExtractor, "color family");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamily>(queries, filter, facetExtractor, "color family");
         }
     }
 }

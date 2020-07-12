@@ -10,7 +10,7 @@ using System.IO.MemoryMappedFiles;
 
 namespace LegoSharpTest
 {
-    public class ScrapingTestUtils
+    public class TestUtils
     {
         public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, ValuesFilterValueT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<ValuesFilterValueT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue
         {
@@ -68,6 +68,20 @@ namespace LegoSharpTest
                     err += str;
                 }
                 Assert.IsTrue(false, err);
+            }
+        }
+
+        public static async Task tryQueryWithEachFilterValue<ValuesFilterValueT, ResultT>(Func<ValuesFilterValueT, IGraphQuery<ResultT>> newQuery) where ValuesFilterValueT : ValuesFilterValue
+        {
+            LegoGraphClient graphClient = new LegoGraphClient();
+            await graphClient.authenticateAsync();
+
+            var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
+
+            foreach (var value in allValues)
+            {
+                var query = newQuery(value);
+                await graphClient.queryGraph(query);
             }
         }
     }

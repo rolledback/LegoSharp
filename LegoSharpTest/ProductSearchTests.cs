@@ -16,13 +16,23 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachCategory()
         {
-            await this.tryQueryWithEachFilterValue<ProductTypeFilter, ProductType>(() => new ProductTypeFilter());
+            await TestUtils.tryQueryWithEachFilterValue<ProductType, ProductSearchResult>((value) =>
+            {
+                var query = new ProductSearchQuery();
+                query.addFilter(new ProductTypeFilter().addValue(value));
+                return query;
+            });
         }
 
         [TestMethod]
         public async Task tryQueryWithEachTheme()
         {
-            await this.tryQueryWithEachFilterValue<ProductThemeFilter, ProductTheme>(() => new ProductThemeFilter());
+            await TestUtils.tryQueryWithEachFilterValue<ProductTheme, ProductSearchResult>((value) =>
+            {
+                var query = new ProductSearchQuery();
+                query.addFilter(new ProductThemeFilter().addValue(value));
+                return query;
+            });
         }
 
         [TestMethod]
@@ -61,24 +71,6 @@ namespace LegoSharpTest
             Assert.IsTrue(resultFilteredCounts.total < resultAllCounts.total);
         }
 
-        private async Task tryQueryWithEachFilterValue<FilterT, ValuesFilterValueT>(Func<FilterT> newFilter) where FilterT : ProductSearchValuesFilter<ValuesFilterValueT> where ValuesFilterValueT : ValuesFilterValue
-        {
-            LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
-
-            var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
-
-            foreach (var value in allValues)
-            {
-                ProductSearchQuery query = new ProductSearchQuery();
-                FilterT filter = newFilter();
-                filter.addValue(value);
-                query.addFilter(filter);
-
-                await graphClient.productSearch(query);
-            }
-        }
-
         [TestMethod]
         public async Task noMissingCategories()
         {
@@ -101,7 +93,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new ProductSearchFacetExtractor();
 
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "category");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "category");
         }
 
         [TestMethod]
@@ -126,7 +118,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new ProductSearchFacetExtractor();
 
-            await ScrapingTestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "theme");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "theme");
         }
     }
 }
