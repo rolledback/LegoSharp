@@ -93,7 +93,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new ProductSearchFacetExtractor();
 
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "category");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "product type");
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace LegoSharpTest
 
             var facetExtractor = new ProductSearchFacetExtractor();
 
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "theme");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "product theme");
         }
     }
 }

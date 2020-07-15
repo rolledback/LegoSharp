@@ -44,7 +44,7 @@ namespace LegoSharp
         public static readonly ProductTheme Ideas = new ProductTheme("2237887c-51ec-4e65-becf-117ae6180bf0", "Ideas");
         public static readonly ProductTheme JuarssicWold = new ProductTheme("ab2618af-0e1a-415d-a561-ddc7bd8f3e89", "Jurassic World™");
         public static readonly ProductTheme Juniors = new ProductTheme("7bba8647-c0ec-4d29-b6a8-dc0337798886", "Juniors");
-        public static readonly ProductTheme LegoArt = new ProductTheme("60f5b610-f541-4b10-b7f5-6925be132af6", "LEGO® ART");
+        public static readonly ProductTheme LegoArt = new ProductTheme("60f5b610-f541-4b10-b7f5-6925be132af6", "LEGO® Art");
         public static readonly ProductTheme LegoBatman = new ProductTheme("babb1fb5-b9ca-4df3-a92c-89b1fa7a9780", "LEGO® Batman");
         public static readonly ProductTheme LegoBrickSketches = new ProductTheme("43df8665-86da-48aa-9f18-715ce8d57bac", "LEGO® Brick Sketches™");
         public static readonly ProductTheme LegoDOTS = new ProductTheme("709942a5-8b04-49de-a1c6-3137ecb3853d", "LEGO® DOTS");
