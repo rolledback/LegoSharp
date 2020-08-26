@@ -72,7 +72,7 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
-        public async Task noMissingCategories()
+        public async Task noMissingTypes()
         {
             var queries = new List<ProductSearchQuery>();
             queries.Add(new ProductSearchQuery());
