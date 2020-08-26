@@ -24,6 +24,7 @@ namespace LegoSharp
         public static readonly ProductType Classic = new ProductType("975369b1-17a2-42e6-a39f-0386b85def5b", "Classic");
         public static readonly ProductType ClothingANDAccessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Clothing & Accessories");
         public static readonly ProductType ForTheHome = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "For the Home");
+        public static readonly ProductType HomeDecor = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "Home decor");
         public static readonly ProductType IndividualBricks = new ProductType("b4c8be0b-436f-445a-8b3e-a96cbd531920", "Individual Bricks");
         public static readonly ProductType KeyChains = new ProductType("0b05a003-1702-40e9-8f65-185dcfc640ed", "Key Chains");
         public static readonly ProductType Minifigures = new ProductType("a46f1ffd-db4d-4813-89d1-5d19f8737ef5", "Minifigures");
