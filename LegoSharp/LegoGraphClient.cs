@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -30,22 +30,34 @@ namespace LegoSharp
             return await this.queryGraph(query);
         }
 
-        public bool isAuthenticated()
-        {
-            return !string.IsNullOrEmpty(this._authToken);
-        }
-
         public async Task<ResultT> queryGraph<ResultT>(IGraphQuery<ResultT> query)
         {
-            if (!this.isAuthenticated())
+            if (this._needsReauthentication())
             {
-                throw new UnauthorizedAccessException();
+                await this.authenticateAsync();
             }
 
             ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, this._authToken);
             var response = await request.getResponseAsync();
             var body = await response.Content.ReadAsStringAsync();
             return query.parseResponse(body);
+        }
+
+
+        private bool _needsReauthentication()
+        {
+            if (string.IsNullOrEmpty(this._authToken))
+            {
+                return true;
+            }
+            else
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(this._authToken);
+                var validTo = jsonToken.ValidTo;
+                var nowMinusThirty = DateTime.Now.AddMinutes(-30);
+                return validTo < nowMinusThirty; ;
+            }
         }
 
         private static ILegoRequest _makeGraphAuthenticateRequest()

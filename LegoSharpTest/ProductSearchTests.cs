@@ -39,7 +39,6 @@ namespace LegoSharpTest
         public async Task priceRangeReducesResults()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             ProductSearchQuery queryAllPrices = new ProductSearchQuery();
             ProductSearchResult resultAllPrices = await graphClient.productSearch(queryAllPrices);
@@ -57,7 +56,6 @@ namespace LegoSharpTest
         public async Task pieceCountRangeReducesResults()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             ProductSearchQuery queryAllCounts = new ProductSearchQuery();
             ProductSearchResult resultAllCounts = await graphClient.productSearch(queryAllCounts);

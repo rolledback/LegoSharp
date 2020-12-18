@@ -15,7 +15,6 @@ namespace LegoSharpTest
         public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, ValuesFilterValueT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<ValuesFilterValueT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT: IGraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             var missingValues = new List<FacetLabel>();
 
@@ -74,7 +73,6 @@ namespace LegoSharpTest
         public static async Task tryQueryWithEachFilterValue<ValuesFilterValueT, ResultT>(Func<ValuesFilterValueT, IGraphQuery<ResultT>> newQuery) where ValuesFilterValueT : ValuesFilterValue
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
 

@@ -26,7 +26,6 @@ namespace LegoSharp
             foreach (var facetQuery in this._facetQueries)
             {
                 LegoGraphClient graphClient = new LegoGraphClient();
-                await graphClient.authenticateAsync();
 
                 var facets = await graphClient.queryGraph(facetQuery);
 

@@ -17,7 +17,6 @@ namespace LegoSharpTest
         public async Task pickABrickExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             PickABrickQuery query = new PickABrickQuery();
             query.addFilter(new BrickColorFilter()
@@ -36,7 +35,6 @@ namespace LegoSharpTest
         public async Task productSearchExample()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
-            await graphClient.authenticateAsync();
 
             ProductSearchQuery query = new ProductSearchQuery();
             query.addFilter(new ProductTypeFilter()
