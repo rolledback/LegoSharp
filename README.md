@@ -10,24 +10,18 @@ LegoSharp is an unofficial C# library for interacting with Lego's web APIs.
 
 Searching the Lego graph is currently the only supported action.
 
-To search the graph, you first make a graph client.
+To search the graph, make a graph client:
 ```C#
 LegoGraphClient graphClient = new LegoGraphClient();
-```
-
-You then authenticate the client (no Lego account is required).
-```C#
-await graphClient.authenticateAsync();
 ```
 
 Once you authenticate, you can query different graph APIs.
 
 ### Pick a Brick
 
-You can query [Pick a Brick](https://www.lego.com/en-us/page/static/pick-a-brick).
+You can query [Pick a Brick](https://www.lego.com/en-us/page/static/pick-a-brick):
 ```C#
 LegoGraphClient graphClient = new LegoGraphClient();
-await graphClient.authenticateAsync();
 
 PickABrickQuery query = new PickABrickQuery();
 query.addFilter(new BrickColorFilter()
@@ -44,10 +38,9 @@ foreach (Brick brick in result.elements)
 
 ### Product Search
 
-You can query for Lego Products.
+You can query for Lego Products:
 ```C#
 LegoGraphClient graphClient = new LegoGraphClient();
-await graphClient.authenticateAsync();
 
 ProductSearchQuery query = new ProductSearchQuery();
 query.addFilter(new ProductTypeFilter()
