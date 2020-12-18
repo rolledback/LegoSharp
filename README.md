@@ -15,7 +15,7 @@ To search the graph, make a graph client:
 LegoGraphClient graphClient = new LegoGraphClient();
 ```
 
-Once you authenticate, you can query different graph APIs.
+You can then query different graph APIs.
 
 ### Pick a Brick
 
