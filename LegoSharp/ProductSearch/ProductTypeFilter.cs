@@ -47,6 +47,7 @@ namespace LegoSharp
         public static readonly ProductType Stationery = new ProductType("275e987f-0cc8-44fb-9afe-a2ee0791da78", "Stationery");
         public static readonly ProductType Sweatshirts = new ProductType("dcf8f875-2414-40cb-b7c4-c532797e34fc", "Sweatshirts");
         public static readonly ProductType TShirts = new ProductType("c55e4054-c667-4a86-80a7-b1fc56726132", "T-Shirts");
+        public static readonly ProductType ValentinesDay = new ProductType("a6738084-d303-48b4-994b-57d02b7e22c8", "Valentine's Day");
         public static readonly ProductType VideoGames = new ProductType("db541156-1955-4ad9-a45d-679742692c78", "Video Games");
         public static readonly ProductType WatchesAndClocks = new ProductType("aa9810a1-cf06-450f-a39f-f3a27100b2aa", "Watches & Clocks");
         public static readonly ProductType Wedding = new ProductType("dd2c1d83-bd9b-4cc8-b7a9-02cbc8520531", "Wedding");
