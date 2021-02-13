@@ -11,5 +11,6 @@ namespace LegoSharp
     internal interface ILegoRequest
     {
         Task<HttpResponseMessage> getResponseAsync();
+        string ToString();
     }
 }

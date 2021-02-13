@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LegoSharp
@@ -37,8 +39,35 @@ namespace LegoSharp
                 await this.authenticateAsync();
             }
 
-            ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, this._authToken);
-            var response = await request.getResponseAsync();
+            int retryCount = 10;
+            HttpResponseMessage response = null;
+
+            while (response == null)
+            {
+                ILegoRequest request = LegoGraphClient._makeGraphQueryRequest(query, this._authToken);
+                response = await request.getResponseAsync();
+                var statusCode = (int)response.StatusCode;
+                if (statusCode > 299 || statusCode < 200)
+                {
+                    var errorMessage = $"Error while querying graph.\n" +
+                        $"Retry count: {retryCount}" +
+                        $"Request: {request}\n" +
+                        $"Response status code: {statusCode}" +
+                        $"Response body: {await response.Content.ReadAsStringAsync()}";
+                    if (retryCount == 0)
+                    {
+                        throw new Exception(errorMessage);
+                    }
+                    else
+                    {
+                        Console.WriteLine(errorMessage);
+                        retryCount--;
+                        response = null;
+                        await Task.Delay(1000);
+                    }
+                }
+            }
+
             var body = await response.Content.ReadAsStringAsync();
             return query.parseResponse(body);
         }

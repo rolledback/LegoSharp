@@ -32,6 +32,15 @@ namespace LegoSharp
             headers = new Dictionary<string, string>();
         }
 
+        public override string ToString()
+        {
+            return $"Base URI: {this.baseUri}, Resource: {this.resource}\n" +
+                $"Request Type: {this.requestType}, Payload Type: {this.payloadType}\n" +
+                $"Payload: {payload.ToString()}" +
+                $"Parameters: {string.Join(", ", this.parameters)}\n" +
+                $"Headers: {string.Join(", ", this.headers)}";
+        }
+
         public async Task<HttpResponseMessage> getResponseAsync()
         {
             HttpRequestMessage requestMessage = new HttpRequestMessage();
