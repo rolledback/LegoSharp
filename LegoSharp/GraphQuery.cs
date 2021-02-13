@@ -13,7 +13,7 @@ namespace LegoSharp
         public int perPage;
 
         public string endpoint { get; }
-        
+
         private List<IQueryFilter> _filters;
         private string _operationName;
         private string _queryString;

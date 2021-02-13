@@ -96,7 +96,7 @@ namespace LegoSharp
             request.requestType = LegoRequest.RequestType.Post;
             request.payloadType = LegoRequest.PayloadType.Json;
 
-            var payloadObj = new 
+            var payloadObj = new
             {
                 operationName = "Login",
                 variables = new

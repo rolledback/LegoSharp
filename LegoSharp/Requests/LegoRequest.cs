@@ -9,8 +9,8 @@ using System.Net.Http.Headers;
 
 namespace LegoSharp
 {
-    internal class LegoRequest : ILegoRequest { 
-    
+    internal class LegoRequest : ILegoRequest
+    {
         public string baseUri;
         public string resource;
         public object payload;
@@ -91,7 +91,7 @@ namespace LegoSharp
         {
             foreach (string headerName in this.headers.Keys)
             {
-               this._httpClient.DefaultRequestHeaders.Add(headerName, this.headers[headerName]);
+                this._httpClient.DefaultRequestHeaders.Add(headerName, this.headers[headerName]);
             }
         }
 
