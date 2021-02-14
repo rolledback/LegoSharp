@@ -19,7 +19,7 @@ namespace LegoSharp
             }
         }
 
-        public async Task<ISet<ScrapedFacetLabel>> scrapeFacet<FilterEnumT>(string facetId, string facetKey)
+        public async Task<ISet<ScrapedFacetLabel>> scrapeFacet(string facetId, string facetKey)
         {
             var scrapedFacets = new HashSet<ScrapedFacetLabel>(new ScrapedFacetLabelComparaer());
 
@@ -35,12 +35,38 @@ namespace LegoSharp
                 {
                     foreach (var label in facet.labels)
                     {
-                        scrapedFacets.Add(new ScrapedFacetLabel { enumField = "", name = label.name, value = label.value });
+                        scrapedFacets.Add(new ScrapedFacetLabel { name = label.name, value = label.value });
                     }
                 }
             }
 
             return scrapedFacets;
+        }
+
+        public async Task<IDictionary<string, ISet<ScrapedFacetLabel>>> scrapeFacets()
+        {
+            var result = new Dictionary<string, ISet<ScrapedFacetLabel>>();
+
+            foreach (var facetQuery in this._facetQueries)
+            {
+                LegoGraphClient graphClient = new LegoGraphClient();
+
+                var facets = await graphClient.queryGraph(facetQuery);
+                foreach (var facet in facets)
+                {
+                    var dictionaryIdx = facet.id + "," + facet.key;
+                    if (!result.ContainsKey(dictionaryIdx))
+                    {
+                        result[dictionaryIdx] = new HashSet<ScrapedFacetLabel>(new ScrapedFacetLabelComparaer());
+                    }
+                    foreach (var label in facet.labels)
+                    {
+                        result[dictionaryIdx].Add(new ScrapedFacetLabel { name = label.name, value = label.value });
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
