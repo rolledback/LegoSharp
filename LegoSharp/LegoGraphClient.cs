@@ -50,7 +50,7 @@ namespace LegoSharp
                 if (statusCode > 299 || statusCode < 200)
                 {
                     var errorMessage = $"Error while querying graph.\n" +
-                        $"Retry count: {retryCount}" +
+                        $"Retry count: {retryCount}\n" +
                         $"Request: {request}\n" +
                         $"Response status code: {statusCode}" +
                         $"Response body: {await response.Content.ReadAsStringAsync()}";
