@@ -36,6 +36,17 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
+        public async Task tryQueryWithEachFlag()
+        {
+            await TestUtils.tryQueryWithEachFilterValue<ProductFlag, ProductSearchResult>((value) =>
+            {
+                var query = new ProductSearchQuery();
+                query.addFilter(new ProductFlagsFilter().addValue(value));
+                return query;
+            });
+        }
+
+        [TestMethod]
         public async Task priceRangeReducesResults()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
@@ -117,6 +128,31 @@ namespace LegoSharpTest
             var facetExtractor = new ProductSearchFacetExtractor();
 
             await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "product theme");
+        }
+
+        [TestMethod]
+        public async Task noMissingFlags()
+        {
+            var queries = new List<ProductSearchQuery>();
+            queries.Add(new ProductSearchQuery());
+
+            var allValues = ValuesFilterValue.GetAll<ProductFlag>();
+            foreach (var value in allValues)
+            {
+                var queryByEnumValue = new ProductSearchQuery();
+                queryByEnumValue.query = value.value;
+                queries.Add(queryByEnumValue);
+
+                var queryByEnumName = new ProductSearchQuery();
+                queryByEnumName.query = value.name;
+                queries.Add(queryByEnumName);
+            }
+
+            var filter = new ProductFlagsFilter();
+
+            var facetExtractor = new ProductSearchFacetExtractor();
+
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductFlag>(queries, filter, facetExtractor, "product flag");
         }
     }
 }
