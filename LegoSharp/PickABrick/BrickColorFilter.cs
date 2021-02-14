@@ -46,7 +46,7 @@ namespace LegoSharp
         public static readonly BrickColor MediumAzur = new BrickColor("Medium Azur", "Medium Azur");
         public static readonly BrickColor MediumBlue = new BrickColor("Medium Blue", "Medium Blue");
         public static readonly BrickColor MediumLavendel = new BrickColor("Medium Lavender", "Medium Lavender");
-        public static readonly BrickColor MediumLavendel2021 = new BrickColor("Medium Lavendel", "Medium Lavendel");
+        public static readonly BrickColor MediumLavendel2 = new BrickColor("Medium Lavendel", "Medium Lavendel");
         public static readonly BrickColor MediumLilac = new BrickColor("Medium Lilac", "Medium Lilac");
         public static readonly BrickColor MediumNougat = new BrickColor("Medium Nougat", "Medium Nougat");
         public static readonly BrickColor MediumStoneGrey = new BrickColor("Medium Stone Grey", "Medium Stone Grey");
