@@ -19,9 +19,9 @@ namespace LegoSharp
             }
         }
 
-        public async Task<ISet<ScrapedFacetLabel>> scrapeFacet(string facetId, string facetKey)
+        public async Task<ISet<FacetLabel>> scrapeFacet(string facetId, string facetKey)
         {
-            var scrapedFacets = new HashSet<ScrapedFacetLabel>(new ScrapedFacetLabelComparaer());
+            var scrapedFacets = new HashSet<FacetLabel>(new FacetLabelComparaer());
 
             foreach (var facetQuery in this._facetQueries)
             {
@@ -35,7 +35,7 @@ namespace LegoSharp
                 {
                     foreach (var label in facet.labels)
                     {
-                        scrapedFacets.Add(new ScrapedFacetLabel { name = label.name, value = label.value });
+                        scrapedFacets.Add(new FacetLabel { name = label.name, value = label.value });
                     }
                 }
             }
@@ -43,9 +43,9 @@ namespace LegoSharp
             return scrapedFacets;
         }
 
-        public async Task<IDictionary<string, ISet<ScrapedFacetLabel>>> scrapeFacets()
+        public async Task<IDictionary<string, ISet<FacetLabel>>> scrapeFacets()
         {
-            var result = new Dictionary<string, ISet<ScrapedFacetLabel>>();
+            var result = new Dictionary<string, ISet<FacetLabel>>();
 
             foreach (var facetQuery in this._facetQueries)
             {
@@ -57,11 +57,11 @@ namespace LegoSharp
                     var dictionaryIdx = facet.id + "," + facet.key;
                     if (!result.ContainsKey(dictionaryIdx))
                     {
-                        result[dictionaryIdx] = new HashSet<ScrapedFacetLabel>(new ScrapedFacetLabelComparaer());
+                        result[dictionaryIdx] = new HashSet<FacetLabel>(new FacetLabelComparaer());
                     }
                     foreach (var label in facet.labels)
                     {
-                        result[dictionaryIdx].Add(new ScrapedFacetLabel { name = label.name, value = label.value });
+                        result[dictionaryIdx].Add(new FacetLabel { name = label.name, value = label.value });
                     }
                 }
             }
