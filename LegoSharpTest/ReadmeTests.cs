@@ -51,5 +51,13 @@ namespace LegoSharpTest
                 // do something with each product
             }
         }
+
+        [TestMethod]
+        public async Task facetScrapingExample()
+        {
+            FacetScraper<ProductSearchQuery, ProductSearchResult> facetScraper = new FacetScraper<ProductSearchQuery, ProductSearchResult>(new List<ProductSearchQuery> { new ProductSearchQuery() }, new ProductSearchFacetExtractor());
+            ISet<FacetLabel> facetLabels = await facetScraper.scrapeFacet("variants.attributes.flags.key", "product.facet.flags");
+            IDictionary<string, ISet<FacetLabel>> facets = await facetScraper.scrapeFacets();
+        }
     }
 }
