@@ -6,7 +6,7 @@ LegoSharp is an unofficial C# library for interacting with Lego's web APIs.
 
 [![Nuget](https://img.shields.io/nuget/v/LegoSharp)](https://www.nuget.org/packages/LegoSharp/)
 
-## Usage
+## Basic Usage
 
 Searching the Lego graph is currently the only supported action.
 
@@ -56,6 +56,30 @@ foreach (Product product in result.products)
 {
     // do something with each product
 }
+```
+
+## Advanced Usage
+
+There is also built in functionality to scrape the Lego graph.
+
+### Scraping Facets
+
+Items in the graph (products and bricks), are made up of facets. You can scrape for facets by making a facet scraper:
+
+```c#
+FacetScraper facetScraper = new FacetScraper<ProductSearchQuery, ProductSearchResult>(new List<ProductSearchQuery> { new ProductSearchQuery() }, new ProductSearchFacetExtractor());
+```
+
+The facet scraper takes in a list of queries. It uses the results of these queries to scrape facets. Scraping a facet means to get all of its current possible values.
+
+You can use `scrapeFacet` to scrape a specific facet:
+```c#
+facetScraper.scrapeFacet("variants.attributes.flags.key", "product.facet.flags");
+```
+
+Or you can use `scrapeFacets` to scrape all available facets:
+```c#
+facetScraper.scrapeFacets();
 ```
 
 ## Contributing
