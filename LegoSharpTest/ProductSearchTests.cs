@@ -32,6 +32,12 @@ namespace LegoSharpTest
         }
 
         [TestMethod]
+        public async Task tryQueryWithEachAvailability()
+        {
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductAvailabilityFilter, ProductAvailability>();
+        }
+
+        [TestMethod]
         public async Task priceRangeReducesResults()
         {
             LegoGraphClient graphClient = new LegoGraphClient();
@@ -81,6 +87,12 @@ namespace LegoSharpTest
         public async Task noMissingFlags()
         {
             await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductFlagsFilter, ProductFlag, ProductSearchFacetExtractor>("lego product - flag");
+        }
+
+        [TestMethod]
+        public async Task noMissingAvailability()
+        {
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductAvailabilityFilter, ProductAvailability, ProductSearchFacetExtractor>("lego product - availability");
         }
     }
 }
