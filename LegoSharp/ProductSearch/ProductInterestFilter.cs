@@ -11,7 +11,7 @@ namespace LegoSharp
         }
     }
 
-        public class ProductInterest : ValuesFilterValue
+    public class ProductInterest : ValuesFilterValue
     {
         public ProductInterest(string value, string name) : base(value, name)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegoSharp
 {
-        public class ProductAvailabilityFilter : ProductSearchValuesFilter<ProductAvailability>
+    public class ProductAvailabilityFilter : ProductSearchValuesFilter<ProductAvailability>
     {
         public ProductAvailabilityFilter() : base("variants.attributes.availabilityStatus.zxx-US", "product.facet.availability")
         {
