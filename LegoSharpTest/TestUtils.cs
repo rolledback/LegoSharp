@@ -12,18 +12,33 @@ namespace LegoSharpTest
 {
     public class TestUtils
     {
-        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, ValuesFilterValueT>(IEnumerable<GraphQueryT> queries, QueryValuesFilter<ValuesFilterValueT> filter, IFacetExtractor<GraphQueryT> facetExtractor, string displayName) where GraphQueryT : IGraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue
+        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, QueryValuesFilterT, ValuesFilterValueT, FacetExtractorT>(string displayName) where GraphQueryT : GraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT> where FacetExtractorT : IFacetExtractor<GraphQueryT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
             var missingValues = new List<FacetLabel>();
+            var filter = constructSomething<QueryValuesFilterT>();
+            var facetExtractor = constructSomething<FacetExtractorT>();
+            var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
+            var queries = new List<GraphQueryT>();
+
+            queries.Add(constructSomething<GraphQueryT>());
+
+            foreach (var value in allValues)
+            {
+                var queryByValue = constructSomething<GraphQueryT>();
+                queryByValue.query = value.value;
+                queries.Add(queryByValue);
+                var queryByName = constructSomething<GraphQueryT>();
+                queryByName.query = value.name;
+                queries.Add(queryByName);
+            }
 
             foreach (var query in queries)
             {
                 var scraper = new FacetScraperQuery<GraphQueryT, QueryResultT>(query, facetExtractor);
                 var facets = await graphClient.queryGraph(scraper);
 
-                var allValues = ValuesFilterValue.GetAll<ValuesFilterValueT>();
                 var filterKey = filter.facetKey;
                 var filterId = filter.facetId;
 
@@ -70,7 +85,7 @@ namespace LegoSharpTest
             }
         }
 
-        public static async Task tryQueryWithEachFilterValue<ValuesFilterValueT, ResultT>(Func<ValuesFilterValueT, IGraphQuery<ResultT>> newQuery) where ValuesFilterValueT : ValuesFilterValue
+        public static async Task tryQueryWithEachFilterValue<GraphQueryT, QueryResultT, QueryValuesFilterT, ValuesFilterValueT>() where GraphQueryT : GraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
@@ -78,9 +93,15 @@ namespace LegoSharpTest
 
             foreach (var value in allValues)
             {
-                var query = newQuery(value);
-                await graphClient.queryGraph(query);
+                await graphClient.queryGraph(constructSomething<GraphQueryT>().addFilter(constructSomething<QueryValuesFilterT>().addValue(value)));
             }
+        }
+
+        public static ObjectT constructSomething<ObjectT>()
+        {
+            Type myType = typeof(ObjectT);
+            ConstructorInfo constructorInfoObj = myType.GetConstructor((new System.Type[] { }));
+            return (ObjectT)constructorInfoObj.Invoke((new object[] { }));
         }
     }
 }

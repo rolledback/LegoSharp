@@ -14,36 +14,21 @@ namespace LegoSharpTest
     public class ProductSearchTests
     {
         [TestMethod]
-        public async Task tryQueryWithEachCategory()
+        public async Task tryQueryWithEachType()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductType, ProductSearchResult>((value) =>
-            {
-                var query = new ProductSearchQuery();
-                query.addFilter(new ProductTypeFilter().addValue(value));
-                return query;
-            });
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductTypeFilter, ProductType>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachTheme()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductTheme, ProductSearchResult>((value) =>
-            {
-                var query = new ProductSearchQuery();
-                query.addFilter(new ProductThemeFilter().addValue(value));
-                return query;
-            });
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductThemeFilter, ProductTheme>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachFlag()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductFlag, ProductSearchResult>((value) =>
-            {
-                var query = new ProductSearchQuery();
-                query.addFilter(new ProductFlagsFilter().addValue(value));
-                return query;
-            });
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductFlagsFilter, ProductFlag>();
         }
 
         [TestMethod]
@@ -83,76 +68,19 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingTypes()
         {
-            var queries = new List<ProductSearchQuery>();
-            queries.Add(new ProductSearchQuery());
-
-            var allValues = ValuesFilterValue.GetAll<ProductType>();
-            foreach (var value in allValues)
-            {
-                var queryByEnumValue = new ProductSearchQuery();
-                queryByEnumValue.query = value.value;
-                queries.Add(queryByEnumValue);
-
-                var queryByEnumName = new ProductSearchQuery();
-                queryByEnumName.query = value.name;
-                queries.Add(queryByEnumName);
-            }
-
-            var filter = new ProductTypeFilter();
-
-            var facetExtractor = new ProductSearchFacetExtractor();
-
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductType>(queries, filter, facetExtractor, "product type");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTypeFilter, ProductType, ProductSearchFacetExtractor>("lego product - type");
         }
 
         [TestMethod]
         public async Task noMissingThemes()
         {
-            var queries = new List<ProductSearchQuery>();
-            queries.Add(new ProductSearchQuery());
-
-            var allValues = ValuesFilterValue.GetAll<ProductTheme>();
-            foreach (var value in allValues)
-            {
-                var queryByEnumValue = new ProductSearchQuery();
-                queryByEnumValue.query = value.value;
-                queries.Add(queryByEnumValue);
-
-                var queryByEnumName = new ProductSearchQuery();
-                queryByEnumName.query = value.name;
-                queries.Add(queryByEnumName);
-            }
-
-            var filter = new ProductThemeFilter();
-
-            var facetExtractor = new ProductSearchFacetExtractor();
-
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTheme>(queries, filter, facetExtractor, "product theme");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductThemeFilter, ProductTheme, ProductSearchFacetExtractor>("lego product - theme");
         }
 
         [TestMethod]
         public async Task noMissingFlags()
         {
-            var queries = new List<ProductSearchQuery>();
-            queries.Add(new ProductSearchQuery());
-
-            var allValues = ValuesFilterValue.GetAll<ProductFlag>();
-            foreach (var value in allValues)
-            {
-                var queryByEnumValue = new ProductSearchQuery();
-                queryByEnumValue.query = value.value;
-                queries.Add(queryByEnumValue);
-
-                var queryByEnumName = new ProductSearchQuery();
-                queryByEnumName.query = value.name;
-                queries.Add(queryByEnumName);
-            }
-
-            var filter = new ProductFlagsFilter();
-
-            var facetExtractor = new ProductSearchFacetExtractor();
-
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductFlag>(queries, filter, facetExtractor, "product flag");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductFlagsFilter, ProductFlag, ProductSearchFacetExtractor>("lego product - flag");
         }
     }
 }

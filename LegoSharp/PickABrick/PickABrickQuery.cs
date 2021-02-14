@@ -12,9 +12,10 @@ namespace LegoSharp
         {
         }
 
-        public void addFilter<ValuesFilterValueT>(PickABrickValuesFilter<ValuesFilterValueT> filter) where ValuesFilterValueT : ValuesFilterValue
+        public PickABrickQuery addFilter<ValuesFilterValueT>(PickABrickValuesFilter<ValuesFilterValueT> filter) where ValuesFilterValueT : ValuesFilterValue
         {
             this._addFilter(filter);
+            return this;
         }
 
         public override PickABrickResult parseResponse(string responseBody)

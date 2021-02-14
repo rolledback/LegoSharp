@@ -12,14 +12,16 @@ namespace LegoSharp
         {
         }
 
-        public void addFilter<ValuesFilterValueT>(ProductSearchValuesFilter<ValuesFilterValueT> filter) where ValuesFilterValueT : ValuesFilterValue
+        public ProductSearchQuery addFilter<ValuesFilterValueT>(ProductSearchValuesFilter<ValuesFilterValueT> filter) where ValuesFilterValueT : ValuesFilterValue
         {
             this._addFilter(filter);
+            return this;
         }
 
-        public void addFilter(ProductSearchRangeFilter filter)
+        public ProductSearchQuery addFilter(ProductSearchRangeFilter filter)
         {
             this._addFilter(filter);
+            return this;
         }
 
         public override ProductSearchResult parseResponse(string responseBody)

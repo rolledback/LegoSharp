@@ -27,6 +27,13 @@ namespace LegoSharp
                 values = from v in this._values select v.value
             };
         }
+
+        public QueryValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
+        {
+            this._addValue(value);
+            return this;
+        }
+
         protected void _addValue(ValuesFilterValueT value)
         {
             this._values.Add(value);

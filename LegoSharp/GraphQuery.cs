@@ -29,6 +29,12 @@ namespace LegoSharp
             this._queryString = queryString;
         }
 
+        public IGraphQuery<ResultT> addFilter(IQueryFilter filter)
+        {
+            this._addFilter(filter);
+            return this;
+        }
+
         protected void _addFilter(IQueryFilter filter)
         {
             this._filters.Add(filter);

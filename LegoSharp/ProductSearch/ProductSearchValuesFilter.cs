@@ -11,7 +11,7 @@ namespace LegoSharp
 
         }
 
-        public ProductSearchValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
+        public new ProductSearchValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
         {
             this._addValue(value);
             return this;

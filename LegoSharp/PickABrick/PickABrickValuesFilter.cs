@@ -11,7 +11,7 @@ namespace LegoSharp
 
         }
 
-        public PickABrickValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
+        public new PickABrickValuesFilter<ValuesFilterValueT> addValue(ValuesFilterValueT value)
         {
             this._addValue(value);
             return this;
