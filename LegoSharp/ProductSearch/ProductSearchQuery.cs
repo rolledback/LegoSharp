@@ -62,7 +62,7 @@ namespace LegoSharp
                 },
                 visibility = new
                 {
-                    includeFreeProducts = false,
+                    includeFreeProducts = true,
                     includeRetiredProducts = true
                 }
             };
