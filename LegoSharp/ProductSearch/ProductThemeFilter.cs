@@ -57,6 +57,7 @@ namespace LegoSharp
         public static readonly ProductTheme LegoPirates = new ProductTheme("feabaccb-34f4-4d0d-9a3d-bc3350df684c", "LEGO® Pirates");
         public static readonly ProductTheme LegoSpiderMan = new ProductTheme("241c583a-af08-46ec-9534-a13f1b29e5de", "LEGO® Spider-Man");
         public static readonly ProductTheme LegoSuperMario = new ProductTheme("5762f826-7e6e-4f68-babb-eaf8692b4fa8", "LEGO® Super Mario™");
+        public static readonly ProductTheme LegoVidiyo = new ProductTheme("058bac02-f5e0-4971-8303-558416352fe7", "LEGO® VIDIYO™");
         public static readonly ProductTheme Marvel = new ProductTheme("e92d1f5f-91be-4083-9e99-766ca3e90c55", "Marvel");
         public static readonly ProductTheme Mindstorms = new ProductTheme("9651dd8c-6610-4313-9391-9d7ef331aeff", "MINDSTORMS®");
         public static readonly ProductTheme Minecraft = new ProductTheme("3ee0ddbe-0986-42ea-9700-f2aabef966b1", "Minecraft™");
