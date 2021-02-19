@@ -63,6 +63,7 @@ namespace LegoSharp
         public static readonly BrickColor TrBlue = new BrickColor("Tr. Blue", "Tr. Blue");
         public static readonly BrickColor TrBrightGreen = new BrickColor("Tr. Bright Green", "Tr. Bright Green");
         public static readonly BrickColor TrBrightOrange = new BrickColor("Tr. Bright Orange", "Tr. Bright Orange");
+        public static readonly BrickColor TrBrightViolet = new BrickColor("Tr. Bright Violet", "Tr. Bright Violet");
         public static readonly BrickColor TrBrown = new BrickColor("Tr. Brown", "Tr. Brown");
         public static readonly BrickColor TrFluoreReddOrange = new BrickColor("Tr. Fluore. Redd. Orange", "Tr. Fluore. Redd. Orange");
         public static readonly BrickColor TrGreen = new BrickColor("Tr. Green", "Tr. Green");
