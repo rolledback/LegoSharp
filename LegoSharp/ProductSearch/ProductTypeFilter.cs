@@ -28,7 +28,8 @@ namespace LegoSharp
         public static readonly ProductType ChineseNewYear = new ProductType("6c7eae27-1b84-46dc-93b0-a8718f099a30", "Chinese New Year");
         public static readonly ProductType Classic = new ProductType("975369b1-17a2-42e6-a39f-0386b85def5b", "Classic");
         public static readonly ProductType Clothing = new ProductType("8b96cb22-1131-4d2a-a3ad-7e2d7f51f800", "Clothing");
-        public static readonly ProductType ClothingANDAccessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Clothing & Accessories");
+        public static readonly ProductType ClothingAndAccessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Clothing & Accessories");
+        public static readonly ProductType Easter = new ProductType("28d11e69-1285-4832-b85e-fb695acbb543", "Easter");
         public static readonly ProductType ForTheHome = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "For the Home");
         public static readonly ProductType Helmets = new ProductType("acde663c-370f-4d9e-afcb-f5083c6c8fa5", "Helmets");
         public static readonly ProductType Holiday = new ProductType("5c4baed9-c35d-4495-b988-6a9585a36854", "Holiday");
