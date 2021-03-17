@@ -44,7 +44,7 @@ namespace LegoSharp
         public static readonly ProductType Mugs = new ProductType("de52c0e8-5ae5-4ae6-a32c-7749360e1fba", "Mugs");
         public static readonly ProductType Ornaments = new ProductType("40ddce98-5599-40bf-a674-23388ae4632c", "Ornaments");
         public static readonly ProductType Pets = new ProductType("0a223b30-5191-4939-821a-3f5c33e68cbc", "Pets");
-        public static readonly ProductType PictureFrames = new ProductType("a2ff0808-48ca-4629-a435-29d0ee71f4eb", "Picture");
+        public static readonly ProductType PictureFrames = new ProductType("a2ff0808-48ca-4629-a435-29d0ee71f4eb", "Picture Frames");
         public static readonly ProductType Polybag = new ProductType("c9f9b650-5988-4828-acd8-194a83668100", "Polybag");
         public static readonly ProductType PowerFunctions = new ProductType("a6013c1e-72dd-4e0b-a506-c13c0a0dc44b", "Power Functions");
         public static readonly ProductType RolePlayAndCostumes = new ProductType("5dc73b3a-0138-4e0b-afd2-01a6b30fb94e", "Role Play & Costumes");
