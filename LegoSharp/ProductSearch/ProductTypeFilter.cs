@@ -29,18 +29,22 @@ namespace LegoSharp
         public static readonly ProductType Classic = new ProductType("975369b1-17a2-42e6-a39f-0386b85def5b", "Classic");
         public static readonly ProductType Clothing = new ProductType("8b96cb22-1131-4d2a-a3ad-7e2d7f51f800", "Clothing");
         public static readonly ProductType ClothingAndAccessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Clothing & Accessories");
+        public static readonly ProductType Decorations = new ProductType("787209d8-ece9-4bea-8752-295e83112952", "Decorations");
         public static readonly ProductType Easter = new ProductType("28d11e69-1285-4832-b85e-fb695acbb543", "Easter");
+        public static readonly ProductType Flowers = new ProductType("89498c5f-5e61-42cf-bd92-342ea4a108f6", "Flowers");
         public static readonly ProductType ForTheHome = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "For the Home");
         public static readonly ProductType Helmets = new ProductType("acde663c-370f-4d9e-afcb-f5083c6c8fa5", "Helmets");
         public static readonly ProductType Holiday = new ProductType("5c4baed9-c35d-4495-b988-6a9585a36854", "Holiday");
         public static readonly ProductType HomeDecor = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "Home decor");
         public static readonly ProductType IndividualBricks = new ProductType("b4c8be0b-436f-445a-8b3e-a96cbd531920", "Individual Bricks");
         public static readonly ProductType KeyChains = new ProductType("0b05a003-1702-40e9-8f65-185dcfc640ed", "Key Chains");
+        public static readonly ProductType Kitchen = new ProductType("fb5d01c4-bc62-4356-afeb-e4af003995a8", "Kitchen");
         public static readonly ProductType Magnets = new ProductType("5b114ca9-6e0f-4a92-96b0-bd103c06b47b", "Magnets");
         public static readonly ProductType Minifigures = new ProductType("a46f1ffd-db4d-4813-89d1-5d19f8737ef5", "Minifigures");
         public static readonly ProductType Mugs = new ProductType("de52c0e8-5ae5-4ae6-a32c-7749360e1fba", "Mugs");
         public static readonly ProductType Ornaments = new ProductType("40ddce98-5599-40bf-a674-23388ae4632c", "Ornaments");
         public static readonly ProductType Pets = new ProductType("0a223b30-5191-4939-821a-3f5c33e68cbc", "Pets");
+        public static readonly ProductType PictureFrames = new ProductType("a2ff0808-48ca-4629-a435-29d0ee71f4eb", "Picture");
         public static readonly ProductType Polybag = new ProductType("c9f9b650-5988-4828-acd8-194a83668100", "Polybag");
         public static readonly ProductType PowerFunctions = new ProductType("a6013c1e-72dd-4e0b-a506-c13c0a0dc44b", "Power Functions");
         public static readonly ProductType RolePlayAndCostumes = new ProductType("5dc73b3a-0138-4e0b-afd2-01a6b30fb94e", "Role Play & Costumes");
@@ -51,6 +55,7 @@ namespace LegoSharp
         public static readonly ProductType TShirts = new ProductType("c55e4054-c667-4a86-80a7-b1fc56726132", "T-Shirts");
         public static readonly ProductType ValentinesDay = new ProductType("a6738084-d303-48b4-994b-57d02b7e22c8", "Valentine's Day");
         public static readonly ProductType VideoGames = new ProductType("db541156-1955-4ad9-a45d-679742692c78", "Video Games");
+        public static readonly ProductType WallHangers = new ProductType("e3b522a1-aeb6-4047-a3a1-9257d4988b1c", "Wall Hangers");
         public static readonly ProductType WatchesAndClocks = new ProductType("aa9810a1-cf06-450f-a39f-f3a27100b2aa", "Watches & Clocks");
         public static readonly ProductType Wedding = new ProductType("dd2c1d83-bd9b-4cc8-b7a9-02cbc8520531", "Wedding");
     }
