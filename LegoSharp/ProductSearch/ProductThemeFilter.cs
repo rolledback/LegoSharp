@@ -19,10 +19,12 @@ namespace LegoSharp
 
         public static readonly ProductTheme AngryBirds = new ProductTheme("b43d5be2-ebef-49d4-b216-8e2767b50f56", "Angry Birds™");
         public static readonly ProductTheme Architecture = new ProductTheme("6048f0c8-4ce4-4f5e-bc96-1caadd7c1fbd", "Architecture");
+        public static readonly ProductTheme Art = new ProductTheme("60f5b610-f541-4b10-b7f5-6925be132af6", "Art");
         public static readonly ProductTheme Batman = new ProductTheme("babb1fb5-b9ca-4df3-a92c-89b1fa7a9780", "Batman™");
         public static readonly ProductTheme Bionicle = new ProductTheme("0d1814a9-10b1-412d-bcf6-fa4a44bfc0dc", "BIONICLE®");
         public static readonly ProductTheme BOOST = new ProductTheme("0e089d07-20b8-4ef8-a096-d74eb7291c00", "BOOST");
         public static readonly ProductTheme BrickHeadz = new ProductTheme("51d0d8f6-2032-435f-b7a5-492242590842", "BrickHeadz");
+        public static readonly ProductTheme BrickSketches = new ProductTheme("43df8665-86da-48aa-9f18-715ce8d57bac", "Brick Sketches™");
         public static readonly ProductTheme City = new ProductTheme("96aff015-13f0-4d30-a4d1-d0a31d16f16c", "City");
         public static readonly ProductTheme Classic = new ProductTheme("38303694-3d52-40a1-9af3-a9606a59550a", "Classic");
         public static readonly ProductTheme Creator3In1 = new ProductTheme("953a74ca-c284-43a8-8240-b3b8d2f5ae1c", "Creator 3-in-1");
@@ -78,13 +80,14 @@ namespace LegoSharp
         public static readonly ProductTheme StrangerThings = new ProductTheme("94343006-690d-43ac-bb3c-8474f1e3b401", "Stranger Things");
         public static readonly ProductTheme Technic = new ProductTheme("fc77028c-e984-4dfe-b698-4423f69ee663", "Technic™");
         public static readonly ProductTheme TheLegoBatmanMovie = new ProductTheme("96d7af69-5e46-45d9-84fc-9662ac621602", "THE LEGO® BATMAN MOVIE");
+        public static readonly ProductTheme TheLegoMovie = new ProductTheme("419e34c6-5a59-4b64-86fd-e5bf05c44df2", "THE LEGO® MOVIE™");
         public static readonly ProductTheme TheLegoMovie2 = new ProductTheme("407fe674-adbc-4754-a86b-fe184966cba4", "THE LEGO® MOVIE 2™");
-        public static readonly ProductTheme THELEGOMOVIE = new ProductTheme("419e34c6-5a59-4b64-86fd-e5bf05c44df2", "THE LEGO® MOVIE™");
         public static readonly ProductTheme TheLegoNinjagoMovie = new ProductTheme("44be4334-442b-4867-8b0b-6b2601b471ca", "THE LEGO® NINJAGO® MOVIE™");
         public static readonly ProductTheme TheSimpsons = new ProductTheme("18dd7025-6986-4910-b6b2-62bb219515ca", "The Simpsons™");
         public static readonly ProductTheme ToyStory4 = new ProductTheme("4649daab-8c3b-458f-8abd-8e7292e8524d", "Toy Story 4");
         public static readonly ProductTheme TrollsWorldTour = new ProductTheme("236de155-02f6-4c54-93bc-34966eaaf029", "Trolls World Tour");
         public static readonly ProductTheme Unikitty = new ProductTheme("82e17b50-b96e-4bf3-86a2-bdf87bcb9db2", "Unikitty!™");
+        public static readonly ProductTheme VIDIYO = new ProductTheme("058bac02-f5e0-4971-8303-558416352fe7", "VIDIYO™");
         public static readonly ProductTheme Xtra = new ProductTheme("42ea57d4-2b97-486f-bd35-0daafd7b16ae", "Xtra");
     }
 }

@@ -19,6 +19,7 @@ namespace LegoSharp
 
         public static readonly ProductType Accessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Accessories");
         public static readonly ProductType Accessories2 = new ProductType("dd68422b-55a5-435d-9cf0-0f8d92e0438f", "Accessories");
+        public static readonly ProductType AdidasAccessories = new ProductType("dd68422b-55a5-435d-9cf0-0f8d92e0438f", "Adidas Accessories");
         public static readonly ProductType AllOccasions = new ProductType("46b31f0e-4ecc-468e-a798-c763a617de1f", "All Occasions");
         public static readonly ProductType BackpacksAndLunchBoxes = new ProductType("0583fca4-8422-489d-a46d-c4bdcb294fd3", "Backpacks & Lunch Boxes");
         public static readonly ProductType Birthday = new ProductType("50cc97a5-c9c8-4e2e-90b6-df8e4ec8e359", "Birthday");
@@ -51,6 +52,7 @@ namespace LegoSharp
         public static readonly ProductType Sets = new ProductType("12ba8640-7fb5-4281-991d-ac55c65d8001", "Sets");
         public static readonly ProductType Sneakers = new ProductType("698ef177-5804-4186-9b36-5b78cc89eecd", "Sneakers");
         public static readonly ProductType Stationery = new ProductType("275e987f-0cc8-44fb-9afe-a2ee0791da78", "Stationery");
+        public static readonly ProductType Stationery2 = new ProductType("edc00a90-91d0-41ee-9199-fa887ade67fd", "Stationery");
         public static readonly ProductType Sweatshirts = new ProductType("dcf8f875-2414-40cb-b7c4-c532797e34fc", "Sweatshirts");
         public static readonly ProductType TShirts = new ProductType("c55e4054-c667-4a86-80a7-b1fc56726132", "T-Shirts");
         public static readonly ProductType ValentinesDay = new ProductType("a6738084-d303-48b4-994b-57d02b7e22c8", "Valentine's Day");
@@ -58,5 +60,6 @@ namespace LegoSharp
         public static readonly ProductType WallHangers = new ProductType("e3b522a1-aeb6-4047-a3a1-9257d4988b1c", "Wall Hangers");
         public static readonly ProductType WatchesAndClocks = new ProductType("aa9810a1-cf06-450f-a39f-f3a27100b2aa", "Watches & Clocks");
         public static readonly ProductType Wedding = new ProductType("dd2c1d83-bd9b-4cc8-b7a9-02cbc8520531", "Wedding");
+
     }
 }
