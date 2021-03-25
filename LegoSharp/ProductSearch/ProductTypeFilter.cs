@@ -38,6 +38,7 @@ namespace LegoSharp
         public static readonly ProductType Holiday = new ProductType("5c4baed9-c35d-4495-b988-6a9585a36854", "Holiday");
         public static readonly ProductType HomeDecor = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "Home decor");
         public static readonly ProductType IndividualBricks = new ProductType("b4c8be0b-436f-445a-8b3e-a96cbd531920", "Individual Bricks");
+        public static readonly ProductType Infants = new ProductType("40ab5c14-4b41-45ba-9550-f27194d67a64", "Infants");
         public static readonly ProductType KeyChains = new ProductType("0b05a003-1702-40e9-8f65-185dcfc640ed", "Key Chains");
         public static readonly ProductType Kitchen = new ProductType("fb5d01c4-bc62-4356-afeb-e4af003995a8", "Kitchen");
         public static readonly ProductType Magnets = new ProductType("5b114ca9-6e0f-4a92-96b0-bd103c06b47b", "Magnets");
