@@ -68,6 +68,7 @@ namespace LegoSharp
         public static readonly ProductTheme Miscellaneous = new ProductTheme("9fe455ac-be16-4348-81fe-ddd8261327c1", "Miscellaneous");
         public static readonly ProductTheme Mixels = new ProductTheme("5b4703bc-a5d6-4a03-98e8-ef45d4363abd", "Mixels™");
         public static readonly ProductTheme MonkieKid = new ProductTheme("42ef643e-d7d3-4b31-b3ed-e4275541ade3", "Monkie Kid");
+        public static readonly ProductTheme MonkieKid2 = new ProductTheme("42ef643e-d7d3-4b31-b3ed-e4275541ade3", "Monkie Kid™");
         public static readonly ProductTheme NexoKnights = new ProductTheme("aed82de4-65fd-4ed5-9ea5-90e3f2a9035b", "NEXO KNIGHTS™");
         public static readonly ProductTheme NinjaGo = new ProductTheme("008976a6-bf87-435c-89cc-87ea0b2ea63c", "NINJAGO®");
         public static readonly ProductTheme Overwatch = new ProductTheme("501d7529-d6ea-485c-bc62-469513984324", "Overwatch®");
