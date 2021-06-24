@@ -34,6 +34,7 @@ namespace LegoSharp
         public static readonly ProductTheme DCSuperHeroGirls = new ProductTheme("5fc087bb-ce7c-457c-9da3-a902b4660e18", "DC Super Hero Girls");
         public static readonly ProductTheme DIMENSIONS = new ProductTheme("17eb97da-9a8d-467b-9c1e-3366b83cd09d", "DIMENSIONS™");
         public static readonly ProductTheme Disney = new ProductTheme("b57f6c1e-f0a0-48a9-91b0-eda8dab39528", "Disney™");
+        public static readonly ProductTheme DisneyMickeyAndFriends = new ProductTheme("4170dac8-fea2-4b56-b640-8c86f500b833", "Disney Mickey and Friends");
         public static readonly ProductTheme DOTS = new ProductTheme("709942a5-8b04-49de-a1c6-3137ecb3853d", "DOTS");
         public static readonly ProductTheme DUPLO = new ProductTheme("4a4493a4-3513-4fa1-888c-353da1437851", "DUPLO®");
         public static readonly ProductTheme Elves = new ProductTheme("5d4a286b-77f9-449f-8aaf-d3d52ba63099", "Elves");
@@ -71,6 +72,7 @@ namespace LegoSharp
         public static readonly ProductTheme MonkieKid2 = new ProductTheme("42ef643e-d7d3-4b31-b3ed-e4275541ade3", "Monkie Kid™");
         public static readonly ProductTheme NexoKnights = new ProductTheme("aed82de4-65fd-4ed5-9ea5-90e3f2a9035b", "NEXO KNIGHTS™");
         public static readonly ProductTheme NinjaGo = new ProductTheme("008976a6-bf87-435c-89cc-87ea0b2ea63c", "NINJAGO®");
+        public static readonly ProductTheme Other = new ProductTheme("9fe455ac-be16-4348-81fe-ddd8261327c1", "Other");
         public static readonly ProductTheme Overwatch = new ProductTheme("501d7529-d6ea-485c-bc62-469513984324", "Overwatch®");
         public static readonly ProductTheme PoweredUP = new ProductTheme("4d494039-babf-4791-bbd2-889acd4cc266", "Powered UP");
         public static readonly ProductTheme PowerpuffGirls = new ProductTheme("501d96f0-6986-4cf2-92ed-d90859df54d5", "Powerpuff Girls™");
@@ -90,5 +92,6 @@ namespace LegoSharp
         public static readonly ProductTheme Unikitty = new ProductTheme("82e17b50-b96e-4bf3-86a2-bdf87bcb9db2", "Unikitty!™");
         public static readonly ProductTheme VIDIYO = new ProductTheme("058bac02-f5e0-4971-8303-558416352fe7", "VIDIYO™");
         public static readonly ProductTheme Xtra = new ProductTheme("42ea57d4-2b97-486f-bd35-0daafd7b16ae", "Xtra");
+
     }
 }
