@@ -40,6 +40,7 @@ namespace LegoSharp
         public static readonly ProductTheme Elves = new ProductTheme("5d4a286b-77f9-449f-8aaf-d3d52ba63099", "Elves");
         public static readonly ProductTheme FantasticBeasts = new ProductTheme("fa3fa838-4aa0-49d4-b3e6-e76327a16ade", "Fantastic Beasts™");
         public static readonly ProductTheme Fiends = new ProductTheme("1bcfd7b6-4895-42fb-8e18-9b374a8bb677", "Friends");
+        public static readonly ProductTheme Frozen = new ProductTheme("a13df747-09bd-481b-a838-751ec9ef92bf", "Frozen");
         public static readonly ProductTheme Ghostbusters = new ProductTheme("8d49e53e-3102-49fe-8cd2-90eb23a61952", "Ghostbusters™");
         public static readonly ProductTheme HardToFindItems = new ProductTheme("66f37576-ca80-4510-95ed-d8ea51acef41", "Hard to Find Items");
         public static readonly ProductTheme HarryPotte = new ProductTheme("1c926035-83f4-46bd-892e-89c7374dc888", "Harry Potter™");
