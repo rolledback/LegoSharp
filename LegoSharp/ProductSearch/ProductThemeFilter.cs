@@ -65,6 +65,7 @@ namespace LegoSharp
         public static readonly ProductTheme Marvel = new ProductTheme("e92d1f5f-91be-4083-9e99-766ca3e90c55", "Marvel");
         public static readonly ProductTheme Mindstorms = new ProductTheme("9651dd8c-6610-4313-9391-9d7ef331aeff", "MINDSTORMS®");
         public static readonly ProductTheme Minecraft = new ProductTheme("3ee0ddbe-0986-42ea-9700-f2aabef966b1", "Minecraft™");
+        public static readonly ProductTheme Minecraft2 = new ProductTheme("3ee0ddbe-0986-42ea-9700-f2aabef966b1", "Minecraft®");
         public static readonly ProductTheme Minifigures = new ProductTheme("13afd5e3-4b4f-4ead-89a3-931b961565d2", "Minifigures");
         public static readonly ProductTheme Minions = new ProductTheme("7caa382c-966d-4241-bc94-be6b9436d82a", "Minions");
         public static readonly ProductTheme Miscellaneous = new ProductTheme("9fe455ac-be16-4348-81fe-ddd8261327c1", "Miscellaneous");
