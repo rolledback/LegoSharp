@@ -61,6 +61,7 @@ namespace LegoSharp
         public static readonly ProductType Polybag = new ProductType("c9f9b650-5988-4828-acd8-194a83668100", "Polybag");
         public static readonly ProductType PowerFunctions = new ProductType("a6013c1e-72dd-4e0b-a506-c13c0a0dc44b", "Power Functions");
         public static readonly ProductType RolePlayAndCostumes = new ProductType("5dc73b3a-0138-4e0b-afd2-01a6b30fb94e", "Role Play & Costumes");
+        public static readonly ProductType RolePlayAndCostumes2 = new ProductType("3ca96cbb-8708-49cc-8337-cdcb923ceee6", "Role Play & Costumes");
         public static readonly ProductType Sets = new ProductType("12ba8640-7fb5-4281-991d-ac55c65d8001", "Sets");
         public static readonly ProductType Sneakers = new ProductType("698ef177-5804-4186-9b36-5b78cc89eecd", "Sneakers");
         public static readonly ProductType Stationery = new ProductType("275e987f-0cc8-44fb-9afe-a2ee0791da78", "Stationery");
