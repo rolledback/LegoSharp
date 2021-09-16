@@ -23,6 +23,7 @@ namespace LegoSharp
         public static readonly ProductType AllOccasions = new ProductType("46b31f0e-4ecc-468e-a798-c763a617de1f", "All Occasions");
         public static readonly ProductType Backpacks = new ProductType("fcc2cb35-e4b5-4303-92bb-cb1edc809965", "Backpacks");
         public static readonly ProductType BackpacksAndLunchBoxes = new ProductType("0583fca4-8422-489d-a46d-c4bdcb294fd3", "Backpacks & Lunch Boxes");
+        public static readonly ProductType Bags = new ProductType("0185a691-6d2e-46bd-956e-ee4976499bb7", "Bags");
         public static readonly ProductType Birthday = new ProductType("50cc97a5-c9c8-4e2e-90b6-df8e4ec8e359", "Birthday");
         public static readonly ProductType Books = new ProductType("d20ecc4f-1dd8-4f1d-8158-fe2c59bdbbbe", "Books");
         public static readonly ProductType Bottoms = new ProductType("839a7260-9a8a-43fb-a867-ac96ec23b007", "Bottoms");
