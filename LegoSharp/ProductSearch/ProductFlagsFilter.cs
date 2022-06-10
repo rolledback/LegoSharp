@@ -23,5 +23,6 @@ namespace LegoSharp
         public static readonly ProductFlag New = new ProductFlag("new", "New");
         public static readonly ProductFlag RetiringSoon = new ProductFlag("retiringSoon", "Retiring soon");
         public static readonly ProductFlag PreOrder = new ProductFlag("preOrder", "Pre-order");
+        public static readonly ProductFlag OnlyOnLegoDotCom = new ProductFlag("onlyOnLego", "Only on LEGO.com");
     }
 }

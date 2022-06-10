@@ -20,6 +20,8 @@ namespace LegoSharp
         public static readonly ProductType Accessories = new ProductType("de583581-4dd0-4f6b-981b-8b31b9a0fb48", "Accessories");
         public static readonly ProductType Accessories2 = new ProductType("dd68422b-55a5-435d-9cf0-0f8d92e0438f", "Accessories");
         public static readonly ProductType AdidasAccessories = new ProductType("dd68422b-55a5-435d-9cf0-0f8d92e0438f", "Adidas Accessories");
+        public static readonly ProductType Adults = new ProductType("201eb8de-95fb-4f9f-8937-d0555b50b8f5", "Adults");
+        public static readonly ProductType Adults2 = new ProductType("7393d687-c928-49f5-b747-beaf4dcaf341", "Adults");
         public static readonly ProductType AllOccasions = new ProductType("46b31f0e-4ecc-468e-a798-c763a617de1f", "All Occasions");
         public static readonly ProductType Backpacks = new ProductType("fcc2cb35-e4b5-4303-92bb-cb1edc809965", "Backpacks");
         public static readonly ProductType BackpacksAndLunchBoxes = new ProductType("0583fca4-8422-489d-a46d-c4bdcb294fd3", "Backpacks & Lunch Boxes");
@@ -39,6 +41,7 @@ namespace LegoSharp
         public static readonly ProductType Decorations = new ProductType("787209d8-ece9-4bea-8752-295e83112952", "Decorations");
         public static readonly ProductType DeskOrganisers = new ProductType("8fe0f761-4d7f-48a5-92fa-21c206061601", "Desk organisers");
         public static readonly ProductType Easter = new ProductType("28d11e69-1285-4832-b85e-fb695acbb543", "Easter");
+        public static readonly ProductType EasterGifts = new ProductType("21492b58-34cf-4cc6-acbf-e337c670206f", "Easter Gifts");
         public static readonly ProductType Erasers = new ProductType("5cdfc899-570f-4baa-b5b5-099c0bcf9be2", "Erasers");
         public static readonly ProductType Flowers = new ProductType("89498c5f-5e61-42cf-bd92-342ea4a108f6", "Flowers");
         public static readonly ProductType ForTheHome = new ProductType("b32cddff-52e5-4f22-a212-1dfb3fd31fbb", "For the Home");
@@ -48,10 +51,13 @@ namespace LegoSharp
         public static readonly ProductType IndividualBricks = new ProductType("b4c8be0b-436f-445a-8b3e-a96cbd531920", "Individual Bricks");
         public static readonly ProductType Infants = new ProductType("40ab5c14-4b41-45ba-9550-f27194d67a64", "Infants");
         public static readonly ProductType KeyChains = new ProductType("0b05a003-1702-40e9-8f65-185dcfc640ed", "Key Chains");
+        public static readonly ProductType Kids = new ProductType("49bcb583-85b3-4c7e-9391-c3d35d6f3280", "Kids");
         public static readonly ProductType Kitchen = new ProductType("fb5d01c4-bc62-4356-afeb-e4af003995a8", "Kitchen");
+        public static readonly ProductType LunarNewYear = new ProductType("6c7eae27-1b84-46dc-93b0-a8718f099a30", "Lunar New Year");
         public static readonly ProductType LunchBoxes = new ProductType("31f2f329-cf71-4431-9734-3ecfd0ec3d5f", "Lunch Boxes");
         public static readonly ProductType Magnets = new ProductType("5b114ca9-6e0f-4a92-96b0-bd103c06b47b", "Magnets");
         public static readonly ProductType Minifigures = new ProductType("a46f1ffd-db4d-4813-89d1-5d19f8737ef5", "Minifigures");
+        public static readonly ProductType MothersDayGiftIdeas = new ProductType("6674262f-3534-43db-90d8-718ec4da3901", "Mothers Day Gift Ideas");
         public static readonly ProductType Mugs = new ProductType("de52c0e8-5ae5-4ae6-a32c-7749360e1fba", "Mugs");
         public static readonly ProductType Notebooks = new ProductType("f98f04f9-d253-4045-855a-addc1d0b3096", "Notebooks");
         public static readonly ProductType Ornaments = new ProductType("40ddce98-5599-40bf-a674-23388ae4632c", "Ornaments");
@@ -67,6 +73,7 @@ namespace LegoSharp
         public static readonly ProductType Sneakers = new ProductType("698ef177-5804-4186-9b36-5b78cc89eecd", "Sneakers");
         public static readonly ProductType Stationery = new ProductType("275e987f-0cc8-44fb-9afe-a2ee0791da78", "Stationery");
         public static readonly ProductType Stationery2 = new ProductType("edc00a90-91d0-41ee-9199-fa887ade67fd", "Stationery");
+        public static readonly ProductType Storage = new ProductType("feb12d4e-4af1-48a3-8757-1a57476c1b61", "Storage");
         public static readonly ProductType Sweatshirts = new ProductType("dcf8f875-2414-40cb-b7c4-c532797e34fc", "Sweatshirts");
         public static readonly ProductType TShirts = new ProductType("c55e4054-c667-4a86-80a7-b1fc56726132", "T-Shirts");
         public static readonly ProductType ValentinesDay = new ProductType("a6738084-d303-48b4-994b-57d02b7e22c8", "Valentine's Day");

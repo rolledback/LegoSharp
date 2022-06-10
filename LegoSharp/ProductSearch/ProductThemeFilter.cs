@@ -25,6 +25,7 @@ namespace LegoSharp
         public static readonly ProductTheme BOOST = new ProductTheme("0e089d07-20b8-4ef8-a096-d74eb7291c00", "BOOST");
         public static readonly ProductTheme BrickHeadz = new ProductTheme("51d0d8f6-2032-435f-b7a5-492242590842", "BrickHeadz");
         public static readonly ProductTheme BrickSketches = new ProductTheme("43df8665-86da-48aa-9f18-715ce8d57bac", "Brick Sketches™");
+        public static readonly ProductTheme Castle = new ProductTheme("522a0d4f-1daa-4e44-b63f-183c1e06805e", "Castle");
         public static readonly ProductTheme City = new ProductTheme("96aff015-13f0-4d30-a4d1-d0a31d16f16c", "City");
         public static readonly ProductTheme Classic = new ProductTheme("38303694-3d52-40a1-9af3-a9606a59550a", "Classic");
         public static readonly ProductTheme Creator3In1 = new ProductTheme("953a74ca-c284-43a8-8240-b3b8d2f5ae1c", "Creator 3-in-1");
@@ -34,6 +35,7 @@ namespace LegoSharp
         public static readonly ProductTheme DCSuperHeroGirls = new ProductTheme("5fc087bb-ce7c-457c-9da3-a902b4660e18", "DC Super Hero Girls");
         public static readonly ProductTheme DIMENSIONS = new ProductTheme("17eb97da-9a8d-467b-9c1e-3366b83cd09d", "DIMENSIONS™");
         public static readonly ProductTheme Disney = new ProductTheme("b57f6c1e-f0a0-48a9-91b0-eda8dab39528", "Disney™");
+        public static readonly ProductTheme DisneyAndPixarsLightyear = new ProductTheme("d0d6726c-cdd3-48f6-b17b-f8ee37e49f27", "Disney and Pixar’s Lightyear");
         public static readonly ProductTheme DisneyMickeyAndFriends = new ProductTheme("4170dac8-fea2-4b56-b640-8c86f500b833", "Disney Mickey and Friends");
         public static readonly ProductTheme DOTS = new ProductTheme("709942a5-8b04-49de-a1c6-3137ecb3853d", "DOTS");
         public static readonly ProductTheme DUPLO = new ProductTheme("4a4493a4-3513-4fa1-888c-353da1437851", "DUPLO®");
@@ -54,6 +56,7 @@ namespace LegoSharp
         public static readonly ProductTheme LegoDOTS = new ProductTheme("709942a5-8b04-49de-a1c6-3137ecb3853d", "LEGO® DOTS");
         public static readonly ProductTheme LegoEducation = new ProductTheme("81acec51-a977-467b-8e8c-41bdc61c1f30", "LEGO® Education");
         public static readonly ProductTheme LegoFrozen2 = new ProductTheme("a13df747-09bd-481b-a838-751ec9ef92bf", "LEGO® Frozen 2");
+        public static readonly ProductTheme LegoIcons = new ProductTheme("f35feee9-c7e3-4ad2-92d0-f84823685fe3", "LEGO® ICONS™");
         public static readonly ProductTheme LegoMarvel = new ProductTheme("e92d1f5f-91be-4083-9e99-766ca3e90c55", "LEGO® Marvel");
         public static readonly ProductTheme LegoMinions = new ProductTheme("7caa382c-966d-4241-bc94-be6b9436d82a", "LEGO® Minions");
         public static readonly ProductTheme LegoMonkieKid = new ProductTheme("42ef643e-d7d3-4b31-b3ed-e4275541ade3", "LEGO® Monkie Kid");
