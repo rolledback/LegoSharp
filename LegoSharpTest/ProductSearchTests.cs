@@ -16,31 +16,31 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachType()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductTypeFilter, ProductType>();
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, Product, ProductTypeFilter, ProductType>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachTheme()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductThemeFilter, ProductTheme>();
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, Product, ProductThemeFilter, ProductTheme>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachFlag()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductFlagsFilter, ProductFlag>();
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, Product, ProductFlagsFilter, ProductFlag>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachAvailability()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductAvailabilityFilter, ProductAvailability>();
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, Product, ProductAvailabilityFilter, ProductAvailability>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachInterest()
         {
-            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, ProductInterestFilter, ProductInterest>();
+            await TestUtils.tryQueryWithEachFilterValue<ProductSearchQuery, ProductSearchResult, Product, ProductInterestFilter, ProductInterest>();
         }
 
         [TestMethod]
@@ -80,31 +80,31 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task noMissingTypes()
         {
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductTypeFilter, ProductType, ProductSearchFacetExtractor>("lego product - type");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, Product, ProductTypeFilter, ProductType, ProductSearchFacetExtractor>("lego product - type");
         }
 
         [TestMethod]
         public async Task noMissingThemes()
         {
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductThemeFilter, ProductTheme, ProductSearchFacetExtractor>("lego product - theme");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, Product, ProductThemeFilter, ProductTheme, ProductSearchFacetExtractor>("lego product - theme");
         }
 
         [TestMethod]
         public async Task noMissingFlags()
         {
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductFlagsFilter, ProductFlag, ProductSearchFacetExtractor>("lego product - flag");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, Product, ProductFlagsFilter, ProductFlag, ProductSearchFacetExtractor>("lego product - flag");
         }
 
         [TestMethod]
         public async Task noMissingAvailability()
         {
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductAvailabilityFilter, ProductAvailability, ProductSearchFacetExtractor>("lego product - availability");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, Product, ProductAvailabilityFilter, ProductAvailability, ProductSearchFacetExtractor>("lego product - availability");
         }
 
         [TestMethod]
         public async Task noMissingInterest()
         {
-            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, ProductInterestFilter, ProductInterest, ProductSearchFacetExtractor>("lego product - interest");
+            await TestUtils.noMissingFilterValues<ProductSearchQuery, ProductSearchResult, Product, ProductInterestFilter, ProductInterest, ProductSearchFacetExtractor>("lego product - interest");
         }
     }
 }

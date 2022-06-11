@@ -4,15 +4,11 @@ using System.Text;
 
 namespace LegoSharp
 {
-    public class ProductSearchResult
+    public class ProductSearchResult : EnumerableQueryResult<Product>
     {
-        public IEnumerable<Product> products;
-        public int total;
 
-        public ProductSearchResult(IEnumerable<Product> products, int total)
+        public ProductSearchResult(IEnumerable<Product> items, int total) : base(items, total)
         {
-            this.products = products;
-            this.total = total;
         }
     }
 }

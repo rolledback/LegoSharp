@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public abstract class GraphQuery<ResultT> : IGraphQuery<ResultT>
+    public abstract class GraphQuery<ResultT, ItemT> : IGraphQuery<ResultT> where ResultT : EnumerableQueryResult<ItemT>
     {
         public string query;
         public int page;

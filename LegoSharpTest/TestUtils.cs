@@ -12,7 +12,12 @@ namespace LegoSharpTest
 {
     public class TestUtils
     {
-        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, QueryValuesFilterT, ValuesFilterValueT, FacetExtractorT>(string displayName) where GraphQueryT : GraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT> where FacetExtractorT : IFacetExtractor<GraphQueryT>
+        public static async Task noMissingFilterValues<GraphQueryT, QueryResultT, ItemT, QueryValuesFilterT, ValuesFilterValueT, FacetExtractorT>(string displayName) 
+            where GraphQueryT : GraphQuery<QueryResultT, ItemT> 
+            where ValuesFilterValueT : ValuesFilterValue 
+            where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT> 
+            where FacetExtractorT : IFacetExtractor<GraphQueryT>
+            where QueryResultT : EnumerableQueryResult<ItemT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
@@ -85,7 +90,11 @@ namespace LegoSharpTest
             }
         }
 
-        public static async Task tryQueryWithEachFilterValue<GraphQueryT, QueryResultT, QueryValuesFilterT, ValuesFilterValueT>() where GraphQueryT : GraphQuery<QueryResultT> where ValuesFilterValueT : ValuesFilterValue where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT>
+        public static async Task tryQueryWithEachFilterValue<GraphQueryT, QueryResultT, ItemT, QueryValuesFilterT, ValuesFilterValueT>() 
+            where GraphQueryT : GraphQuery<QueryResultT, ItemT> 
+            where ValuesFilterValueT : ValuesFilterValue 
+            where QueryValuesFilterT : QueryValuesFilter<ValuesFilterValueT>
+            where QueryResultT : EnumerableQueryResult<ItemT>
         {
             LegoGraphClient graphClient = new LegoGraphClient();
 
@@ -93,7 +102,8 @@ namespace LegoSharpTest
 
             foreach (var value in allValues)
             {
-                await graphClient.queryGraph(constructSomething<GraphQueryT>().addFilter(constructSomething<QueryValuesFilterT>().addValue(value)));
+                var results = await graphClient.queryGraph(constructSomething<GraphQueryT>().addFilter(constructSomething<QueryValuesFilterT>().addValue(value)));
+                results = null;
             }
         }
 

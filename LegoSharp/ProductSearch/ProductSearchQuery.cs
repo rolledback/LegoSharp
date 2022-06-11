@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class ProductSearchQuery : GraphQuery<ProductSearchResult>
+    public class ProductSearchQuery : GraphQuery<ProductSearchResult, Product>
     {
         public ProductSearchQuery() : base(Constants.productSearchUri, "SearchQuery", Constants.productSearchQuery)
         {

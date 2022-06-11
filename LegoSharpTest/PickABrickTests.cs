@@ -16,37 +16,37 @@ namespace LegoSharpTest
         [TestMethod]
         public async Task tryQueryWithEachColor()
         {
-            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, BrickColorFilter, BrickColor>();
+            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, Brick, BrickColorFilter, BrickColor>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachCategory()
         {
-            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, BrickCategoryFilter, BrickCategory>();
+            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, Brick, BrickCategoryFilter, BrickCategory>();
         }
 
         [TestMethod]
         public async Task tryQueryWithEachColorFamily()
         {
-            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, BrickColorFamilyFilter, BrickColorFamily>();
+            await TestUtils.tryQueryWithEachFilterValue<PickABrickQuery, PickABrickResult, Brick, BrickColorFamilyFilter, BrickColorFamily>();
         }
 
         [TestMethod]
         public async Task noMissingColors()
         {
-            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFilter, BrickColor, PickABrickFacetExtractor>("pick a brick - color");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, Brick, BrickColorFilter, BrickColor, PickABrickFacetExtractor>("pick a brick - color");
         }
 
         [TestMethod]
         public async Task noMissingCategories()
         {
-            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickCategoryFilter, BrickCategory, PickABrickFacetExtractor>("pick a brick - category");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, Brick, BrickCategoryFilter, BrickCategory, PickABrickFacetExtractor>("pick a brick - category");
         }
 
         [TestMethod]
         public async Task noMissingColorFamilies()
         {
-            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, BrickColorFamilyFilter, BrickColorFamily, PickABrickFacetExtractor>("pick a brick - color family");
+            await TestUtils.noMissingFilterValues<PickABrickQuery, PickABrickResult, Brick, BrickColorFamilyFilter, BrickColorFamily, PickABrickFacetExtractor>("pick a brick - color family");
         }
     }
 }

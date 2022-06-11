@@ -25,7 +25,7 @@ namespace LegoSharpTest
             query.query = "wheel";
 
             PickABrickResult result = await graphClient.pickABrick(query);
-            foreach (Brick brick in result.elements)
+            foreach (Brick brick in result.items)
             {
                 // do something with each brick
             }
@@ -46,7 +46,7 @@ namespace LegoSharpTest
             query.query = "train";
 
             ProductSearchResult result = await graphClient.productSearch(query);
-            foreach (Product product in result.products)
+            foreach (Product product in result.items)
             {
                 // do something with each product
             }

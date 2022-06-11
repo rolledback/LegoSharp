@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LegoSharp
 {
-    public class PickABrickQuery : GraphQuery<PickABrickResult>
+    public class PickABrickQuery : GraphQuery<PickABrickResult, Brick>
     {
         public PickABrickQuery() : base(Constants.pickABrickUri, "PickABrickQuery", Constants.pickABrickQuery)
         {
